@@ -1,0 +1,608 @@
+@font-face {
+  font-family: "Digory_Doodles_PS";
+  src: url(./fonts/Digory_Doodles_PS.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes floating {
+  50% {
+    transform: translatey(-8px);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url(./images/visages-mignons.jpg) repeat-y;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+#mainwrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 99vh;
+  justify-content: space-between;
+}
+
+#core {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 20px;
+  align-items: center;
+  font-family: cursive;
+  background-color: rgb(246, 165, 242);
+  border-radius: 20px;
+  width: 50%;
+  min-width: 610px;
+}
+
+section {
+  display: flex;
+}
+
+/* Mise en forme des pages index et identification */
+.accueil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+#titre_login {
+  position: absolute;
+  top: 10px;
+  width: 450px;
+  height: 50px;
+  background-color: rgb(246, 165, 242);
+  text-align: center;
+  border: 3px solid white;
+  border-radius: 15px;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: -60px;
+}
+
+#logo img {
+  position: relative;
+  padding-bottom: 25px;
+  cursor: pointer;
+  animation: floating 2s infinite ease-in-out;
+}
+
+#loginbox {
+  position: absolute;
+  top: 50px;
+  margin: 100px;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffcafc;
+  font-family: cursive;
+  color: blueviolet;
+  border: 3px solid white;
+  border-radius: 15px;
+}
+
+#info_identification {
+  position: fixed;
+  z-index: 2;
+  top: 25%;
+  min-height: 20px;
+  max-width: 300px;
+  padding: 10px 5px;
+  text-align: center;
+  background-color: white;
+  color: blueviolet;
+  border: 3px solid blueviolet;
+  border-radius: 30px;
+  font-family: cursive;
+}
+
+.login {
+  position: absolute;
+  margin-top: 60px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login h3 {
+  font-size: 20px;
+  padding: 0 0 18px;
+  align-self: center;
+  font-size: 1.7em;
+}
+
+.login p {
+  margin: 10px 0;
+  padding: 0;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.login input {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.login input[type="text"],
+input[type="password"] {
+  border: none;
+  border-bottom: 3px solid white;
+  background: transparent;
+  outline: none;
+  height: 25px;
+  color: blueviolet;
+}
+
+.login button[type="submit"] {
+  outline: none;
+  background-color: blueviolet;
+  color: white;
+  height: 36px;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.login input[type="submit"]:hover {
+  background-color: #5b2c6f;
+  color: rgb(246, 165, 242);
+  cursor: pointer;
+}
+
+.login a {
+  text-decoration: none;
+  margin: 10px;
+  color: blueviolet;
+  line-height: 18px;
+}
+
+.login a:hover {
+  color: #5b2c6f;
+}
+
+button {
+  color: #fbfcfd;
+  padding: 8px;
+  margin-top: 25px;
+  background: blueviolet;
+  border-radius: 18px;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+}
+
+#bouton_visiteur {
+  width: 100%;
+}
+
+/* Page index_multipli*/
+.presentation {
+  background-color: white;
+  border: 3px solid rgb(246, 165, 242);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px auto;
+}
+#titre_index {
+  margin: 20px auto;
+}
+
+.presentation h3,
+.presentation li {
+  color: blueviolet;
+  font-family: cursive;
+  padding: 7px;
+  background-color: white;
+  list-style: circle;
+  width: 80%;
+  margin: auto;
+}
+
+.presentation li {
+  font-size: 20px;
+}
+
+.presentation h3 {
+  font-size: 25px;
+}
+
+/* Mise en forme header */
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+}
+
+#titre {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+  background-color: rgb(246, 165, 242);
+}
+
+h1 {
+  color: blueviolet;
+  font-family: "Digory_Doodles_PS", cursive;
+  font-size: 1.3em;
+}
+/* Mise en forme navigation */
+#nav {
+  width: 100vw;
+  background-color: blueviolet;
+  padding: 0;
+}
+#separation {
+  width: 3px;
+  height: 20px;
+  background-color: white;
+  align-self: center;
+}
+nav ul {
+  display: flex;
+  justify-content: center;
+  font-family: cursive;
+  padding: 0;
+}
+
+li {
+  background: blueviolet;
+  list-style: none;
+  margin: 5px;
+  padding: 2px 5px;
+  align-self: center;
+}
+
+a:hover {
+  color: rgb(246, 165, 242);
+}
+
+li:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+a:hover {
+  color: rgb(246, 165, 242);
+}
+/* Mise en forme bouton profil */
+.coureur {
+  display: flex;
+  border: 3px solid white;
+  border-radius: 10px;
+}
+
+#nom_coureur {
+  padding: 2px 5px;
+  background-color: rgb(246, 165, 242);
+  border-right: 1px solid white;
+  border-radius: 8px 0 0 8px;
+  color: blueviolet;
+}
+.changer {
+  padding: 2px 5px;
+  background-color: blueviolet;
+  border-left: 1px solid white;
+  border-radius: 0 8px 8px 0;
+  color: white;
+}
+/* Mise en forme commentaires */
+#note {
+  display: flex;
+}
+
+#commentaires {
+  display: flex;
+  padding: 10px;
+  font-size: 1.3em;
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#commentaires_options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* Mise en forme options */
+#options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.option {
+  width: 240px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+/* Mise en forme multiplication */
+#multiplication {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  margin: 10px;
+  box-shadow: 3px 3px 3px 3px;
+}
+
+.signe {
+  height: 40px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 2.1em;
+}
+
+.chiffre {
+  width: 60px;
+  height: 45px;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+#chiffre3 {
+  font-size: 2.4em;
+  width: 80px;
+}
+
+#tables {
+  margin-right: 50px;
+}
+
+/* Mise en forme du chrono */
+#chrono {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  height: 70px;
+  font-size: 1.7em;
+  margin: 5px;
+  padding: 5px;
+}
+
+#bouton_chrono {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  margin: 3px;
+  border: 3px solid white;
+  border-radius: 33px;
+  box-shadow: 3px 3px 3px 0px black;
+  font-size: 1em;
+  color: white;
+  font-weight: bolder;
+  background-color: blueviolet;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+#temps {
+  margin: 5px 20px;
+  padding: 10px 15px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 3px 3px 3px 0px black;
+}
+
+#reload,
+#enregistrer {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  /* width: 120px; */
+  height: 20px;
+  padding: 10px;
+  margin: 5px;
+  border: 3px solid white;
+  border-radius: 33px;
+  box-shadow: 3px 3px 3px 0px black;
+  font-size: small;
+  color: white;
+  font-weight: bolder;
+  background-color: blueviolet;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+
+#reload:active,
+#enregistrer:active,
+#bouton_chrono:active {
+  position: relative;
+  top: 3px;
+  left: 3px;
+  box-shadow: 0px 0px 0px 0px black;
+}
+
+/* Mise en forme grande_course */
+#course_3,
+#course_5 {
+  display: flex;
+  flex-direction: row;
+}
+
+#course_3 {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#course_2 {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#course_4 .bloc,
+#course_2 .bloc {
+  width: 60px;
+  height: 20px;
+}
+
+#milieu_grand {
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  height: 300px;
+  justify-content: space-between;
+}
+
+#milieu_petit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#depart_arrivee {
+  display: flex;
+  width: 200px;
+  background: url(./images/damier.png);
+  justify-content: center;
+}
+
+/* Mise en forme petite_course */
+#course {
+  margin: 20px;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  border: 2px solid blueviolet;
+}
+
+#depart,
+#arrive {
+  display: flex;
+  margin: 0;
+  width: 20px;
+  height: 60px;
+  background: url(./images/depart20.jpg);
+}
+
+.bloc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(151, 151, 255);
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 60px;
+  overflow: visible;
+}
+
+#bloc0 {
+  width: 100px;
+}
+
+#bloc10 {
+  border-radius: 0 0 20px 0;
+}
+#bloc26 {
+  border-radius: 0 20px 0 0;
+}
+#bloc55 {
+  border-radius: 20px 0 0 0;
+}
+#bloc71 {
+  border-radius: 0 0 0 20px;
+}
+
+#bloc_fin {
+  width: 100px;
+}
+
+img {
+  object-fit: contain;
+  width: 100px;
+  z-index: 1;
+}
+
+.bloc img {
+  position: relative;
+  margin-bottom: -8px;
+  animation: floating 1.5s infinite ease-in-out;
+}
+
+/* Mise en forme page stats */
+#stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 1080px;
+  background-color: white;
+  font-family: cursive;
+  color: blueviolet;
+}
+
+#stats > h1 {
+  margin: 50px;
+}
+/* Mise en forme info enregistrement */
+#info_enregistrement p {
+  background-color: white;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+/* Mise en forme pied de page */
+footer {
+  background-color: #5b2c6f;
+  width: 100vw;
+  margin-top: 20px;
+}
+
+#footer {
+  justify-self: right;
+  text-align: left;
+  padding: 10px;
+  color: rgb(218, 137, 250);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 90%;
+}
