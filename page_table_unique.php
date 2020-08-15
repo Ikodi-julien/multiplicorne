@@ -23,7 +23,6 @@
                 include("blocs/chrono.html");
                 include("blocs/multiplication.html");
                 include("blocs/petite_course.html");
-                include("blocs/gagnant_sprint.html");
                 ?>
 
                 <div id="info_enregistrement">
@@ -36,7 +35,8 @@
                 </div>
             </section>
 
-            <?php include("./blocs/footer.html"); ?>
+            <?php include("./blocs/footer.html");
+            include("blocs/gagnant_sprint.html"); ?>
 
         </div>
         <script type="module" src="scripts/table_unique.js" ></script>

@@ -114,6 +114,10 @@ btnChrono.addEventListener("click", (event) => {
             btnEnregistrer.innerText = "Enregistrer";
             document.getElementById("chrono").appendChild(btnEnregistrer);
 
+            // On envoi le message pour le gagnant
+            const fondGagnant = document.getElementById("fond_gagnant");
+            fondGagnant.setAttribute("class", "anim_gagnant");
+
             // On ajoute l'envoi à la page bdd si c'est pas un visiteur
             if (pseudo != visiteur) {
               const enregistrer = document.getElementById("enregistrer");
@@ -127,8 +131,6 @@ btnChrono.addEventListener("click", (event) => {
                   melange +
                   "&page=page_table_unique.php";
               });
-              avis.innerHTML =
-                "C'EST L'ARRIVEE !!!' !<br />Enregistre ton temps !";
             } else {
               avis.innerHTML =
                 "C'EST L'ARRIVEE !!!' !<br />Choisis un pseudo pour enregistrer ton temps !";

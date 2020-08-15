@@ -572,20 +572,21 @@ img {
 
 /* Mise en forme animation gagnant */
 .fond_gagnant {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 1000px;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(255, 170, 244, 0.4);
+  background-color: rgba(255, 170, 244, 0.6);
   z-index: 1;
   overflow: hidden;
 }
 
 .cadre_gagnant {
-  position: absolute;
-  top: 130px;
+  position: fixed;
+  top: 1000px;
   width: 500px;
   height: 300px;
+  margin-top: 130px;
   border: 3px solid blueviolet;
   border-radius: 20px;
   display: flex;
@@ -594,6 +595,16 @@ img {
   opacity: 1;
   background-color: white;
   z-index: 2;
+}
+
+.anim_gagnant {
+  animation: gagnant 1s ease-in-out forwards;
+}
+
+@keyframes gagnant {
+  100% {
+    top: 0;
+  }
 }
 
 .cadre_gagnant h1 {
