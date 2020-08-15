@@ -4,7 +4,7 @@
 // On doit voir la progression = nok,
 
 //############# DECLARATION DES VARIABLES ############
-import { coupler, melanger } from "./fonctions.js";
+import { coupler, melanger, play } from "./fonctions.js";
 import { Chrono } from "./chrono.js";
 
 //Variables chrono
@@ -115,8 +115,10 @@ btnChrono.addEventListener("click", (event) => {
             document.getElementById("chrono").appendChild(btnEnregistrer);
 
             // On envoi le message pour le gagnant
-            const fondGagnant = document.getElementById("fond_gagnant");
-            fondGagnant.setAttribute("class", "anim_gagnant");
+            let fondGagnant = document.getElementById("fond_gagnant");
+            let cadreGagnant = document.getElementById("cadre_gagnant");
+            play(fondGagnant, "anim_gagnant");
+            play(cadreGagnant, "anim_gagnant");
 
             // On ajoute l'envoi à la page bdd si c'est pas un visiteur
             if (pseudo != visiteur) {
