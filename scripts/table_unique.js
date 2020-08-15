@@ -108,11 +108,20 @@ btnChrono.addEventListener("click", (event) => {
             // On positionne la licorne dans le dernier
             document.getElementById("bloc_fin").appendChild(licorne);
 
-            // On créé le bouton pour enregistrer le temps
+            // On créé les boutons pour enregistrer le temps ou quitter
             let btnEnregistrer = document.createElement("div");
             btnEnregistrer.setAttribute("id", "enregistrer");
             btnEnregistrer.innerText = "Enregistrer";
-            document.getElementById("chrono").appendChild(btnEnregistrer);
+            document
+              .getElementById("cadre_gagnant")
+              .appendChild(btnEnregistrer);
+            let btnQuitter = document.createElement("div");
+            btnQuitter.setAttribute("id", "quitter");
+            btnQuitter.innerText = "Retour";
+            document.getElementById("cadre_gagnant").appendChild(btnQuitter);
+            btnQuitter.addEventListener("click", (event) => {
+              document.location.reload(true);
+            });
 
             // On envoi le message pour le gagnant
             let fondGagnant = document.getElementById("fond_gagnant");
@@ -120,7 +129,11 @@ btnChrono.addEventListener("click", (event) => {
             play(fondGagnant, "anim_gagnant");
             play(cadreGagnant, "anim_gagnant");
 
-            // On ajoute l'envoi à la page bdd si c'est pas un visiteur
+            // on affiche le temps dans le message au gagnant
+            let affichageTemps = document.getElementById("affichage_temps");
+            affichageTemps.innerText = myChrono.tempsAffiche;
+
+            // On différençie si visiteur ou non
             if (pseudo != visiteur) {
               const enregistrer = document.getElementById("enregistrer");
               enregistrer.addEventListener("click", (event) => {

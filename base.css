@@ -432,7 +432,8 @@ a:hover {
 }
 
 #reload,
-#enregistrer {
+#enregistrer,
+#quitter {
   display: flex;
   position: relative;
   flex-wrap: wrap;
@@ -612,6 +613,11 @@ img {
 
 .cadre_gagnant h1 {
   margin-top: 80px;
+}
+
+.cadre_gagnant h2 {
+  font-family: cursive;
+  color: blueviolet;
 }
 
 .cadre_gagnant .logo {
