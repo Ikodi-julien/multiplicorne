@@ -23,6 +23,7 @@
                 include("blocs/chrono.html");
                 include("blocs/multiplication.html");
                 include("blocs/petite_course.html");
+                include("blocs/gagnant_sprint.html");
                 ?>
 
                 <div id="info_enregistrement">

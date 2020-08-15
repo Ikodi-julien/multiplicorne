@@ -72,7 +72,7 @@ section {
   justify-content: center;
 }
 
-#logo {
+.logo {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -84,7 +84,7 @@ section {
   top: -60px;
 }
 
-#logo img {
+.logo img {
   position: relative;
   padding-bottom: 25px;
   cursor: pointer;
@@ -570,6 +570,40 @@ img {
   animation: floating 1.5s infinite ease-in-out;
 }
 
+/* Mise en forme animation gagnant */
+.fond_gagnant {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 170, 244, 0.4);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.cadre_gagnant {
+  position: absolute;
+  top: 130px;
+  width: 500px;
+  height: 300px;
+  border: 3px solid blueviolet;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 1;
+  background-color: white;
+  z-index: 2;
+}
+
+.cadre_gagnant h1 {
+  margin-top: 80px;
+}
+
+.cadre_gagnant .logo {
+  border: 3px solid blueviolet;
+  background-color: rgb(194, 208, 255);
+}
 /* Mise en forme page stats */
 #stats {
   display: flex;
