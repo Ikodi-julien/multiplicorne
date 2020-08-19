@@ -14,7 +14,14 @@
         <?php include("./blocs/header.php"); ?>
 
             <div class="presentation">
-                <h1 id='titre_index'>Bonjour <?php echo htmlspecialchars($_SESSION['pseudo']);
+                <h1 id='titre_index'>Bonjour 
+                  <?php if (isset($_SESSION['pseudo'])) {
+                    $pseudo = htmlspecialchars($_SESSION['pseudo']);
+                    echo htmlspecialchars($_SESSION['pseudo']);
+                  } else {
+                    $_SESSION['pseudo'] = "visiteur ou visiteuse ";
+                    echo htmlspecialchars($_SESSION['pseudo']);
+                  }
                 ?>, prêt(e) pour faire la course ?</h1>
                 <h3>Quelques informations pour commencer :</h3>
                 <ul>

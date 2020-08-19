@@ -11,7 +11,14 @@
         <li>
             <div class="coureur">
                 <div id="nom_coureur">
-                    <?php echo $_SESSION['pseudo']; ?>
+                <?php if (isset($_SESSION['pseudo'])) {
+                    $pseudo = htmlspecialchars($_SESSION['pseudo']);
+                    echo htmlspecialchars($_SESSION['pseudo']);
+                  } else {
+                    $_SESSION['pseudo'] = "visiteur ou visiteuse ";
+                    echo htmlspecialchars($_SESSION['pseudo']);
+                  }
+                ?>
                 </div>
                 <div class="changer">
                     <a href="index.php">Changer</a>
