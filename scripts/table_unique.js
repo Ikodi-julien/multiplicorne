@@ -4,8 +4,14 @@
 // On doit voir la progression = nok,
 
 //############# DECLARATION DES VARIABLES ############
-import { coupler, melanger, play } from "./fonctions.js";
-import { Chrono } from "./chrono.js";
+import {
+  coupler,
+  melanger,
+  play
+} from "./fonctions.js";
+import {
+  Chrono
+} from "./chrono.js";
 
 //Variables chrono
 let clickCount = 0;
@@ -15,16 +21,16 @@ const reload = document.getElementById("reload");
 
 // Variables multiplication
 const multiplicateur = [2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-const chiffre1 = document.getElementById("chiffre1");
-const chiffre2 = document.getElementById("chiffre2");
-const chiffre3 = document.getElementById("chiffre3");
-const avis = document.getElementById("avis");
-
 let couplesMultiplications = [];
 let i = 0;
 let nb1 = null;
 let nb2 = null;
+
+// Récupérer les éléments à modifier
+const chiffre1 = document.getElementById("chiffre1");
+const chiffre2 = document.getElementById("chiffre2");
+const chiffre3 = document.getElementById("chiffre3");
+const avis = document.getElementById("avis");
 
 // Variable de session
 const pseudo = document.getElementById("nom_coureur").innerText;
@@ -95,7 +101,9 @@ btnChrono.addEventListener("click", (event) => {
         } else {
           // soit c'est la fin soit c'est pas la bonne réponse
           if (result == nb3 && i == couplesMultiplications.length) {
+
             avis.innerText = "BRAVO ! C'EST L'ARRIVEE !!!!!!";
+
             myChrono.stopChrono();
             chiffre1.textContent = "-";
             chiffre2.textContent = "-";
@@ -115,6 +123,7 @@ btnChrono.addEventListener("click", (event) => {
             document
               .getElementById("cadre_gagnant")
               .appendChild(btnEnregistrer);
+
             let btnQuitter = document.createElement("div");
             btnQuitter.setAttribute("id", "quitter");
             btnQuitter.innerText = "Retour";

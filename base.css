@@ -212,6 +212,7 @@ button {
   padding: 20px;
   margin: 20px auto;
 }
+
 #titre_index {
   margin: 20px auto;
 }
@@ -257,18 +258,21 @@ h1 {
   font-family: "Digory_Doodles_PS", cursive;
   font-size: 1.3em;
 }
+
 /* Mise en forme navigation */
 #nav {
   width: 100vw;
   background-color: blueviolet;
   padding: 0;
 }
+
 #separation {
   width: 3px;
   height: 20px;
   background-color: white;
   align-self: center;
 }
+
 nav ul {
   display: flex;
   justify-content: center;
@@ -299,9 +303,11 @@ a {
   color: white;
   font-weight: bold;
 }
+
 a:hover {
   color: rgb(246, 165, 242);
 }
+
 /* Mise en forme bouton profil */
 .coureur {
   display: flex;
@@ -316,6 +322,7 @@ a:hover {
   border-radius: 8px 0 0 8px;
   color: blueviolet;
 }
+
 .changer {
   padding: 2px 5px;
   background-color: blueviolet;
@@ -323,6 +330,7 @@ a:hover {
   border-radius: 0 8px 8px 0;
   color: white;
 }
+
 /* Mise en forme commentaires */
 #note {
   display: flex;
@@ -359,6 +367,7 @@ a:hover {
   justify-content: space-between;
   padding: 5px;
 }
+
 /* Mise en forme multiplication */
 #multiplication {
   display: flex;
@@ -545,12 +554,15 @@ a:hover {
 #bloc10 {
   border-radius: 0 0 20px 0;
 }
+
 #bloc26 {
   border-radius: 0 20px 0 0;
 }
+
 #bloc55 {
   border-radius: 20px 0 0 0;
 }
+
 #bloc71 {
   border-radius: 0 0 0 20px;
 }
@@ -588,6 +600,7 @@ img {
   width: 500px;
   height: 300px;
   margin-top: 130px;
+  padding: 2rem;
   border: 3px solid blueviolet;
   border-radius: 20px;
   display: flex;
@@ -599,15 +612,16 @@ img {
 }
 
 .anim_gagnant {
-  animation: gagnant 1s ease-in-out forwards;
+  animation: gagnant .5s ease-in-out forwards;
 }
 
 @keyframes gagnant {
   0% {
     top: 1000px;
   }
+
   100% {
-    top: 0;
+    top: 80px;
   }
 }
 
@@ -618,12 +632,14 @@ img {
 .cadre_gagnant h2 {
   font-family: cursive;
   color: blueviolet;
+  text-align: center;
 }
 
 .cadre_gagnant .logo {
   border: 3px solid blueviolet;
   background-color: rgb(194, 208, 255);
 }
+
 /* Mise en forme page stats */
 #stats {
   display: flex;
@@ -635,9 +651,10 @@ img {
   color: blueviolet;
 }
 
-#stats > h1 {
+#stats>h1 {
   margin: 50px;
 }
+
 /* Mise en forme info enregistrement */
 #info_enregistrement p {
   background-color: white;
