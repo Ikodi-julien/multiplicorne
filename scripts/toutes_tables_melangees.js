@@ -85,7 +85,7 @@ chiffre3.addEventListener("change", (event) => {
     let result = nb1 * nb2;
 
     // Vérification réponse et on est pas à la fin
-    if (result == nb3 && i <= couplesMelanges.length - 1) {
+    if (result == nb3 && i <= couplesMelanges.length - 76) {
       avis.innerText = "oui, c'est bon...";
       [nb1, nb2] = couplesMelanges[i];
       chiffre1.textContent = nb1;
@@ -98,12 +98,26 @@ chiffre3.addEventListener("change", (event) => {
       // On récupère l'élément à modifier, on le colore et on ajoute la licorne
       const elmtModifie = document.getElementById(blocModifie);
       elmtModifie.style.backgroundColor = "#3f3fe1";
-      elmtModifie.appendChild(licorne);
+
+      // Rotation de la licorne
+      if (i > 70 | i < 11) {
+        licorne.src = "./images/licorne-detouree.png";
+        elmtModifie.appendChild(licorne);
+      } else if (i > 10 && i < 26) {
+        licorne.src = "./images/licorne-monte.png";
+        elmtModifie.appendChild(licorne);
+      } else if (i > 25 && i < 56) {
+        licorne.src = "./images/licorne-en-haut.png";
+        elmtModifie.appendChild(licorne);
+      } else if (i > 55 && i < 71) {
+        licorne.src = "./images/licorne-descend.png";
+        elmtModifie.appendChild(licorne);
+      }
 
       i++;
     } else {
       // soit c'est la fin soit c'est pas la bonne réponse
-      if (result == nb3 && i == couplesMelanges.length) {
+      if (result == nb3 && i == couplesMelanges.length - 75) {
 
         clickCount++;
 
@@ -123,13 +137,13 @@ chiffre3.addEventListener("change", (event) => {
         btnEnregistrer.setAttribute("id", "enregistrer");
         btnEnregistrer.innerText = "Enregistrer";
         document
-          .getElementById("cadre_gagnant")
+          .getElementById("winner_button")
           .appendChild(btnEnregistrer);
 
         let btnQuitter = document.createElement("div");
         btnQuitter.setAttribute("id", "quitter");
         btnQuitter.innerText = "Retour";
-        document.getElementById("cadre_gagnant").appendChild(btnQuitter);
+        document.getElementById("winner_button").appendChild(btnQuitter);
         btnQuitter.addEventListener("click", (event) => {
           document.location.reload(true);
         });
@@ -157,7 +171,14 @@ chiffre3.addEventListener("change", (event) => {
               melange +
               "&page=page_table_unique.php";
           } else {
-            document.getElementById("cadre_gagnant").removeChild(btnEnregistrer);
+            document.getElementById("winner_button").removeChild(btnEnregistrer);
+
+            let btnIndex = document.createElement("a");
+            btnIndex.setAttribute("id", "index");
+            btnIndex.setAttribute("href", "index.php");
+            btnIndex.innerText = "Choisir un pseudo";
+            document.getElementById("winner_button").appendChild(btnIndex);
+
             let winnerTime = document.getElementById("winner_time");
             document.getElementById("cadre_gagnant").removeChild(winnerTime);
             document.getElementById("winner_msg").innerHTML =

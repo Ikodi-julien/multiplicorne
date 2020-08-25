@@ -442,7 +442,8 @@ a:hover {
 
 #reload,
 #enregistrer,
-#quitter {
+#quitter,
+#index {
   display: flex;
   position: relative;
   flex-wrap: wrap;
@@ -465,7 +466,8 @@ a:hover {
 
 #reload:active,
 #enregistrer:active,
-#bouton_chrono:active {
+#bouton_chrono:active,
+#index:active {
   position: relative;
   top: 3px;
   left: 3px;
@@ -572,7 +574,7 @@ a:hover {
 }
 
 img {
-  object-fit: contain;
+  object-fit: cover;
   width: 100px;
   z-index: 1;
 }
@@ -623,6 +625,10 @@ img {
   100% {
     top: 80px;
   }
+}
+
+#winner_button {
+  display: flex;
 }
 
 .cadre_gagnant h1 {

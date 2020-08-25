@@ -38,7 +38,7 @@
                 </div>
             </section>
             <?php include("./blocs/footer.html");
-            include("blocs/gagnant_sprint.html"); ?>
+            include("blocs/gagnant.html"); ?>
 
         </div>
         <script type="module" src="scripts/toutes_tables_melangees.js"></script>

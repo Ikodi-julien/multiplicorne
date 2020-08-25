@@ -121,13 +121,13 @@ btnChrono.addEventListener("click", (event) => {
             btnEnregistrer.setAttribute("id", "enregistrer");
             btnEnregistrer.innerText = "Enregistrer";
             document
-              .getElementById("cadre_gagnant")
+              .getElementById("winner_button")
               .appendChild(btnEnregistrer);
 
             let btnQuitter = document.createElement("div");
             btnQuitter.setAttribute("id", "quitter");
             btnQuitter.innerText = "Retour";
-            document.getElementById("cadre_gagnant").appendChild(btnQuitter);
+            document.getElementById("winner_button").appendChild(btnQuitter);
             btnQuitter.addEventListener("click", (event) => {
               document.location.reload(true);
             });
@@ -156,8 +156,18 @@ btnChrono.addEventListener("click", (event) => {
                   "&page=page_table_unique.php";
               });
             } else {
-              avis.innerHTML =
-                "C'EST L'ARRIVEE !!!' !<br />Choisis un pseudo pour enregistrer ton temps !";
+              document.getElementById("winner_button").removeChild(btnEnregistrer);
+
+              let btnIndex = document.createElement("a");
+              btnIndex.setAttribute("id", "index");
+              btnIndex.setAttribute("href", "index.php");
+              btnIndex.innerText = "Choisir un pseudo";
+              document.getElementById("winner_button").appendChild(btnIndex);
+
+              let winnerTime = document.getElementById("winner_time");
+              document.getElementById("cadre_gagnant").removeChild(winnerTime);
+              document.getElementById("winner_msg").innerHTML =
+                "Choisis un pseudo pour pouvoir enregistrer ton temps.";
             }
           } else {
             avis.innerText = "Oups ! ce n'est pas la bonne réponse...";
