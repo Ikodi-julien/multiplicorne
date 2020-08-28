@@ -1,25 +1,4 @@
 <?php
-
-// --- VIEW FUNCTIONS --- //
-
-function firstLogin () {
-  // Affiche la saisie pour premier login
-  require("blocs/firstLogin.php");
-  $_GET['info_login'] = null;
-}
-
-function lostPass () {
-  // Affiche la saisie pour récup mot de passe
-  require("blocs/lostPass.php");
-  $_GET['info_login'] = null;
-}
-
-function visitor () {
-  // Envoi à l'index multiplications si visiteur
-  $_SESSION['pseudo'] = 'visiteuse ou visiteur';
-  header('Location: index_multiplications.php');
-}
-
 // --- SQL FUNCTIONS --- //
 
 function dbConnect () {
@@ -49,7 +28,7 @@ function rqProfil ($pseudo) {
 }
 
 function setNewProfil ($pseudo, $pass) {
-  // Ecrire le pseudo et le mdp dans la bdd,
+  // Enregistre un pseudo et le mdp dans la bdd,
   $db = dbConnect();
 
   $rqNewProfil = $db->prepare('INSERT INTO Profil(pseudo, mdp) VALUES (:newPseudo, :newMdp)');

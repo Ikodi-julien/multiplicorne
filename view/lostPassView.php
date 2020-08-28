@@ -1,3 +1,5 @@
+<?php $title = "Récupère ton mot de passe";
+ob_start(); ?>
 <h3>Entre ton pseudo pour récupérer ton mot de passe</h3>
 <form action="./verif_profil.php" method="post">
     <p>Pseudonyme : </p>
@@ -5,3 +7,5 @@
     <button type="submit" >Valider</button>
     <a href="index.php">Retour à l'accueil</a>
 </form></br>
+<?php $content = ob_get_clean();
+require("./view/templateLogin.php"); ?>
