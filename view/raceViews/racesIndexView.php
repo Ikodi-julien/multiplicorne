@@ -1,15 +1,10 @@
-<?php session_start(); ?>
+<?php
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="base.css" />
-        <script src="choix_tables.js" defer></script>
-        <title>ACCUEIL</title>
-    </head>
-    <body>
+$title = "ACCUEIL";
+$js = "";
+$css = "css/base.css";
+
+ob_start(); ?>
         <section class="accueil">
         <?php include("./blocs/header.php"); ?>
 
@@ -32,5 +27,6 @@
             </div>
         </section>
 
-    </body>
-</html>
+<?php $content = ob_get_clean();
+require("./view/raceViews/templateRace.php");
+?>

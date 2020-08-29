@@ -16,7 +16,9 @@
               <img src="./images/licorne-detouree.png" alt="licorne... sisi !">
           </div>
           <div class="login">
+
             <?php echo $content; ?>
+            
           </div>
         </div>
     </section>

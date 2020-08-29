@@ -10,4 +10,4 @@ ob_start(); ?>
       <a href="index.php">Retour à l'accueil</a>
   </form></br>
 <?php $content = ob_get_clean();
-require("./view/templateLogin.php"); ?>
+require("./view/loginViews/templateLogin.php"); ?>

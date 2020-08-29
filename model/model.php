@@ -23,6 +23,7 @@ function rqProfil ($pseudo) {
   $rqProfil = $db->prepare('SELECT pseudo, mdp FROM Profil WHERE pseudo= ?');
   $rqProfil->execute(array($pseudo));
   $dataProfil = $rqProfil->fetch();
+  $rqProfil->closeCursor();
 
   return $dataProfil;
 }

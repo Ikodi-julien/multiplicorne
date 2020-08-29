@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Digory_Doodles_PS";
-  src: url(./fonts/Digory_Doodles_PS.ttf);
+  src: url(../fonts/Digory_Doodles_PS.ttf);
   font-weight: normal;
   font-style: normal;
 }
@@ -14,10 +14,11 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: url(./images/visages-mignons.jpg) repeat-y;
+  background: url(../images/visages-mignons.jpg) repeat-y;
   background-size: cover;
   display: flex;
   justify-content: center;
