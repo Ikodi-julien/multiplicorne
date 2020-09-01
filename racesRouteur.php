@@ -2,6 +2,8 @@
 session_start(); 
 require("controller/raceCtrl.php");
 
+$pseudo = htmlspecialchars($_SESSION['pseudo']);
+
 /**
  *  Routeur vers les vues
  */
@@ -15,22 +17,33 @@ if (isset($_GET['race'])) {
   } elseif ($race == 'sprint') {
     require("view/raceViews/sprintView.php");
 
-    }
-} else {
-  echo "Mettre un message d'erreur quand y'a pas de course précisée";
-}
+  } elseif ($race == 'marathon') {
+    require("view/raceViews/marathonView.php");
 
+  } else {
+  echo "This is not the droids you're looking for.";
+  }
 
-/**
- * Routeur vers les actions possible
+  /**
+ * Routeur vers les actions possible liées aux temps :
  * 
- * enregistrer temps
+ * Afficher les temps;
  * 
- * récupérer les temps d'un utilisateur
+ * Enregistrer le temps;
  * 
- * d'autres à venir ?
+ * Comparer le dernier temps aux précédents;
  */
 
-if (isset($_GET['time'])) {
+} elseif (isset($_GET['time'])) {
   $time = htmlspecialchars($_GET['time']);
+
+  if ($time == 'index') {
+    $rqTimes = displayUserTimes($pseudo);
+
+    require("./view/timeViews/indexTimeView.php");
+
+  } 
+
+} else {
+  echo "This is not the droids you're looking for.";
 }

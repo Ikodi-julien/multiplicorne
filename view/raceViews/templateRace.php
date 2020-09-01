@@ -26,9 +26,9 @@
                     <div id="separation"></div>
                     <li><a href="racesRouteur.php?race=sprint">Sprint</a></li>
                     <div id="separation"></div>
-                    <li><a href="page_toutes_tables.php">Le Marathon</a></li>
+                    <li><a href="racesRouteur.php?race=marathon">Le Marathon</a></li>
                     <div id="separation"></div>
-                    <li><a href="stats.php">Temps</a></li>
+                    <li><a href="racesRouteur.php?time=index">Temps</a></li>
                     <div id="separation"></div>
                     <li>
                         <div class="coureur">

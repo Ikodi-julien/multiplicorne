@@ -1,4 +1,6 @@
 <?php
+require("./model/model.php");
+
 /**
  * Register a race time
  */
@@ -39,4 +41,15 @@ function registerRaceTime () {
       $_SESSION['enregistrement'] = 'Problème d\'enregistrement';
       header('Location: '.$page);
   }
+}
+
+/**
+ * get all user' times
+ */
+
+function displayUserTimes($pseudo) {
+
+  $rqTimes = getTimes($pseudo);
+
+  return $rqTimes;
 }
