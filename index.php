@@ -3,7 +3,17 @@
 session_start(); 
 require("controller/loginCtrl.php");
 
-if (isset($_GET['info_login'])) {
+// If this is a standard login
+if (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
+  // On fait gaffe aux valeurs fournies
+  $pseudo = htmlspecialchars($_POST['pseudo']);
+  $pass = htmlspecialchars($_POST['mdp']);
+
+  checkLoginCtrl($pseudo, $pass);
+
+
+// If this is not a standard login
+} elseif (isset($_GET['info_login'])) {
   $infoLogin = htmlspecialchars($_GET['info_login']);
   if ($infoLogin == "premiere") {
     firstLoginView();
@@ -16,13 +26,7 @@ if (isset($_GET['info_login'])) {
 
   }
 
-} elseif (isset($_POST['pseudo']) && isset($_POST['mdp'])) {
-    // On fait gaffe aux valeurs fournies
-    $pseudo = htmlspecialchars($_POST['pseudo']);
-    $pass = htmlspecialchars($_POST['mdp']);
-
-    checkLoginCtrl($pseudo, $pass);
-
+// If you ask your password back
 } elseif (isset($_POST['mdpPerdu'])) {
     $mdpPerdu = htmlspecialchars($_POST['mdpPerdu']);
 

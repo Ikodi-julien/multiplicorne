@@ -6,7 +6,6 @@ $css = "css/base.css";
 
 ob_start(); ?>
         <section class="accueil">
-        <?php include("./blocs/header.php"); ?>
 
             <div class="presentation">
                 <h1 id='titre_index'>Bonjour 

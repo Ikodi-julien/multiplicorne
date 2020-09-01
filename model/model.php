@@ -1,6 +1,8 @@
 <?php
 // --- SQL FUNCTIONS --- //
-
+/**
+ * Se connecte à la base de données
+ */
 function dbConnect () {
   try {
     $db = new PDO(
@@ -15,8 +17,10 @@ function dbConnect () {
   return $db;
 }
 
+/**
+ * Renvoi pseudo et mot de passe d'un profil
+ */
 function rqProfil ($pseudo) {
-  // Renvoi pseudo et mdp d'un profil
 
   $db = dbConnect();
 
@@ -28,8 +32,10 @@ function rqProfil ($pseudo) {
   return $dataProfil;
 }
 
+/**
+ * Enregistre un pseudo et son mot de passe dans la base de données
+ */
 function setNewProfil ($pseudo, $pass) {
-  // Enregistre un pseudo et le mdp dans la bdd,
   $db = dbConnect();
 
   $rqNewProfil = $db->prepare('INSERT INTO Profil(pseudo, mdp) VALUES (:newPseudo, :newMdp)');
