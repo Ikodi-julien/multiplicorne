@@ -1,6 +1,6 @@
 <?php 
-$css = 'css/base.css';
-$js = 'scripts/table_unique.js';
+$css = './css/base.css';
+$js = './scripts/table_unique.js';
 $title = 'Sprint';
 
 ob_start(); ?>

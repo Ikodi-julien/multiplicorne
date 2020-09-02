@@ -2,6 +2,7 @@
 // on doit avoir la possibilité de mélanger ou non la table = nok,
 // On doit pouvoir chronométrer = ok,
 // On doit voir la progression = nok,
+// Affichage consigne
 
 //############# DECLARATION DES VARIABLES ############
 import {
@@ -38,12 +39,12 @@ const visiteur = "visiteuse ou visiteur";
 
 // La licorne
 let licorne = document.createElement("img");
-licorne.src = "images/licorne-detouree.png";
+licorne.src = "./images/licorne-detouree.png";
 document.getElementById("bloc0").appendChild(licorne);
 
-// Affichage consigne
 avis.innerText =
   'Choisis une table, mélangée ou non et clique sur "GO" pour démarrer le chrono';
+
 //################ Boucle principale ####################
 
 btnChrono.addEventListener("click", (event) => {

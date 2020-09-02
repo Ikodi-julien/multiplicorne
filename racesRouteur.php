@@ -2,7 +2,27 @@
 session_start(); 
 require("controller/raceCtrl.php");
 
+/**
+ * Déclaration des variables communes
+ */
+
 $pseudo = htmlspecialchars($_SESSION['pseudo']);
+
+if (isset($_GET['table'])) {
+  $table = htmlspecialchars($_GET['table']);
+}
+if (isset($_GET['location'])) {
+  $location = htmlspecialchars($_GET['location']);
+}
+
+if (isset($_GET['mixed'])) {
+  $mixed = htmlspecialchars($_GET['mixed']);
+}
+
+if (isset($_GET['duration'])) {
+  $duration = htmlspecialchars($_GET['duration']);
+}
+
 
 /**
  *  Routeur vers les vues
@@ -42,6 +62,17 @@ if (isset($_GET['race'])) {
 
     require("./view/timeViews/indexTimeView.php");
 
+  } elseif ($time == 'record') {
+
+    $affectedLines = recordTime($pseudo, $table, $mixed, $duration);
+
+    if (!$affectedLines) {
+      $_SESSION['enregistrement'] = "Problème d'enregistrement";
+      header("Location: ./view/raceViews/".$location.".php");
+    } else {
+      
+    header("Location: racesRouteur.php?time=index");
+    }
   } 
 
 } else {

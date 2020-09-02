@@ -33,9 +33,8 @@ var pseudo = document.getElementById("nom_coureur").innerText;
 var visiteur = "visiteuse ou visiteur"; // La licorne
 
 var licorne = document.createElement("img");
-licorne.src = "images/licorne-detouree.png";
-document.getElementById("bloc0").appendChild(licorne); // Affichage consigne
-
+licorne.src = "./images/licorne-detouree.png";
+document.getElementById("bloc0").appendChild(licorne);
 avis.innerText = 'Choisis une table, mélangée ou non et clique sur "GO" pour démarrer le chrono'; //################ Boucle principale ####################
 
 btnChrono.addEventListener("click", function (event) {

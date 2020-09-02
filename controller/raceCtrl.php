@@ -53,3 +53,19 @@ function displayUserTimes($pseudo) {
 
   return $rqTimes;
 }
+
+function recordTime($pseudo, $table, $mixed, $duration) {
+
+  $db = dbConnect();
+  $rqRecord = $db->prepare("INSERT INTO course_multiplication(id_coureur, table_multiplication, melange, temps_course) 
+  VALUES (:id_coureur, :table_multiplication, :melange, :temps_course)");
+
+  $affectedLines = $rqRecord->execute(array(
+      'id_coureur' => $pseudo,
+      'table_multiplication' => $table,
+      'melange' => $mixed,
+      'temps_course' => $duration,
+  ));
+
+  return $affectedLines;
+}

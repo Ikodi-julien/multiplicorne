@@ -373,23 +373,26 @@ a:hover {
 #multiplication {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: white;
   margin: 10px;
-  box-shadow: 3px 3px 3px 3px;
+  padding: 10px;
+  box-shadow: 3px 3px 3px 0;
+  border-radius: 10px;
 }
 
 .signe {
+  text-align: center;
   height: 40px;
-  padding: 5px;
-  margin: 5px;
   font-size: 2.1em;
 }
 
 .chiffre {
-  width: 60px;
-  height: 45px;
+  width: 50px;
+  height: 40px;
   font-size: 2.5em;
   text-align: center;
+
 }
 
 #chiffre3 {
@@ -418,12 +421,12 @@ a:hover {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   padding: 10px;
   margin: 3px;
   border: 3px solid white;
-  border-radius: 33px;
+  border-radius: 50%;
   box-shadow: 3px 3px 3px 0px black;
   font-size: 1em;
   color: white;
@@ -450,13 +453,12 @@ a:hover {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  /* width: 120px; */
-  height: 20px;
+  height: 40px;
   padding: 10px;
   margin: 5px;
   border: 3px solid white;
   border-radius: 33px;
-  box-shadow: 3px 3px 3px 0px black;
+  box-shadow: 3px 3px 3px 0 black;
   font-size: small;
   color: white;
   font-weight: bolder;
@@ -472,7 +474,7 @@ a:hover {
   position: relative;
   top: 3px;
   left: 3px;
-  box-shadow: 0px 0px 0px 0px black;
+  box-shadow: 0 0 0 0 black;
 }
 
 /* Mise en forme grande_course */
@@ -534,7 +536,7 @@ a:hover {
   margin: 0;
   width: 20px;
   height: 60px;
-  background: url(./images/depart20.jpg);
+  background: url(../images/depart20.jpg);
 }
 
 .bloc {
