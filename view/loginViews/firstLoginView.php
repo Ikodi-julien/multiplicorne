@@ -1,7 +1,7 @@
 <?php $title = "Choisi un pseudo";
 ob_start(); ?>
   <h3>Choisi un pseudo et un mot de passe.</h3>
-  <form action="./checkProfil.php" method="post">
+  <form action="./index.php" method="post">
       <p>Pseudonyme : </p>
       <input type="text" name="newPseudo" id="newPseudo"><br />
       <p>Mot de passe : </p>

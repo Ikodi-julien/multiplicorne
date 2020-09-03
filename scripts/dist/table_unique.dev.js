@@ -128,7 +128,7 @@ btnChrono.addEventListener("click", function (event) {
             if (pseudo != visiteur) {
               var enregistrer = document.getElementById("enregistrer");
               enregistrer.addEventListener("click", function (event) {
-                document.location.href = "./enregistrer_temps.php?temps=" + document.getElementById("temps").innerText + "&table_multiplication=" + table + "&melange=" + melange + "&page=page_table_unique.php";
+                document.location.href = "./index.php?time=record&duration=" + document.getElementById("temps").innerText + "&table=" + table + "&mixed=" + melange + "&location=sprintView.php";
               });
             } else {
               document.getElementById("winner_button").removeChild(btnEnregistrer);

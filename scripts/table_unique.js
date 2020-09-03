@@ -148,13 +148,13 @@ btnChrono.addEventListener("click", (event) => {
               const enregistrer = document.getElementById("enregistrer");
               enregistrer.addEventListener("click", (event) => {
                 document.location.href =
-                  "./enregistrer_temps.php?temps=" +
+                  "./index.php?time=record&duration=" +
                   document.getElementById("temps").innerText +
-                  "&table_multiplication=" +
+                  "&table=" +
                   table +
-                  "&melange=" +
+                  "&mixed=" +
                   melange +
-                  "&page=page_table_unique.php";
+                  "&location=sprintView.php";
               });
             } else {
               document.getElementById("winner_button").removeChild(btnEnregistrer);

@@ -1,5 +1,8 @@
 <?php
-// --- SQL FUNCTIONS --- //
+/** --- SQL FUNCTIONS --- //
+ * 
+ */
+
 /**
  * Se connecte à la base de données
  */
@@ -33,24 +36,24 @@ function rqProfil ($pseudo) {
 }
 
 /**
- * Insert a profil (pseudo and password) in data base.
+ * Return user's password
  */
-function setNewProfil ($pseudo, $pass) {
+function rqPass($lostPass) {
   $db = dbConnect();
 
-  $rqNewProfil = $db->prepare('INSERT INTO Profil(pseudo, mdp) VALUES (:newPseudo, :newMdp)');
+  $rqPass = $db->prepare('SELECT mdp FROM Profil WHERE pseudo= :pseudo');
+  $rqPass->execute(array('pseudo' => $lostPass));
+  $data = $rqPass->fetch();
+  $rqPass->closecursor();
 
-  $rqNewProfil->execute(array(
-      'newPseudo' => $pseudo,
-      'newMdp' => $pass,
-  ));
+  return $data;
 }
 
 /**
  * Return all user' times for all races.
  */
 
-function getTimes($pseudo) {
+function rqTimes($pseudo) {
   $db = dbConnect();
 
   $rqTimes = $db->prepare("SELECT temps_course, table_multiplication, melange, 
@@ -64,6 +67,45 @@ function getTimes($pseudo) {
 
   return $rqTimes;
 }
+
+function insertNewProfil($newPseudo, $newPass) {
+  $db = dbConnect();
+
+  $rqNewProfil = $db->prepare("INSERT INTO Profil(pseudo, mdp) 
+  VALUES (:pseudo, :mdp)");
+
+  $affectedLines = $rqNewProfil->execute(array(
+      'pseudo' => $newPseudo,
+      'mdp' => $newPass,
+  ));
+
+  return $affectedLines;
+}
+
+/**
+ * Insert a race time in database
+ */
+
+function insertTime($pseudo, $table, $mixed, $duration) {
+
+  $db = dbConnect();
+  $rqRecord = $db->prepare("INSERT INTO course_multiplication(id_coureur, table_multiplication, melange, temps_course) 
+  VALUES (:id_coureur, :table_multiplication, :melange, :temps_course)");
+
+  $affectedLines = $rqRecord->execute(array(
+      'id_coureur' => $pseudo,
+      'table_multiplication' => $table,
+      'melange' => $mixed,
+      'temps_course' => $duration,
+  ));
+
+  return $affectedLines;
+
+}
+
+/**
+ * --- DISPLAY FUNCTIONS ---
+ */
 
 function displayTimes($rqTimes) {
   while ($data = $rqTimes->fetch()) {

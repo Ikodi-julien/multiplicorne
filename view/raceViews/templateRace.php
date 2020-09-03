@@ -21,13 +21,13 @@
           <div id="nav">
             <nav>
                 <ul>
-                    <li><a href="racesRouteur.php?race=index">Accueil</a></li>
+                    <li><a href="index.php?race=index">Accueil</a></li>
                     <div id="separation"></div>
-                    <li><a href="racesRouteur.php?race=sprint">Sprint</a></li>
+                    <li><a href="index.php?race=sprint">Sprint</a></li>
                     <div id="separation"></div>
-                    <li><a href="racesRouteur.php?race=marathon">Le Marathon</a></li>
+                    <li><a href="index.php?race=marathon">Le Marathon</a></li>
                     <div id="separation"></div>
-                    <li><a href="racesRouteur.php?time=index">Temps</a></li>
+                    <li><a href="index.php?time=index">Temps</a></li>
                     <div id="separation"></div>
                     <li>
                         <div class="coureur">
