@@ -8,56 +8,56 @@
         <title><?php echo $title; ?></title>
     </head>
 
-    <body>
-      <div id="mainwrapper">
-        <section id="header">
+  <body>
+    <div class="race">
 
-          <div id="titre">
-            <div id="banniere">
-              <h1>Les multiplications, ça fait avancer les Licornes !</h1>
-            </div>
+      <section class="race__header">
+        <div class="race__header__profil">
+
+          <div class="race__header__profil__pseudo">
+
+            <?php if (isset($_SESSION['pseudo'])) {
+                $pseudo = htmlspecialchars($_SESSION['pseudo']);
+                echo $pseudo;
+              } else {
+                echo "void";
+              }
+            ?>
           </div>
 
-          <div id="nav">
-            <nav>
-                <ul>
-                    <li><a href="index.php?race=index">Accueil</a></li>
-                    <div id="separation"></div>
-                    <li><a href="index.php?race=sprint">Sprint</a></li>
-                    <div id="separation"></div>
-                    <li><a href="index.php?race=marathon">Le Marathon</a></li>
-                    <div id="separation"></div>
-                    <li><a href="index.php?time=index">Temps</a></li>
-                    <div id="separation"></div>
-                    <li>
-                        <div class="coureur">
-                            <div id="nom_coureur">
-                            <?php if (isset($_SESSION['pseudo'])) {
-                                $pseudo = htmlspecialchars($_SESSION['pseudo']);
-                                echo htmlspecialchars($_SESSION['pseudo']);
-                              } else {
-                                $_SESSION['pseudo'] = "visiteur ou visiteuse ";
-                                echo htmlspecialchars($_SESSION['pseudo']);
-                              }
-                            ?>
-                            </div>
-                            <div class="changer">
-                                <a href="index.php">Changer</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+          <a href="index.php">
+          <div class="race__header__profil__change">
+            Changer
           </div>
+          </a>
+        </div>
 
-        </section>
+        <div class="race__header__title">
+          <h1>Les multiplications, ça fait avancer les Licornes !</h1>
+        </div>
+
+        <nav class="race__header__nav">
+          <ul>
+            <li><a href="index.php?race=index">Accueil</a></li>
+            <div class="race__header__nav__separation"></div>
+            <li><a href="index.php?race=sprint">Sprint</a></li>
+            <div class="race__header__nav__separation"></div>
+            <li><a href="index.php?race=marathon">Le Marathon</a></li>
+            <div class="race__header__nav__separation"></div>
+            <li><a href="index.php?time=index">Temps</a></li>
+            <div class="race__header__nav__separation"></div>
+          </ul>
+        </nav>
 
 
+      </section>
+
+      <div class="race__content">
         <?php echo $content; 
         echo '<script src='.$js.'></script>';
         ?>
-
       </div>
-      <script src=<?php echo $js; ?> type= 'module'></script>
-    </body>
+    </div>
+    <script src=<?php echo $js; ?> type= 'module'></script>
+  </body>
 </html>

@@ -28,7 +28,7 @@ if (isset($_GET['duration'])) {
 
 if (isset($_SESSION['identification'])) {
   $identification = htmlspecialchars($_SESSION['identification']);
-  echo '<p id="info_identification">'.$_SESSION['identification'].'</p>';
+  echo '<p class="login__info">'.$_SESSION['identification'].'</p>';
   $_SESSION['identification'] = null;
 }
 
