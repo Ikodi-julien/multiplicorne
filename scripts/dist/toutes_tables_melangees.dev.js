@@ -31,7 +31,9 @@ var chiffre3 = document.getElementById("chiffre3");
 var avis = document.getElementById("avis"); // Variable de session
 
 var pseudo = document.getElementById("nom_coureur").innerText;
-var visiteur = "visiteuse ou visiteur"; // Préparer les données
+var visiteur = "visiteuse ou visiteur";
+var table = "Toutes tables";
+var mixed = "mélangées"; // Préparer les données
 
 var couplesMultiplications = (0, _fonctions.couplerTous)(aMultiplier, multiplicateur);
 var couplesMelanges = (0, _fonctions.melanger)(couplesMultiplications); // Charger les premières valeurs
@@ -75,7 +77,7 @@ chiffre3.addEventListener("change", function (event) {
     var nb3 = document.getElementById("chiffre3").value;
     var result = nb1 * nb2; // Vérification réponse et on est pas à la fin
 
-    if (result == nb3 && i <= couplesMelanges.length - 76) {
+    if (result == nb3 && i <= couplesMelanges.length - 1) {
       avis.innerText = "oui, c'est bon...";
 
       var _couplesMelanges$i = _slicedToArray(couplesMelanges[i], 2);
@@ -108,7 +110,7 @@ chiffre3.addEventListener("change", function (event) {
       i++;
     } else {
       // soit c'est la fin soit c'est pas la bonne réponse
-      if (result == nb3 && i == couplesMelanges.length - 75) {
+      if (result == nb3 && i == couplesMelanges.length) {
         clickCount++;
         myChrono.stopChrono();
         chiffre1.textContent = "-";
@@ -139,22 +141,22 @@ chiffre3.addEventListener("change", function (event) {
         var affichageTemps = document.getElementById("affichage_temps");
         affichageTemps.innerText = myChrono.tempsAffiche; // On différençie si visiteur ou non pour enregistrer le temps
 
-        var enregistrer = document.getElementById("enregistrer");
-        enregistrer.addEventListener("click", function (event) {
-          if (pseudo != visiteur) {
-            document.location.href = "./enregistrer_temps.php?temps=" + document.getElementById("temps").innerText + "&table_multiplication=" + table + "&melange=" + melange + "&page=page_table_unique.php";
-          } else {
-            document.getElementById("winner_button").removeChild(btnEnregistrer);
-            var btnIndex = document.createElement("a");
-            btnIndex.setAttribute("id", "index");
-            btnIndex.setAttribute("href", "index.php");
-            btnIndex.innerText = "Choisir un pseudo";
-            document.getElementById("winner_button").appendChild(btnIndex);
-            var winnerTime = document.getElementById("winner_time");
-            document.getElementById("cadre_gagnant").removeChild(winnerTime);
-            document.getElementById("winner_msg").innerHTML = "Choisis un pseudo pour pouvoir enregistrer ton temps.";
-          }
-        });
+        if (pseudo != visiteur) {
+          var enregistrer = document.getElementById("enregistrer");
+          enregistrer.addEventListener("click", function (event) {
+            document.location.href = "./index.php?time=record&duration=" + document.getElementById("temps").innerText + "&table=" + table + "&mixed=" + mixed + "&location=marathonView.php";
+          });
+        } else {
+          document.getElementById("winner_button").removeChild(btnEnregistrer);
+          var btnIndex = document.createElement("a");
+          btnIndex.setAttribute("id", "index");
+          btnIndex.setAttribute("href", "index.php");
+          btnIndex.innerText = "Choisir un pseudo";
+          document.getElementById("winner_button").appendChild(btnIndex);
+          var winnerTime = document.getElementById("winner_time");
+          document.getElementById("cadre_gagnant").removeChild(winnerTime);
+          document.getElementById("winner_msg").innerHTML = "Choisis un pseudo pour pouvoir enregistrer ton temps.";
+        }
       } else {
         avis.innerText = "Oups ! ce n'est pas la bonne réponse...";
       }
