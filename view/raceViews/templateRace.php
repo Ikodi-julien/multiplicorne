@@ -6,6 +6,8 @@
 
         <link rel="stylesheet" href=<?php echo $css; ?> />
         <title><?php echo $title; ?></title>
+        <script src="./scripts/table_unique.js" type="module" defer></script>
+
     </head>
 
   <body>
@@ -14,7 +16,7 @@
       <section class="race__header">
         <div class="race__header__profil">
 
-          <div class="race__header__profil__pseudo">
+          <div id="pseudo" class="race__header__profil__pseudo">
 
             <?php if (isset($_SESSION['pseudo'])) {
                 $pseudo = htmlspecialchars($_SESSION['pseudo']);
@@ -54,10 +56,15 @@
 
       <div class="race__content">
         <?php echo $content; 
-        echo '<script src='.$js.'></script>';
         ?>
       </div>
+
     </div>
-    <script src=<?php echo $js; ?> type= 'module'></script>
+
+    <?php
+      include("./blocs/footer.html");
+      include("blocs/gagnant.html");
+      ?>
+
   </body>
 </html>

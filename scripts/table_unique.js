@@ -16,9 +16,9 @@ import {
 
 //Variables chrono
 let clickCount = 0;
-const myChrono = new Chrono("temps");
-const btnChrono = document.getElementById("bouton_chrono");
-const reload = document.getElementById("reload");
+const myChrono = new Chrono("time");
+const btnChrono = document.getElementById("btnGo");
+const reload = document.getElementById("btnReload");
 
 // Variables multiplication
 const multiplicateur = [2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -31,19 +31,18 @@ let nb2 = null;
 const chiffre1 = document.getElementById("chiffre1");
 const chiffre2 = document.getElementById("chiffre2");
 const chiffre3 = document.getElementById("chiffre3");
-const avis = document.getElementById("avis");
+const comment = document.getElementById("comment");
+comment.innerText =
+  'Choisis une table, mélangée ou non et clique sur "GO" pour démarrer le chrono';
 
 // Variable de session
-const pseudo = document.getElementById("nom_coureur").innerText;
+const pseudo = document.getElementById("pseudo").innerText;
 const visiteur = "visiteuse ou visiteur";
 
 // La licorne
 let licorne = document.createElement("img");
 licorne.src = "./images/licorne-detouree.png";
 document.getElementById("bloc0").appendChild(licorne);
-
-avis.innerText =
-  'Choisis une table, mélangée ou non et clique sur "GO" pour démarrer le chrono';
 
 //################ Boucle principale ####################
 
@@ -73,7 +72,7 @@ btnChrono.addEventListener("click", (event) => {
       i++;
       chiffre1.textContent = nb1;
       chiffre2.textContent = nb2;
-      avis.textContent = "C'EST PARTI !!!";
+      comment.textContent = "C'EST PARTI !!!";
 
       // Modifier les éléments si réponse modifiée
       chiffre3.addEventListener("change", (event) => {
@@ -84,7 +83,7 @@ btnChrono.addEventListener("click", (event) => {
 
         // Vérification réponse et on est pas à la fin
         if (result == nb3 && i < couplesMultiplications.length) {
-          avis.innerText = "oui, c'est bon...";
+          comment.innerText = "oui, c'est bon...";
           [nb1, nb2] = couplesMultiplications[i];
           chiffre1.textContent = nb1;
           chiffre2.textContent = nb2;
@@ -103,7 +102,7 @@ btnChrono.addEventListener("click", (event) => {
           // soit c'est la fin soit c'est pas la bonne réponse
           if (result == nb3 && i == couplesMultiplications.length) {
 
-            avis.innerText = "BRAVO ! C'EST L'ARRIVEE !!!!!!";
+            comment.innerText = "BRAVO ! C'EST L'ARRIVEE !!!!!!";
 
             myChrono.stopChrono();
             chiffre1.textContent = "-";
@@ -118,30 +117,28 @@ btnChrono.addEventListener("click", (event) => {
             document.getElementById("bloc_fin").appendChild(licorne);
 
             // On créé les boutons pour enregistrer le temps ou quitter
-            let btnEnregistrer = document.createElement("div");
+            let btnEnregistrer = document.createElement("button");
             btnEnregistrer.setAttribute("id", "enregistrer");
             btnEnregistrer.innerText = "Enregistrer";
             document
-              .getElementById("winner_button")
+              .getElementById("winnerBtn")
               .appendChild(btnEnregistrer);
 
-            let btnQuitter = document.createElement("div");
+            let btnQuitter = document.createElement("button");
             btnQuitter.setAttribute("id", "quitter");
             btnQuitter.innerText = "Retour";
-            document.getElementById("winner_button").appendChild(btnQuitter);
+            document.getElementById("winnerBtn").appendChild(btnQuitter);
             btnQuitter.addEventListener("click", (event) => {
               document.location.reload(true);
             });
 
             // On envoi le message pour le gagnant
-            let fondGagnant = document.getElementById("fond_gagnant");
-            let cadreGagnant = document.getElementById("cadre_gagnant");
-            play(fondGagnant, "anim_gagnant");
-            play(cadreGagnant, "anim_gagnant");
+            const winner = document.getElementById("winner");
+            play(winner, "anim_gagnant");
 
             // on affiche le temps dans le message au gagnant
-            let affichageTemps = document.getElementById("affichage_temps");
-            affichageTemps.innerText = myChrono.tempsAffiche;
+            winnerTime = document.getElementById("winnerTime");
+            winnerTime.innerText = myChrono.tempsAffiche;
 
             // On différençie si visiteur ou non
             if (pseudo != visiteur) {
@@ -149,7 +146,7 @@ btnChrono.addEventListener("click", (event) => {
               enregistrer.addEventListener("click", (event) => {
                 document.location.href =
                   "./index.php?time=record&duration=" +
-                  document.getElementById("temps").innerText +
+                  document.getElementById("time").innerText +
                   "&table=" +
                   table +
                   "&mixed=" +
@@ -157,21 +154,21 @@ btnChrono.addEventListener("click", (event) => {
                   "&location=sprintView.php";
               });
             } else {
-              document.getElementById("winner_button").removeChild(btnEnregistrer);
+              document.getElementById("winnerBtn").removeChild(btnEnregistrer);
 
               let btnIndex = document.createElement("a");
               btnIndex.setAttribute("id", "index");
               btnIndex.setAttribute("href", "index.php");
               btnIndex.innerText = "Choisir un pseudo";
-              document.getElementById("winner_button").appendChild(btnIndex);
+              document.getElementById("winnerBtn").appendChild(btnIndex);
 
               let winnerTime = document.getElementById("winner_time");
-              document.getElementById("cadre_gagnant").removeChild(winnerTime);
-              document.getElementById("winner_msg").innerHTML =
+              document.getElementById("winnerBox").removeChild(winnerTime);
+              document.getElementById("winnerMsg").innerHTML =
                 "Choisis un pseudo pour pouvoir enregistrer ton temps.";
             }
           } else {
-            avis.innerText = "Oups ! ce n'est pas la bonne réponse...";
+            comment.innerText = "Oups ! ce n'est pas la bonne réponse...";
           }
         }
       });
@@ -179,7 +176,7 @@ btnChrono.addEventListener("click", (event) => {
       document.location.reload(false);
     }
   } else {
-    avis.innerText = "Il faut choisir une table !!";
+    comment.innerText = "Il faut choisir une table !!";
   }
 });
 

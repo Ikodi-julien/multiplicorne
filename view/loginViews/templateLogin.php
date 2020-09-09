@@ -9,18 +9,22 @@
 <body>
     <section class="login">
 
-    <h1 class='login__title' >Les multiplications,<br /> ça fait avancer les licornes !</h1>
+      <h1 class='login__title' >Les multiplications,<br /> ça fait avancer les licornes !</h1>
 
-        <div class="login__box">
-          <div class="login__logo">
-              <img src="./images/licorne-detouree.png" alt="licorne... sisi !">
-          </div>
-          <div class="login__content">
+      <div class="login__box">
 
-            <?php echo $content; ?>
-            
-          </div>
+        <div class="login__logo">
+            <img src="./images/licorne-detouree.png" alt="licorne... sisi !">
         </div>
+        
+        <div class="login__content">
+
+          <?php echo $content; ?>
+          
+        </div>
+
+      </div>
+
     </section>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php 
 $css = './css/style.css';
-$js = './scripts/table_unique.js';
+$js = '<script src="./scripts/table_unique.js"></script>';
 $title = 'Sprint';
 
 ob_start(); ?>
@@ -38,8 +38,7 @@ ob_start(); ?>
   </div>
 </section>
 
-<?php include("./blocs/footer.html");
-include("blocs/gagnant.html");
+<?php
 
 $content = ob_get_clean(); 
 require("view/raceViews/templateRace.php"); ?>

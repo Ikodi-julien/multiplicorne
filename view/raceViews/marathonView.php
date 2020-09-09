@@ -1,12 +1,12 @@
 <?php
 $title = "Marathon";
-$css = "./css/base.css";
-$js = "./scripts/toutes_tables_melangees.js";
+$css = "./css/style.css";
+$js = '<script src="./scripts/toutes_tables_melangees.js"></script>';
 
 ob_start();
 ?>
 
-<section id="core">
+<section class="race__marathon">
       <?php include("./blocs/course_3.html"); ?>
 
   <div id="milieu_grand">
@@ -33,9 +33,6 @@ ob_start();
   </div>
 </section>
 
-<?php include("./blocs/footer.html");
-include("blocs/gagnant.html");
-
+<?php 
 $content = ob_get_clean(); 
 require("view/raceViews/templateRace.php"); ?>
-?>
