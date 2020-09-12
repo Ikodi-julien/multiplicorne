@@ -89,19 +89,27 @@ function getLostPassword($lostPass) {
  */
 
 function registerNewProfil($newPseudo, $newPass) {
+  // Check if pseudo already exist
+  $dataProfil = rqProfil($newPseudo);
   
+  if (empty($dataProfil['mdp'])) {
 
-  $affectedLines = insertNewProfil($newPseudo, $newPass);
+    $affectedLines = insertNewProfil($newPseudo, $newPass);
 
-  if ($affectedLines) {
-    // Retour à la page course
-    $_SESSION['identification'] = 'Profil enregistré, tu peux te connecter';
-    header('Location: ./index.php');
+    if ($affectedLines) {
+      // Retour à la page course
+      $_SESSION['identification'] = 'Profil enregistré, tu peux te connecter';
+      header('Location: ./index.php');
+      
+    } else {
+      $_SESSION['identification'] = 'Problème d\'enregistrement, désolé !';
+      header('Location: ./index.php');
     
+    }
   } else {
-    $_SESSION['identification'] = 'Problème d\'enregistrement, désolé !';
+    $_SESSION['identification'] = "Désolé ce pseudo est déjà prit";
     header('Location: ./index.php');
-  
+
   }
 }
 
