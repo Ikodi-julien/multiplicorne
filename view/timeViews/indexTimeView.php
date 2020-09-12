@@ -1,11 +1,11 @@
 <?php 
 $title = 'Temps';
-$css = './css/base.css';
+$css = './css/style.css';
 $js = '';
 
 ob_start();
 ?>
-    <section id=stats>
+    <section class="userTimes">
     <h1> Temps toutes tables mélangées de <?php echo $pseudo; ?></h1>
 
     <?php displayTimes($rqTimes); ?>
@@ -13,5 +13,5 @@ ob_start();
     </section>
 <?php
 $content = ob_get_clean();
-require('./view/raceViews/templateRace.php');
+require('./view/timeViews/templateTime.php');
 ?>

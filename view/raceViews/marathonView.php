@@ -1,24 +1,36 @@
 <?php
 $title = "Marathon";
 $css = "./css/style.css";
-$js = '<script src="./scripts/toutes_tables_melangees.js"></script>';
+$js = '<script src="./scripts/toutes_tables_melangees.js" type="module" defer ></script>';
 
 ob_start();
 ?>
 
 <section class="race__marathon">
-      <?php include("./blocs/course_3.html"); ?>
+  <?php include("./blocs/course_3.html"); ?>
 
-  <div id="milieu_grand">
+  <div class="race__marathon__middle">
+
       <?php include("./blocs/course_4.html"); ?>
-      <div id="milieu_petit">
-          <?php
-          include("./blocs/commentaires.php");
-          include("./blocs/chrono.html");
-          include("./blocs/multiplication.html");
-          ?>
+
+      <div class="race__marathon__middle__inside">
+        
+        <div class="race__sprint__comments">
+          <?php include("./blocs/commentaires.php"); ?>
+        </div>
+
+        <div class="race__sprint__chrono">
+          <?php include("blocs/chrono.html"); ?>
+        </div>
+
+        <div class="race__sprint__multipli">
+          <?php include("blocs/multiplication.html"); ?>
+        </div>
+
       </div>
+      
       <?php include("./blocs/course_2.html"); ?>
+
   </div>
 
   <?php include("./blocs/course_5.html"); ?>

@@ -14,34 +14,38 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // Variables pour le chrono
 var clickCount = 1;
-var myChrono = new _chrono.Chrono("temps");
-var btnChrono = document.getElementById("bouton_chrono");
-var reload = document.getElementById("reload");
-var temps = document.getElementById("temps").innerText; // Variables multiplication
+var myChrono = new _chrono.Chrono("time");
+var btnChrono = document.getElementById("btnGo");
+var reload = document.getElementById("btnReload"); // Variables multiplication
 
 var aMultiplier = [2, 3, 4, 5, 6, 7, 8, 9];
 var multiplicateur = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var i = 0;
 var nb1 = null;
-var nb2 = null; // Récupérer les éléments à modifier
+var nb2 = null;
+var table = "Toutes ";
+var melange = "mélangées"; // Récupérer les éléments à modifier
 
 var chiffre1 = document.getElementById("chiffre1");
 var chiffre2 = document.getElementById("chiffre2");
 var chiffre3 = document.getElementById("chiffre3");
-var avis = document.getElementById("avis"); // Variable de session
+var comment = document.getElementById("comment"); // Variable de session
 
-var pseudo = document.getElementById("nom_coureur").innerText;
-var visiteur = "visiteuse ou visiteur"; // Préparer les données
+var pseudo = document.getElementById("pseudo").innerText;
+var visiteur = "visiteuse ou visiteur";
+var location = "./raceViews/marathonView.php"; // La licorne
+
+var licorne = document.createElement("img");
+licorne.src = "images/licorne-detouree.png";
+licorne.style.position = "relative";
+licorne.style.bottom = "20px";
+document.getElementById("start_finish").appendChild(licorne); // Préparer les données
 
 var couplesMultiplications = (0, _fonctions.couplerTous)(aMultiplier, multiplicateur);
 var couplesMelanges = (0, _fonctions.melanger)(couplesMultiplications); // Charger les premières valeurs
 
 chiffre1.textContent = "-";
-chiffre2.textContent = "-"; // La licorne
-
-var licorne = document.createElement("img");
-licorne.src = "images/licorne-detouree.png";
-document.getElementById("depart_arrivee").appendChild(licorne); //#################### CHRONO #################
+chiffre2.textContent = "-"; //#################### CHRONO #################
 
 btnChrono.addEventListener("click", function (event) {
   clickCount++; // OK si course remise à 0
@@ -57,14 +61,14 @@ btnChrono.addEventListener("click", function (event) {
       nb2 = _couplesMelanges$[1];
       chiffre1.textContent = nb1;
       chiffre2.textContent = nb2;
-      avis.textContent = "C'est parti !";
+      comment.textContent = "C'est parti !";
       i++;
       return clickCount = 2;
     } else {
       myChrono.stopChrono();
     }
   } else {
-    avis.textContent = 'Clique sur "Refaire une course"';
+    comment.textContent = 'Clique sur "Refaire une course"';
   }
 }); // ################### GESTION MULTIPLICATION ###########
 
@@ -75,8 +79,8 @@ chiffre3.addEventListener("change", function (event) {
     var nb3 = document.getElementById("chiffre3").value;
     var result = nb1 * nb2; // Vérification réponse et on est pas à la fin
 
-    if (result == nb3 && i <= couplesMelanges.length - 76) {
-      avis.innerText = "oui, c'est bon...";
+    if (result == nb3 && i <= couplesMelanges.length - 1) {
+      comment.innerText = "oui, c'est bon...";
 
       var _couplesMelanges$i = _slicedToArray(couplesMelanges[i], 2);
 
@@ -91,24 +95,32 @@ chiffre3.addEventListener("change", function (event) {
       var elmtModifie = document.getElementById(blocModifie);
       elmtModifie.style.backgroundColor = "#3f3fe1"; // Rotation de la licorne
 
-      if (i > 70 | i < 11) {
+      if (i >= 74 | i < 10) {
         licorne.src = "./images/licorne-detouree.png";
+        licorne.style.removeProperty("right");
+        licorne.style.bottom = "20px";
         elmtModifie.appendChild(licorne);
-      } else if (i > 10 && i < 26) {
+      } else if (i >= 10 && i < 30) {
         licorne.src = "./images/licorne-monte.png";
+        licorne.style.removeProperty("bottom");
+        licorne.style.left = "20px";
         elmtModifie.appendChild(licorne);
-      } else if (i > 25 && i < 56) {
+      } else if (i >= 30 && i < 54) {
         licorne.src = "./images/licorne-en-haut.png";
+        licorne.style.removeProperty("left");
+        licorne.style.bottom = "20px";
         elmtModifie.appendChild(licorne);
-      } else if (i > 55 && i < 71) {
+      } else if (i >= 54 && i < 74) {
         licorne.src = "./images/licorne-descend.png";
+        licorne.style.removeProperty("bottom");
+        licorne.style.left = "20px";
         elmtModifie.appendChild(licorne);
       }
 
       i++;
     } else {
       // soit c'est la fin soit c'est pas la bonne réponse
-      if (result == nb3 && i == couplesMelanges.length - 75) {
+      if (result == nb3 && i == couplesMelanges.length) {
         clickCount++;
         myChrono.stopChrono();
         chiffre1.textContent = "-";
@@ -117,52 +129,50 @@ chiffre3.addEventListener("change", function (event) {
 
         document.getElementById("bloc80").style.backgroundColor = "#3f3fe1"; // On positionne la licorne dans le bloc arrivée
 
-        document.getElementById("depart_arrivee").appendChild(licorne); // On créé les bouton pour enregistrer le temps et quitter
+        document.getElementById("start_finish").appendChild(licorne); // On créé les bouton pour enregistrer le temps et quitter
 
-        var btnEnregistrer = document.createElement("div");
+        var btnEnregistrer = document.createElement("button");
         btnEnregistrer.setAttribute("id", "enregistrer");
         btnEnregistrer.innerText = "Enregistrer";
-        document.getElementById("winner_button").appendChild(btnEnregistrer);
-        var btnQuitter = document.createElement("div");
+        document.getElementById("winnerBtn").appendChild(btnEnregistrer);
+        var btnQuitter = document.createElement("button");
         btnQuitter.setAttribute("id", "quitter");
         btnQuitter.innerText = "Retour";
-        document.getElementById("winner_button").appendChild(btnQuitter);
+        document.getElementById("winnerBtn").appendChild(btnQuitter);
         btnQuitter.addEventListener("click", function (event) {
-          document.location.reload(true);
+          document.location.reload();
         }); // On envoi le message pour le gagnant
 
-        var fondGagnant = document.getElementById("fond_gagnant");
-        var cadreGagnant = document.getElementById("cadre_gagnant");
-        (0, _fonctions.play)(fondGagnant, "anim_gagnant");
-        (0, _fonctions.play)(cadreGagnant, "anim_gagnant"); // on affiche le temps dans le message au gagnant
+        var winner = document.getElementById("winner");
+        (0, _fonctions.play)(winner, "anim_gagnant"); // on affiche le temps dans le message au gagnant
 
-        var affichageTemps = document.getElementById("affichage_temps");
-        affichageTemps.innerText = myChrono.tempsAffiche; // On différençie si visiteur ou non pour enregistrer le temps
+        winnerTime = document.getElementById("winnerTime");
+        winnerTime.innerText = myChrono.tempsAffiche; // On différençie si visiteur ou non
 
-        var enregistrer = document.getElementById("enregistrer");
-        enregistrer.addEventListener("click", function (event) {
-          if (pseudo != visiteur) {
-            document.location.href = "./enregistrer_temps.php?temps=" + document.getElementById("temps").innerText + "&table_multiplication=" + table + "&melange=" + melange + "&page=page_table_unique.php";
-          } else {
-            document.getElementById("winner_button").removeChild(btnEnregistrer);
-            var btnIndex = document.createElement("a");
-            btnIndex.setAttribute("id", "index");
-            btnIndex.setAttribute("href", "index.php");
-            btnIndex.innerText = "Choisir un pseudo";
-            document.getElementById("winner_button").appendChild(btnIndex);
-            var winnerTime = document.getElementById("winner_time");
-            document.getElementById("cadre_gagnant").removeChild(winnerTime);
-            document.getElementById("winner_msg").innerHTML = "Choisis un pseudo pour pouvoir enregistrer ton temps.";
-          }
-        });
+        if (pseudo != visiteur) {
+          var enregistrer = document.getElementById("enregistrer");
+          enregistrer.addEventListener("click", function (event) {
+            document.location.href = "./index.php?time=record&duration=" + document.getElementById("time").innerText + "&table=" + table + "&mixed=" + melange + "&location=" + location;
+          });
+        } else {
+          document.getElementById("winnerBtn").removeChild(btnEnregistrer);
+          var btnIndex = document.createElement("button");
+          btnIndex.setAttribute("id", "index");
+          btnIndex.innerText = "Choisir un pseudo";
+          document.getElementById("winnerBtn").appendChild(btnIndex);
+          btnIndex.addEventListener("click", function (event) {
+            document.location.href = "./index.php";
+          });
+          document.getElementById("winnerMsg").innerHTML = "<p style='font-size: 18px'>Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.</p>";
+        }
       } else {
-        avis.innerText = "Oups ! ce n'est pas la bonne réponse...";
+        comment.innerText = "Oups ! ce n'est pas la bonne réponse...";
       }
     }
   } else {
-    avis.innerText = "Il faut lancer le chrono";
+    comment.innerText = "Il faut lancer le chrono";
   }
 });
 reload.addEventListener("click", function (event) {
-  document.location.reload(true);
+  document.location.reload();
 });

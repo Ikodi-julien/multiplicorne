@@ -109,6 +109,6 @@ function insertTime($pseudo, $table, $mixed, $duration) {
 
 function displayTimes($rqTimes) {
   while ($data = $rqTimes->fetch()) {
-    echo '<h3>Table : '.$data['table_multiplication'].' '.$data['melange'].' en '.$data['temps_course'].$data['date_course'].'</h3><br />';
+    echo '<p>Table : '.$data['table_multiplication'].' '.$data['melange'].' en '.$data['temps_course'].$data['date_course'].'</p><br />';
   };
 }

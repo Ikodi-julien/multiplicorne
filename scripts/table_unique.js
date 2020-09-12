@@ -38,10 +38,14 @@ comment.innerText =
 // Variable de session
 const pseudo = document.getElementById("pseudo").innerText;
 const visiteur = "visiteuse ou visiteur";
+const location = "./raceViews/sprintView.php";
+
 
 // La licorne
 let licorne = document.createElement("img");
 licorne.src = "./images/licorne-detouree.png";
+licorne.style.position = "relative";
+
 document.getElementById("bloc0").appendChild(licorne);
 
 //################ Boucle principale ####################
@@ -129,7 +133,7 @@ btnChrono.addEventListener("click", (event) => {
             btnQuitter.innerText = "Retour";
             document.getElementById("winnerBtn").appendChild(btnQuitter);
             btnQuitter.addEventListener("click", (event) => {
-              document.location.reload(true);
+              document.location.reload();
             });
 
             // On envoi le message pour le gagnant
@@ -137,7 +141,7 @@ btnChrono.addEventListener("click", (event) => {
             play(winner, "anim_gagnant");
 
             // on affiche le temps dans le message au gagnant
-            winnerTime = document.getElementById("winnerTime");
+            const winnerTime = document.getElementById("winnerTime");
             winnerTime.innerText = myChrono.tempsAffiche;
 
             // On différençie si visiteur ou non
@@ -151,21 +155,22 @@ btnChrono.addEventListener("click", (event) => {
                   table +
                   "&mixed=" +
                   melange +
-                  "&location=sprintView.php";
+                  "&location=" +
+                  location;
               });
             } else {
               document.getElementById("winnerBtn").removeChild(btnEnregistrer);
 
-              let btnIndex = document.createElement("a");
+              const btnIndex = document.createElement("button");
               btnIndex.setAttribute("id", "index");
-              btnIndex.setAttribute("href", "index.php");
               btnIndex.innerText = "Choisir un pseudo";
               document.getElementById("winnerBtn").appendChild(btnIndex);
+              btnIndex.addEventListener("click", (event) => {
+                document.location.href = "./index.php";
+              });
 
-              let winnerTime = document.getElementById("winner_time");
-              document.getElementById("winnerBox").removeChild(winnerTime);
               document.getElementById("winnerMsg").innerHTML =
-                "Choisis un pseudo pour pouvoir enregistrer ton temps.";
+                "<p style='font-size: 18px'>Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.</p>";
             }
           } else {
             comment.innerText = "Oups ! ce n'est pas la bonne réponse...";
@@ -173,7 +178,7 @@ btnChrono.addEventListener("click", (event) => {
         }
       });
     } else {
-      document.location.reload(false);
+      document.location.reload();
     }
   } else {
     comment.innerText = "Il faut choisir une table !!";
@@ -181,5 +186,5 @@ btnChrono.addEventListener("click", (event) => {
 });
 
 reload.addEventListener("click", (event) => {
-  document.location.reload(true);
+  document.location.reload();
 });
