@@ -1,7 +1,7 @@
 <?php
 $title = "Marathon";
 $css = "./css/style.css";
-$js = '<script src="./scripts/toutes_tables_melangees.js" type="module" defer ></script>';
+$js = '<script src="./scripts/main.js" type="module" defer ></script>';
 
 ob_start();
 ?>

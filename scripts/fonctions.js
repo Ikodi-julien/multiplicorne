@@ -40,4 +40,10 @@ function play(elt, class_name) {
   });
 }
 
-export { coupler, melanger, couplerTous, play };
+
+export {
+  coupler,
+  melanger,
+  couplerTous,
+  play,
+};

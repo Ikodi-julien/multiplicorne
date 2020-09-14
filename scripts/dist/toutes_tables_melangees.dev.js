@@ -63,7 +63,7 @@ btnChrono.addEventListener("click", function (event) {
       chiffre2.textContent = nb2;
       comment.textContent = "C'est parti !";
       i++;
-      return clickCount = 2;
+      clickCount = 2;
     } else {
       myChrono.stopChrono();
     }
