@@ -222,7 +222,7 @@ btnChrono.addEventListener("click", (event) => {
             const enregistrer = document.getElementById("enregistrer");
             enregistrer.addEventListener("click", (event) => {
               document.location.href =
-                "./index.php?time=record&duration=" +
+                "./raceRouteur.php?time=record&duration=" +
                 document.getElementById("time").innerText +
                 "&table=" +
                 table +

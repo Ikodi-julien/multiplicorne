@@ -9,7 +9,7 @@
 <body>
     <section class="login">
 
-      <h1 class='login__title' >Les multiplications,<br /> ça fait avancer les licornes !</h1>
+      <h1 class='login__title' >MultipLicorne</h1>
 
       <div class="login__box">
 

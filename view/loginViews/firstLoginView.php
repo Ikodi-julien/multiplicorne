@@ -5,7 +5,9 @@ ob_start(); ?>
       <p>Pseudonyme : </p>
       <input type="text" name="newPseudo" id="newPseudo"><br />
       <p>Mot de passe : </p>
-      <input type="password" name="newMdp" id="mdp"><br />
+      <input type="password" name="newMdp1" id="mdp"><br />
+      <p>Saisir à nouveau le mot de passe : </p>
+      <input type="password" name="newMdp2" id="mdp"><br />
       <button type="submit" >Valider</button>
       <a href="index.php">Retour à l'accueil</a>
   </form></br>

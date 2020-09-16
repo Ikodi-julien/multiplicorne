@@ -13,5 +13,5 @@ ob_start();
     </section>
 <?php
 $content = ob_get_clean();
-require('./view/timeViews/templateTime.php');
+require('./view/template.php');
 ?>

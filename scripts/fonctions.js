@@ -1,7 +1,7 @@
 // Fonction créant un array avec tous les couples de multiplications
 const coupler = (nb, multiplicateur) => {
   let array = [];
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 10; i++) {
     array.push([nb, multiplicateur[i]]);
   }
   return array;

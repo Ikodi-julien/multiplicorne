@@ -5,29 +5,29 @@ $title = 'Sprint';
 
 ob_start(); ?>
 
-<section class="race__sprint">
+<section class="content__sprint">
 
-  <div class="race__sprint__comments">
+  <div class="content__sprint__comments">
     <?php include("./blocs/commentaires.php"); ?>
   </div>
 
-  <div class="race__sprint__options">
+  <div class="content__sprint__options">
     <?php include("blocs/options.html"); ?>
   </div>
   
-  <div class="race__sprint__chrono">
+  <div class="content__sprint__chrono">
     <?php include("blocs/chrono.html"); ?>
   </div>
 
-  <div class="race__sprint__multipli">
+  <div class="content__sprint__multipli">
     <?php include("blocs/multiplication.html"); ?>
   </div>
 
-  <div class="race__sprint__little">
+  <div class="content__sprint__little">
     <?php include("blocs/petite_course.html"); ?>
   </div>
 
-  <div class="race__sprint__intel">
+  <div class="content__sprint__intel">
       <?php
       if (isset($_SESSION['enregistrement']) && $_SESSION['enregistrement'] != null) {
         $intel = htmlspecialchars($_SESSION['enregistrement']);
@@ -36,9 +36,12 @@ ob_start(); ?>
       }
       ?>
   </div>
+
 </section>
 
 <?php
+include("blocs/gagnant.html");
 
 $content = ob_get_clean(); 
-require("view/raceViews/templateRace.php"); ?>
+require('./view/template.php');
+ ?>

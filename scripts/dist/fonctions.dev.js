@@ -10,7 +10,7 @@ exports.couplerTous = exports.melanger = exports.coupler = void 0;
 var coupler = function coupler(nb, multiplicateur) {
   var array = [];
 
-  for (var i = 0; i < 9; i++) {
+  for (var i = 0; i < 10; i++) {
     array.push([nb, multiplicateur[i]]);
   }
 

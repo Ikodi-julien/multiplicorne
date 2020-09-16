@@ -1,37 +1,52 @@
-<section class="race__header">
-  <div class="race__header__profil">
+<section class="content__header">
 
-    <div id="pseudo" class="race__header__profil__pseudo">
-
-      <?php if (isset($_SESSION['pseudo'])) {
-          $pseudo = htmlspecialchars($_SESSION['pseudo']);
-          echo $pseudo;
-        } else {
-          echo "void";
-        }
-      ?>
-    </div>
-
-    <a href="index.php">
-    <div class="race__header__profil__change">
-      Changer
-    </div>
-    </a>
-  </div>
-
-  <div class="race__header__title">
+  <div class="content__header__title">
     <h1>Les multiplications, ça fait avancer les Licornes !</h1>
+
+    <div class="content__header__title__profil">
+
+      <div class="content__header__title__profil__avatar">
+
+        <img src="./avatars/mini_<?php echo $pseudo;?>.png" alt="Pas d'image de pseudo">
+
+        <div id="pseudo" class="content__header__title__profil__pseudo">
+          <?php if (isset($_SESSION['pseudo'])) {
+              $pseudo = htmlspecialchars($_SESSION['pseudo']);
+              echo $pseudo;
+            } else {
+              echo "void";
+            }
+          ?>
+        </div>
+
+      </div>
+
+      <div class="content__header__title__profil__buttons">
+        <a href="index.php?info_login=editProfil">
+          <div class="content__header__title__profil__button">
+            Voir mon profil
+          </div>
+        </a>
+
+        <a href="index.php?info_login=disconnect">
+          <div class="content__header__title__profil__button">
+            Déconnexion
+          </div>
+        </a>
+      </div>
+    </div>
+
   </div>
 
-  <nav class="race__header__nav">
+  <nav class="content__header__nav">
     <ul>
-      <li><a href="index.php?race=index">Accueil</a></li>
-      <div class="race__header__nav__separation"></div>
-      <li><a href="index.php?race=sprint">Sprint</a></li>
-      <div class="race__header__nav__separation"></div>
-      <li><a href="index.php?race=marathon">Le Marathon</a></li>
-      <div class="race__header__nav__separation"></div>
-      <li><a href="index.php?time=index">Temps</a></li>
+      <li><a href="raceRouteur.php?race=index">Accueil</a></li>
+      <div class="content__header__nav__separation"></div>
+      <li><a href="raceRouteur.php?race=sprint">Sprint</a></li>
+      <div class="content__header__nav__separation"></div>
+      <li><a href="raceRouteur.php?race=marathon">Le Marathon</a></li>
+      <div class="content__header__nav__separation"></div>
+      <li><a href="raceRouteur.php?time=index">Temps</a></li>
     </ul>
   </nav>
 

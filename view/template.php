@@ -6,17 +6,21 @@
 
         <link rel="stylesheet" href=<?php echo $css; ?> />
         <title><?php echo $title; ?></title>
+        <?php echo $js; ?>
 
     </head>
 
   <body>
-    <div class="race">
-      <?php require("./blocs/raceHeader.php"); ?>
+    <div class="content">
 
-      <div class="race__content">
-        <?php echo $content; 
-        ?>
-      </div>
+    <?php require("./blocs/raceHeader.php"); ?>
+    <?php echo $content; ?>
+
+    </div>
+
+    <?php
+      include("./blocs/footer.html");
+      ?>
 
   </body>
 </html>

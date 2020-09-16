@@ -197,7 +197,7 @@ btnChrono.addEventListener("click", function (event) {
           if (pseudo != visiteur) {
             var enregistrer = document.getElementById("enregistrer");
             enregistrer.addEventListener("click", function (event) {
-              document.location.href = "./index.php?time=record&duration=" + document.getElementById("time").innerText + "&table=" + table + "&mixed=" + melange + "&location=" + location;
+              document.location.href = "./raceRouteur.php?time=record&duration=" + document.getElementById("time").innerText + "&table=" + table + "&mixed=" + melange + "&location=" + location;
             });
           } else {
             document.getElementById("winnerBtn").removeChild(btnEnregistrer);

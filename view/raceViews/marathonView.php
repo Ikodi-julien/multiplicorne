@@ -6,24 +6,24 @@ $js = '<script src="./scripts/main.js" type="module" defer ></script>';
 ob_start();
 ?>
 
-<section class="race__marathon">
+<section class="content__marathon">
   <?php include("./blocs/course_3.html"); ?>
 
-  <div class="race__marathon__middle">
+  <div class="content__marathon__middle">
 
       <?php include("./blocs/course_4.html"); ?>
 
-      <div class="race__marathon__middle__inside">
+      <div class="content__marathon__middle__inside">
         
-        <div class="race__sprint__comments">
+        <div class="content__sprint__comments">
           <?php include("./blocs/commentaires.php"); ?>
         </div>
 
-        <div class="race__sprint__chrono">
+        <div class="content__sprint__chrono">
           <?php include("blocs/chrono.html"); ?>
         </div>
 
-        <div class="race__sprint__multipli">
+        <div class="content__sprint__multipli">
           <?php include("blocs/multiplication.html"); ?>
         </div>
 
@@ -46,5 +46,9 @@ ob_start();
 </section>
 
 <?php 
+include("blocs/gagnant.html");
+
 $content = ob_get_clean(); 
-require("view/raceViews/templateRace.php"); ?>
+require('./view/template.php');
+
+?>

@@ -7,6 +7,8 @@ ob_start(); ?>
       <input type="text" name="pseudo" id="pseudo"><br />
       <p>Mot de passe : </p>
       <input type="password" name="mdp" id="mdp"><br />
+      <label for="auto">Rester connecté.e
+        <input type="checkbox" name="auto" id="auto"></label><br />
       <button type="submit" >Valider</button>
   </form></br>
   <a href="index.php?info_login=premiere" >Pas encore d'identifiant ?</a>

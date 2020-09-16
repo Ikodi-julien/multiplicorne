@@ -112,3 +112,15 @@ function displayTimes($rqTimes) {
     echo '<p>Table : '.$data['table_multiplication'].' '.$data['melange'].' en '.$data['temps_course'].$data['date_course'].'</p><br />';
   };
 }
+
+
+function disconnect() {
+  
+    $_SESSION = array();
+    session_destroy();
+    setcookie('pseudo', '');
+    setcookie('pass_hache', '');
+
+    $_GET['deconnexion'] = null;
+    header("Location: index.php?info_login=disconnected");
+}

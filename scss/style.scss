@@ -13,6 +13,7 @@
 :root {
   --color-font: blueviolet;
   --color-dark-pink: rgb(238, 167, 234);
+  --color-darker-pink: rgb(209, 133, 206);
   --color-light-pink: #ffe8fe;
   --color-blueviolet: blueviolet;
   --color-light-blueviolet: rgba(137, 43, 226, 0.8);
@@ -80,12 +81,6 @@ button:hover {
   cursor: pointer;
 }
 
-img {
-  min-width: 100px;
-  max-width: 100px;
-  z-index: var(--z-middle);
-  animation: floating 2s infinite ease-in-out;
-}
 
 a {
   text-decoration: none;
@@ -105,6 +100,14 @@ li {
   width: 20px;
   height: 20px;
   overflow: visible;
+
+  & img {
+    min-width: 100px;
+    max-width: 100px;
+    z-index: var(--z-middle);
+    animation: floating 2s infinite ease-in-out;
+  }
+
 }
 
 /* --- TEMPLATE LOGIN --- */
@@ -118,19 +121,19 @@ li {
   &__title {
     position: absolute;
     width: 400px;
-    height: 100px;
+    height: 60px;
     padding: 5px;
     background-color: var(--color-dark-pink);
     text-align: center;
     border: 3px solid white;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 20px;
     font-family: var(--font-title);
   }
 
   &__box {
     position: absolute;
-    top: 100px;
+    top: 30px;
     width: 400px;
     margin-top: 90px;
     display: flex;
@@ -157,6 +160,7 @@ li {
 
     & img {
       padding-top: 10px;
+      animation: floating 2s infinite ease-in-out;
     }
   }
 
@@ -207,6 +211,20 @@ li {
         height: 25px;
         color: var(--font);
       }
+
+      & input[type='checkbox'] {
+        width: 10%;
+        height: 18px;
+      }
+
+      & label {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        font-size: 1em;
+        font-weight: bold;
+
+      }
     }
 
     & p {
@@ -235,9 +253,10 @@ li {
 
 /* --- TEMPLATE RACE --- */
 
-.race {
+.content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   font-family: var(--font);
   color: var(--color-blueviolet);
@@ -247,43 +266,71 @@ li {
     flex-direction: column;
     width: 100%;
 
-    &__profil {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      background-color: var(--color-dark-pink);
-
-      @media screen and(min-width: 768px) {
-        justify-content: space-evenly;
-      }
-
-      &__pseudo,
-      &__change {
-        padding: 1px 5px;
-        margin: 2px;
-      }
-
-      &__pseudo {
-        background-color: white;
-        border: 2px solid var(--color-blueviolet);
-        border-radius: 5px;
-      }
-
-      &__change {
-        background-color: var(--color-blueviolet);
-        border: 2px solid white;
-        color: white;
-        border-radius: 5px;
-      }
-    }
-
     &__title {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
       background-color: var(--color-dark-pink);
       font-family: var(--font-title);
       font-size: var(--font-size-h1-small);
       text-align: center;
       color: var(--color-blueviolet);
       padding: 5px;
+
+      &__profil {
+        display: flex;
+        align-items: center;
+        // width: 100%;
+        // background-color: var(--color-darker-pink);
+
+        // @media screen and(min-width: 768px) {
+        //   justify-content: space-evenly;
+        // }
+
+        &__avatar {
+          display: flex;
+          flex-direction: column;
+
+          & img {
+            border: 3px solid white;
+            border-radius: 50%;
+            background-color: white;
+            overflow: hidden;
+
+          }
+        }
+
+        &__pseudo {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 10px;
+          font-family: var(--font);
+          padding: 2px 5px;
+          background-color: white;
+          border: 2px solid var(--color-blueviolet);
+          border-radius: 5px;
+        }
+
+        &__button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 15px;
+          font-family: var(--font);
+          padding: 5px 10px;
+          margin: 2px 10px;
+          background-color: var(--color-blueviolet);
+          border: 2px solid white;
+          color: white;
+          border-radius: 5px;
+        }
+
+        &__buttons {
+          display: flex;
+          flex-direction: column;
+        }
+      }
     }
 
     &__nav {
@@ -305,9 +352,6 @@ li {
         }
       }
 
-
-
-
       &__separation {
         width: 3px;
         height: 14px;
@@ -316,8 +360,7 @@ li {
     }
   }
 
-
-  &__content {
+  &__racesIndex {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -361,6 +404,7 @@ li {
     flex-direction: column;
     align-items: center;
     width: 99%;
+    margin-top: 10px;
     padding: 10px 0;
     background-color: white;
     border: 3px solid var(--color-dark-pink);
@@ -418,6 +462,14 @@ li {
           background-image: url(../images/damier.png);
           background-position: center;
           background-repeat: repeat;
+
+          & img {
+            min-width: 100px;
+            max-width: 100px;
+            z-index: var(--z-middle);
+            animation: floating 2s infinite ease-in-out;
+          }
+
         }
 
         &__finish {
@@ -425,6 +477,14 @@ li {
           background-image: url(../images/damier.png);
           background-position: center;
           background-repeat: repeat;
+
+          & img {
+            min-width: 100px;
+            max-width: 100px;
+            z-index: var(--z-middle);
+            animation: floating 2s infinite ease-in-out;
+          }
+
         }
       }
     }
@@ -473,6 +533,16 @@ li {
       }
     }
   }
+
+  &__profil {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid var(--color-dark-pink);
+    border-radius: 20px;
+  }
 }
 
 #start_finish {
@@ -486,6 +556,14 @@ li {
   align-items: center;
   justify-content: center;
   position: relative;
+
+  & img {
+    min-width: 100px;
+    max-width: 100px;
+    z-index: var(--z-middle);
+    animation: floating 2s infinite ease-in-out;
+  }
+
 }
 
 .userTimes {
@@ -540,6 +618,7 @@ footer {
 
       & img {
         padding-top: 10px;
+        animation: floating 2s infinite ease-in-out;
       }
     }
 
