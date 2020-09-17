@@ -27,7 +27,7 @@ function rqProfil ($pseudo) {
 
   $db = dbConnect();
 
-  $rqProfil = $db->prepare('SELECT pseudo, mdp FROM Profil WHERE pseudo= ?');
+  $rqProfil = $db->prepare('SELECT pseudo, mdp, email, birth_date, style FROM Profil WHERE pseudo= ?');
   $rqProfil->execute(array($pseudo));
   $dataProfil = $rqProfil->fetch();
   $rqProfil->closeCursor();
@@ -68,15 +68,31 @@ function rqTimes($pseudo) {
   return $rqTimes;
 }
 
-function insertNewProfil($newPseudo, $newPass) {
+function insertNewProfil($newPseudo, $pass_hache, $email_1) {
   $db = dbConnect();
 
-  $rqNewProfil = $db->prepare("INSERT INTO Profil(pseudo, mdp) 
-  VALUES (:pseudo, :mdp)");
+  $rqNewProfil = $db->prepare("INSERT INTO Profil(pseudo, mdp, email) 
+  VALUES (:pseudo, :pass, :email)");
 
   $affectedLines = $rqNewProfil->execute(array(
       'pseudo' => $newPseudo,
-      'mdp' => $newPass,
+      'pass' => $pass_hache,
+      'email' => $email_1,
+  ));
+
+  return $affectedLines;
+}
+
+function insertNewEmail($pseudo, $email) {
+  $db = dbConnect();
+
+  $rqNewEmail = $db->prepare("UPDATE Profil
+  SET email=:email
+  WHERE pseudo=:pseudo");
+
+  $affectedLines = $rqNewEmail->execute(array(
+      'pseudo' => $pseudo,
+      'email' => $email,
   ));
 
   return $affectedLines;

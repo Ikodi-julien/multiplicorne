@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Controlleur 
+ * --- LOGIN FORMS ---
  *  
  */
 
@@ -40,14 +40,8 @@ function visitorView () {
 }
 
 /**
- * Displays profil view
+ * --- LOGIN CONTROL ---
  */
-function editProfilView () {
-
-  require("view/profilView/profilView.php");
-}
-
-
 /**
  * Check if user's pseudo and pass are known, if not
  * send back to identification with intel.
@@ -130,7 +124,7 @@ function getLostPassword($lostPass) {
  * Register a new user's Pseudo and Password
  */
 
-function registerNewProfil($newPseudo, $newPass1, $newPass2) {
+function registerNewProfil($newPseudo, $newPass1, $newPass2, $email_1, $email_2) {
 
   // Check passwords are the same
   if ($newPass1 != $newPass2) {
@@ -139,7 +133,13 @@ function registerNewProfil($newPseudo, $newPass1, $newPass2) {
     $_SESSION['identification'] = 'Les mots de passe ne sont pas identiques';
     header('Location: index.php');
 
+  } elseif ($email_1 != $email_2) {
+    $_POST['email_1'] = null;
+    $_POST['email_2'] = null;
+    $_SESSION['identification'] = 'Les mots de passe ne sont pas identiques';
+    header('Location: index.php');
   } else {
+
     // Check if pseudo already exist
     $dataProfil = rqProfil($newPseudo);
     
@@ -147,7 +147,7 @@ function registerNewProfil($newPseudo, $newPass1, $newPass2) {
 
       $pass_hache = password_hash($newPass1,PASSWORD_DEFAULT);
 
-      $affectedLines = insertNewProfil($newPseudo, $pass_hache);
+      $affectedLines = insertNewProfil($newPseudo, $pass_hache, $email_1);
 
       if ($affectedLines) {
         $_SESSION['identification'] = 'Profil enregistré, tu peux te connecter';
@@ -165,6 +165,10 @@ function registerNewProfil($newPseudo, $newPass1, $newPass2) {
     }
   }
 }
+
+/**
+ * --- RACE TIMES ---
+ */
 
 /**
  * get all user' times
@@ -193,6 +197,112 @@ function recordTime($pseudo, $table, $mixed, $duration) {
   }
 }
 
-// function setAvatar($_FILES['']) {
+/**
+ * --- PROFIL ---
+ */
 
-//     {
+function setAvatar($pseudo) {
+
+  if (isset($_FILES['avatar_fichier']) && $_FILES['avatar_fichier']['error'] == 0) {
+
+    // Test si le fichier n'est pas trop gros
+    if ($_FILES['avatar_fichier']['size'] < 1000000) {
+
+        // Test de l'extension du fichier, 
+        $infosFichier = pathinfo($_FILES['avatar_fichier']['name']);
+        $extensionUpload = $infosFichier['extension'];
+        $extensionAutorisees = array('jpg', 'jpeg', 'png');
+
+        if (in_array($extensionUpload, $extensionAutorisees)) {
+
+            // Si tout est ok, on redimensionne l'image
+
+            // On charge les images
+            if ($extensionUpload == 'jpg' | $extensionUpload == 'jpeg') {
+                $source = imagecreatefromjpeg($_FILES['avatar_fichier']['tmp_name']);
+
+            } elseif ($extensionUpload == 'png') {
+                $source = imagecreatefrompng($_FILES['avatar_fichier']['tmp_name']);
+            }
+            
+            $destination = imagecreatetruecolor(50, 50);
+        
+            // Les fonctions imagex et imagey renvoient les largeurs et hauteur d'une image
+            $largeur_source = imagesx($source);
+            $hauteur_source = imagesy($source);
+            $largeur_destination = imagesx($destination);
+            $hauteur_destination = imagesy($destination);
+        
+            // On crée la miniature
+            imagecopyresampled($destination, $source, 0, 0, 0, 0, $largeur_destination, $hauteur_destination, $largeur_source, $hauteur_source);
+        
+            // On enregistre l'image de destination 
+            imagepng($destination, "avatars/mini_".$pseudo.'.png');
+        
+            // envoi du fichier initial au stockage final
+            $moveUploadedFile = move_uploaded_file($_FILES['avatar_fichier']['tmp_name'], 'avatars/'.$pseudo);
+
+            if ($moveUploadedFile) {
+              $_SESSION['identification'] = "L'envoi a bien été effectué'";
+              header('Location: ./profilRouteur.php?profil=profil');
+  
+            } else {
+              $_SESSION['identification'] = "L'envoi n'a pas été fait";
+              header('Location: ./profilRouteur.php?profil=profil');
+  
+            }
+
+              
+        } else {
+          $_SESSION['identification'] = "Le fichier n'a pas une extension autorisée";
+          header('Location: ./profilRouteur.php?profil=profil');
+        }
+    } else {
+      $_SESSION['identification'] = "Fichier trop gros, max 1Mb";
+      header('Location: ./profilRouteur.php?profil=profil');
+      }
+  }
+  else {
+    $_SESSION['identification'] = "Le fichier n'a pas été transmis";
+    header('Location: ./profilRouteur.php?profil=profil');
+
+  }
+}
+
+/**
+ * Displays profil view
+ */
+function profilView ($pseudo, $modif) {
+  $profilInfo = getProfilInfo($pseudo);
+
+  require("view/profilView/profilView.php");
+}
+
+/**
+ * Change email in database
+ */
+function changeEmail($pseudo, $newEmail) {
+  $affectedLines = insertNewEmail($pseudo, $newEmail);
+
+  if ($affectedLines) {
+    header('Location: ./profilRouteur.php?profil=profil');
+
+  } else {
+    $_SESSION['identification'] = "L'email n'a pu être changé";
+    header('Location: ./profilRouteur.php?profil=profil');
+
+  }
+}
+
+/**
+ * Get user's profil infos
+ */
+function getProfilInfo($pseudo) {
+  $dataProfil = rqProfil($pseudo);
+
+  if (!$dataProfil) {
+    $_SESSION['identification'] = 'Problème d\'identification';
+  }
+
+  return $dataProfil;
+}

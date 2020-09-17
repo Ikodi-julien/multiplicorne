@@ -20,7 +20,7 @@ ob_start(); ?>
       <p>Avatar actuel :</p>
       
       <img src="<?php echo './avatars/mini_'.$pseudo.'.png'; ?>" alt="Pas d'image de pseudo">
-      <form action="index.php?profil=setAvatar" method="post" enctype="multipart/form-data">
+      <form action="profilRouteur.php?profil=setAvatar" method="post" enctype="multipart/form-data">
       <p>Choisir un autre avatar :<br />
           <input type="file" name="avatar_fichier" id="avatar_fichier"><br />
           <input type="submit" value="Envoyer le fichier"><br />
@@ -28,22 +28,22 @@ ob_start(); ?>
       </form>
     </div>
 
-    <!-- <div class="content__profil__items__item">
+  <div class="content__profil__items__item">
       <h2>eMail</h2>
       <?php
-        echo '<p>'.$infos['email'].'</p>';
+        echo '<p>'.$profilInfo['email'].'</p>';
         if (isset($modif) && $modif == 'email') { 
           ?>
-        <form action="modification_profil.php" method="post">
+        <form action="profilRouteur.php" method="post">
         <p>Saisir le nouvel email :</p>
-          <input type="email" name="new_email" id="new_email">
+          <input type="email" name="new-email" id="new_email">
           <input type="submit" value="Envoyer">
         </form>
       <?php };?>
-      <a href="profil.php?modif=email">Modifier l'email</a>
+      <a href="profilRouteur.php?profil=modifyEmail">Modifier l'email</a>
     </div>
 
-    <div class="content__profil__items__item">
+        <!--<div class="content__profil__items__item">
     <h2>Date de naissance</h2>
     <?php
         echo '<p>'.$infos['date_naissance'].'</p>';

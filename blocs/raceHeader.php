@@ -22,7 +22,7 @@
       </div>
 
       <div class="content__header__title__profil__buttons">
-        <a href="index.php?info_login=editProfil">
+        <a href="profilRouteur.php?profil=profil">
           <div class="content__header__title__profil__button">
             Voir mon profil
           </div>
