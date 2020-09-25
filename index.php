@@ -37,6 +37,9 @@ if (isset($_GET['info_login'])) {
     echo '<p class="login__info">Vous êtes déconnecté</p>';
     stdLoginView();
 
+  } elseif ($infoLogin == "sendPass") {
+    checkAndSendPass();
+
   } else {
     disconnect();
   }
@@ -54,13 +57,6 @@ if (isset($_GET['info_login'])) {
   $pass_hache = htmlspecialchars($_COOKIE['pass_hache']);
 
   checkLoginCookie($pseudo, $pass_hache);
-
-
-// If you ask your password back
-} elseif (isset($_POST['mdpPerdu'])) {
-    $lostPass = htmlspecialchars($_POST['mdpPerdu']);
-
-    getLostPassword($lostPass);
 
 // If you log in for the first time
 } elseif (isset($_POST['newPseudo']) | isset($_POST['newMdp1']) | isset($_POST['newMdp2'])) {

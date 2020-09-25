@@ -2,9 +2,11 @@
 ob_start(); ?>
 
 <h3>Entre ton pseudo pour récupérer ton mot de passe</h3>
-<form action="./index.php" method="post">
+<form action="./index.php?info_login=sendPass" method="post">
     <p>Pseudonyme : </p>
-    <input type="text" name="mdpPerdu" id="mdpPerdu"><br />
+    <input type="text" name="pseudo"><br />
+    <p>Email : </p>
+    <input type="email" name="email"><br />
     <button type="submit" >Valider</button>
     <a href="index.php">Retour à l'accueil</a>
 </form></br>

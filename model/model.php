@@ -1,4 +1,8 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 /** --- SQL FUNCTIONS --- //
  * 
  */
@@ -98,6 +102,20 @@ function insertNewEmail($pseudo, $email) {
   return $affectedLines;
 }
 
+function insertNewPass($passHache, $pseudo) {
+  $db = dbConnect();
+
+  $rqNewPass = $db->prepare("UPDATE Profil
+  SET mdp=:mdp
+  WHERE pseudo=:pseudo");
+
+  $affectedLines = $rqNewPass->execute(array(
+      'pseudo' => $pseudo,
+      'mdp' => $passHache,
+  ));
+
+  return $affectedLines;
+}
 /**
  * Insert a race time in database
  */
@@ -139,4 +157,55 @@ function disconnect() {
 
     $_GET['deconnexion'] = null;
     header("Location: index.php?info_login=disconnected");
+}
+
+function sendMail($mailTo, $pseudo) {
+
+  require './vendor/autoload.php';
+
+  $mail = new PHPMailer(TRUE);
+  /* ... */
+  try {
+    $mail->setFrom('multiplicorne@gmail.com', 'Multiplicorne');
+    $mail->addAddress($mailTo, $pseudo);
+    $mail->Subject = 'Mot de passe Multiplicorne';
+    $mail->Body = 'Votre nouveau mot de passe est : "multiplicorne", vous pouvez le changer depuis votre espace membre :-)';
+
+    /* SMTP parameters. */
+
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = TRUE;
+    $mail->SMTPSecure = 'tls';
+    $mail->Username = 'multiplicorne@gmail.com';
+    $mail->Password = 'multiplicornePlanche7139!';
+    $mail->Port = 587;
+
+    /* Disable some SSL checks. */
+    $mail->SMTPOptions = array(
+      'ssl' => array(
+      'verify_peer' => false,
+      'verify_peer_name' => false,
+      'allow_self_signed' => true
+      )
+    );
+
+    /* Enable SMTP debug output, dev purpose only, delete in production */
+    // $mail->SMTPDebug = 4;
+
+    /* Finally send the mail. */
+    $mail->send();
+
+    return true;
+  }
+  catch (Exception $e)
+  {
+    /* PHPMailer exception. */
+    echo $e->errorMessage();
+  }
+  catch (\Exception $e)
+  {
+    /* PHP exception (note the backslash to select the global namespace Exception class). */
+    echo $e->getMessage();
+  }
 }

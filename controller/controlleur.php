@@ -103,19 +103,48 @@ function checkLoginCookie ($pseudo, $pass_hache) {
  * displays lost password in index page.
  */
 
-function getLostPassword($lostPass) {
+function checkAndSendPass () {
 
-  $data = rqPass($lostPass);
+  if (isset($_POST['pseudo']) && isset($_POST['email'])) {
+    $pseudo = htmlspecialchars($_POST['pseudo']);
+    $mailTo = htmlspecialchars($_POST['email']);
+    $dataProfil = rqProfil($pseudo);
 
-  if (isset($data['mdp'])) {
-    $_SESSION['identification'] = 'Ton mot de passe : '.$data['mdp'];
-    $_POST['mdpPerdu'] = null;
-    header('Location: index.php');
+    if ($dataProfil['email'] != $mailTo) {
+      $_POST['pseudo'] = null;
+      $_POST['email'] = null;
+      $_SESSION['identification'] = 'L\'email ne correspond pas à celui renseigné lors de l\'inscription';
+      header('Location: index.php?info_login=perdu_mdp');
+  
+    } else {
+      $isSend = sendMail($mailTo, $pseudo);
+      $_POST['pseudo'] = null;
+      $_POST['email'] = null;
 
+      if ($isSend) {
+        $passHache = password_hash("multiplicorne", PASSWORD_DEFAULT);
+        $affectedLines = insertNewPass($passHache, $pseudo);
+
+        if ($affectedLines) {
+          $_SESSION['identification'] = 'L\'email avec votre nouveau mot de passe a été envoyé';
+          header('Location: index.php');
+  
+        } else {
+          $_SESSION['identification'] = 'L\'email a été envoyé mais il y a un problème avec la base de données...';
+          header('Location: index.php');  
+        }
+  
+      } else {
+        $_SESSION['identification'] = 'L\'email n\'a pas été envoyé';
+        header('Location: index.php');
+  
+      }
+    }
   } else {
-    $_SESSION['identification'] = 'Pas de mot de passe correspondant au pseudo : '.$lostPass;
-    $_POST['mdpPerdu'] = null;
-    header('Location: index.php');
+    $_POST['pseudo'] = null;
+    $_POST['email'] = null;
+    $_SESSION['identification'] = 'Les informations sont incomplètes';
+    header('Location: index.php?info_login=perdu_mdp');
 
   }
 }
