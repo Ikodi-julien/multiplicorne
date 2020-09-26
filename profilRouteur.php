@@ -46,7 +46,9 @@ if (isset($_SESSION['pseudo'])) {
   } elseif ($profil == "newPass") {
     changePass($pseudo);
         
-
+  } elseif ($profil == "modifyStyle") {
+    changeStyle($pseudo);
+        
   } else {
     $_SESSION['identification'] = "Il manque une information pour atteindre la page demandée.";
     header('Location: ./profilRouteur.php?profil=profil');

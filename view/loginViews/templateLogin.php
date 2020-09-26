@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" 
+    href="<?php
+    if (isset($_SESSION['style'])) {
+      echo "./css/".$_SESSION['style'];
+    } else {
+      echo "./css/style.css";
+    } ?>">
     <title><?php echo $title; ?></title>
 </head>
 <body>

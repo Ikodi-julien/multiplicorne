@@ -1,34 +1,3 @@
-/* --- FONTS --- */
-@font-face {
-  font-family: "Digory_Doodles_PS";
-  src: url(../fonts/Digory_Doodles_PS.ttf);
-  font-weight: normal;
-  font-style: normal;
-}
-/* --- VARIABLE SCSS --- */
-/* --- COULEURS --- */
-:root {
-  --color-font: blueviolet;
-  --color-dark-pink: rgb(238, 167, 234);
-  --color-darker-pink: rgb(209, 133, 206);
-  --color-light-pink: #ffe8fe;
-  --color-blueviolet: blueviolet;
-  --color-light-blueviolet: rgba(137, 43, 226, 0.8);
-  --color-dark-blueviolet: rgb(111, 0, 216);
-  --color-light-blue: rgb(218, 232, 255);
-}
-
-/* --- FONT CONST --- */
-:root {
-  --font: cursive, arial;
-  --font-footer: "Open Sans", cursive;
-  --font-title: "Digory_Doodles_PS", cursive;
-  --font-size-h1-small: 10px;
-  --font-size-h1-regular: 16px;
-  --font-size-h3-small: 18px;
-  --font-size-h3-regular: 20px;
-}
-
 /* --- z-index --- */
 :root {
   --z-back: -1;
@@ -47,8 +16,9 @@
 }
 
 body {
-  background: url(../images/visages-mignons.jpg) repeat-y;
+  background: var(--background) fixed;
   background-size: cover;
+  background-position: bottom;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -62,7 +32,8 @@ section {
 
 button {
   outline: none;
-  background-color: var(--color-blueviolet);
+  text-decoration: none;
+  background-color: var(--clr-font-dark);
   color: white;
   height: 36px;
   border-radius: 18px;
@@ -72,8 +43,8 @@ button {
 }
 
 button:hover {
-  background-color: var(--color-light-blueviolet);
-  color: var(--color-light-pink);
+  background-color: var(--clr-font-hover);
+  color: var(--color-font-lighter);
   cursor: pointer;
 }
 
@@ -85,20 +56,29 @@ li {
   list-style: none;
 }
 
+img {
+  min-width: 100px;
+  max-width: 100px;
+}
+
 .bloc {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #9797ff;
+  background-color: var(--clr-back-block);
   margin: 0;
   padding: 0;
-  width: 20px;
-  height: 20px;
+  width: 3.7vw;
+  height: 3vh;
   overflow: visible;
 }
+@media screen and (min-width: 768px) {
+  .bloc {
+    width: 30px;
+    height: 20px;
+  }
+}
 .bloc img {
-  min-width: 100px;
-  max-width: 100px;
   z-index: var(--z-middle);
   animation: floating 2s infinite ease-in-out;
 }
@@ -109,14 +89,14 @@ li {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  color: var(--color-blueviolet);
+  color: var(--clr-font-darker);
 }
 .login__title {
   position: absolute;
   width: 400px;
   height: 60px;
   padding: 5px;
-  background-color: var(--color-dark-pink);
+  background-color: var(--clr-back-middle);
   text-align: center;
   border: 3px solid white;
   border-radius: 15px;
@@ -132,7 +112,7 @@ li {
   flex-direction: column;
   align-items: center;
   padding-bottom: 90px;
-  background-color: var(--color-light-pink);
+  background-color: var(--clr-back-light);
   font-family: cursive;
   border: 3px solid white;
   border-radius: 15px;
@@ -145,7 +125,7 @@ li {
   height: 120px;
   border: 3px solid white;
   border-radius: 50%;
-  background-color: var(--color-light-blue);
+  background-color: var(--clr-back-logo);
   position: absolute;
   top: -60px;
 }
@@ -156,17 +136,18 @@ li {
 .login__info {
   position: absolute;
   z-index: var(--z-front);
-  top: 10%;
+  top: -500px;
   left: 40%;
   min-height: 20px;
   max-width: 300px;
   padding: 10px 5px;
   text-align: center;
   background-color: white;
-  color: var(--font);
-  border: 3px solid var(--color-blueviolet);
+  color: var(--clr-font-darker);
+  border: 3px solid var(--clr-font-dark);
   border-radius: 30px;
   font-family: cursive;
+  animation: loginInfo 5s;
 }
 .login__content {
   display: flex;
@@ -195,7 +176,7 @@ li {
   background: transparent;
   outline: none;
   height: 25px;
-  color: var(--font);
+  color: var(--clr-font-darker);
 }
 .login__content form input[type=checkbox] {
   width: 10%;
@@ -219,12 +200,12 @@ li {
   text-decoration: none;
   margin: 10px;
   width: 100%;
-  color: var(--blueviolet);
+  color: var(--clr-font-darker);
   font-weight: bold;
   line-height: 18px;
 }
 .login__content a:hover {
-  color: var(--light-blueviolet);
+  color: var(--clr-font-hover);
 }
 
 /* --- CONTENT --- */
@@ -234,7 +215,7 @@ li {
   align-items: center;
   width: 100%;
   font-family: var(--font);
-  color: var(--color-blueviolet);
+  color: var(--clr-font-dark);
   /* --- RACE --- */
   /* --- PROFIL --- */
 }
@@ -247,11 +228,11 @@ li {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: var(--color-dark-pink);
+  background-color: var(--clr-back-middle);
   font-family: var(--font-title);
   font-size: var(--font-size-h1-small);
   text-align: center;
-  color: var(--color-blueviolet);
+  color: var(--clr-font-dark);
   padding: 5px;
 }
 .content__header__title__profil {
@@ -276,7 +257,7 @@ li {
   font-family: var(--font);
   padding: 2px 5px;
   background-color: white;
-  border: 2px solid var(--color-blueviolet);
+  border: 2px solid var(--clr-font-dark);
   border-radius: 5px;
 }
 .content__header__title__profil__button {
@@ -287,7 +268,7 @@ li {
   font-family: var(--font);
   padding: 4px 8px;
   margin: 2px 10px;
-  background-color: var(--color-blueviolet);
+  background-color: var(--clr-font-dark);
   border: 2px solid white;
   color: white;
   border-radius: 5px;
@@ -297,7 +278,7 @@ li {
   flex-direction: column;
 }
 .content__header__nav {
-  background-color: var(--color-light-pink);
+  background-color: var(--clr-back-light);
 }
 .content__header__nav ul {
   display: flex;
@@ -317,7 +298,7 @@ li {
 .content__header__nav__separation {
   width: 3px;
   height: 14px;
-  background-color: var(--color-blueviolet);
+  background-color: var(--clr-font-dark);
 }
 .content__racesIndex {
   width: 100%;
@@ -335,7 +316,7 @@ li {
   padding: 10px;
   margin-top: 50px;
   background-color: white;
-  border: 3px solid var(--color-blueviolet);
+  border: 3px solid var(--clr-font-dark);
   border-radius: 10px;
 }
 @media screen and (min-width: 768px) {
@@ -362,7 +343,7 @@ li {
   margin-top: 10px;
   padding: 10px 0;
   background-color: white;
-  border: 3px solid var(--color-dark-pink);
+  border: 3px solid var(--clr-back-middle);
   border-radius: 10px;
 }
 @media screen and (min-width: 600px) {
@@ -434,7 +415,7 @@ li {
   background-color: white;
   padding: 20px;
   margin: 20px;
-  border: 3px solid var(--color-dark-pink);
+  border: 3px solid var(--clr-back-middle);
   border-radius: 20px;
 }
 .content__marathon__2 {
@@ -456,7 +437,12 @@ li {
 .content__marathon__middle {
   display: flex;
   justify-content: space-between;
-  width: 480px;
+  width: 88.8vw;
+}
+@media screen and (min-width: 768px) {
+  .content__marathon__middle {
+    width: 720px;
+  }
 }
 .content__marathon__middle__inside {
   display: flex;
@@ -473,7 +459,7 @@ li {
 }
 .content__profil__title {
   background: white;
-  border: 2px solid var(--color-dark-blueviolet);
+  border: 2px solid var(--clr-font-darker);
   border-radius: 10px;
   box-shadow: 0 5px 12px -1px black;
   margin: 15px;
@@ -494,13 +480,18 @@ li {
   width: 350px;
   min-height: 400px;
   background: white;
-  border: 2px solid var(--color-dark-blueviolet);
+  border: 2px solid var(--clr-font-darker);
   border-radius: 2.5rem;
   box-shadow: 0 5px 12px -1px black;
   margin: 15px;
   padding: 10px;
 }
 .content__profil__items__card__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
   margin: 20px 0;
 }
 .content__profil__items__card__item input {
@@ -508,8 +499,8 @@ li {
 }
 
 #start_finish {
-  width: 160px;
-  height: 20px;
+  width: 29.6vw;
+  height: 3vh;
   overflow: visible;
   background-image: url("../images/damier.png");
   background-position: center;
@@ -518,6 +509,12 @@ li {
   align-items: center;
   justify-content: center;
   position: relative;
+}
+@media screen and (min-width: 768px) {
+  #start_finish {
+    width: 240px;
+    height: 20px;
+  }
 }
 #start_finish img {
   min-width: 100px;
@@ -532,7 +529,7 @@ li {
   top: 1000px;
   height: 100vh;
   width: 100%;
-  background-color: rgba(255, 170, 244, 0.3);
+  background-color: var(--clr-back-dark);
   z-index: var(--z-front);
   display: flex;
   justify-content: center;
@@ -546,8 +543,8 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-light-pink);
-  color: var(--color-blueviolet);
+  background-color: var(--clr-back-light);
+  color: var(--clr-font-dark);
 }
 .winner__box__logo {
   display: flex;
@@ -557,7 +554,7 @@ li {
   height: 120px;
   border: 3px solid white;
   border-radius: 50%;
-  background-color: var(--color-light-blue);
+  background-color: var(--clr-back-logo);
   position: relative;
   top: -60px;
 }
@@ -581,17 +578,18 @@ li {
 
 /* --- TIMES VIEW --- */
 .userTimes {
-  border: 3px solid var(--color-dark-pink);
+  border: 3px solid var(--clr-back-middle);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 10px;
   background-color: white;
 }
 
 footer {
   width: 100%;
-  background-color: var(--color-dark-pink);
+  background-color: var(--clr-back-middle);
   align-self: flex-end;
   font-family: var(--font-footer);
 }
@@ -613,4 +611,54 @@ footer {
   100% {
     top: 0px;
   }
+}
+@keyframes loginInfo {
+  0% {
+    top: -500px;
+  }
+  10% {
+    top: 10%;
+  }
+  90% {
+    top: 10%;
+  }
+  100% {
+    top: -500px;
+  }
+}
+/* --- FONTS --- */
+@font-face {
+  font-family: "Digory_Doodles_PS";
+  src: url(../fonts/Digory_Doodles_PS.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+/* --- COULEURS --- */
+:root {
+  --clr-font-light: rgb(242, 242, 242);
+  --clr-font: blueviolet;
+  --clr-font-dark: blueviolet;
+  --clr-font-darker: rgb(111, 0, 216);
+  --clr-font-hover: rgba(138, 43, 226, 0.8);
+  --clr-back-light: #ffe8fe;
+  --clr-back-middle: rgb(238, 167, 234);
+  --clr-back-dark: rgb(209, 133, 206);
+  --clr-back-logo: rgb(218, 232, 255);
+  --clr-back-block: rgb(151, 151, 255);
+}
+
+/* --- FONT CONST --- */
+:root {
+  --font: cursive, arial;
+  --font-footer: "Open Sans", cursive;
+  --font-title: "Digory_Doodles_PS", cursive;
+  --font-size-h1-small: 10px;
+  --font-size-h1-regular: 16px;
+  --font-size-h3-small: 18px;
+  --font-size-h3-regular: 20px;
+}
+
+/* --- BACKGROUND ---*/
+:root {
+  --background: url(../images/visages-mignons.jpg);
 }

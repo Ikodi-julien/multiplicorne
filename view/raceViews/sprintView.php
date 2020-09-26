@@ -1,5 +1,4 @@
 <?php 
-$css = './css/style.css';
 $js = '<script src="./scripts/main.js" type="module" defer></script>';
 $title = 'Sprint';
 

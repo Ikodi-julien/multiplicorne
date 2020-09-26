@@ -67,14 +67,14 @@ if (page == "sprint") {
 btnChrono.addEventListener("click", function (event) {
   // OK si course au début et table choisie
   if (page == "sprint") {
-    var _table = document.getElementById("tables").value;
+    table = document.getElementById("tables").value;
 
-    if (_table == "-") {
+    if (table == "-") {
       comment.innerText = "Il faut choisir une table !!";
       return;
     } else {
       // Préparer les données
-      var sontCouples = (0, _fonctions.coupler)(_table, multiplicateur); // Mélanger si demandé
+      var sontCouples = (0, _fonctions.coupler)(table, multiplicateur); // Mélanger si demandé
 
       melange = document.querySelector('input[name="melange"]:checked').value;
 
@@ -113,7 +113,7 @@ btnChrono.addEventListener("click", function (event) {
       var result = nb1 * nb2; // Vérification réponse et on est pas à la fin
 
       if (result == nb3 && i < couplesMelanges.length) {
-        comment.innerText = i;
+        comment.innerText = "Oui, c'est la bonne réponse !";
 
         var _couplesMelanges$i = _slicedToArray(couplesMelanges[i], 2);
 

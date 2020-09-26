@@ -2,7 +2,6 @@
 
 $title = "ACCUEIL";
 $js = "";
-$css = "css/style.css";
 
 ob_start(); ?>
 <section class="content__racesIndex">

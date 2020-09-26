@@ -7,7 +7,7 @@
 
       <div class="content__header__title__profil__avatar">
 
-        <img src="./avatars/mini_<?php echo $pseudo;?>.png" alt="Pas d'image de pseudo">
+        <img src="./avatars/mini_<?php echo $pseudo;?>.png" alt="Image Profil">
 
         <div id="pseudo" class="content__header__title__profil__pseudo">
           <?php if (isset($_SESSION['pseudo'])) {

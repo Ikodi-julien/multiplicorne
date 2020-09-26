@@ -64,6 +64,7 @@ function checkLoginCtrl ($pseudo, $pass) {
     // Comparaison mdp saisi et celui en bdd
     if ($is_pass_correct) {
         $_SESSION['pseudo'] = $pseudo;
+        $_SESSION['style'] = $dataProfil['style'];
 
         // On met les cookies si connexion auto coché
         if (isset($_POST['auto'])) {
@@ -93,6 +94,7 @@ function checkLoginCookie ($pseudo, $pass_hache) {
 
   } else {
     $_SESSION['pseudo'] = $pseudo;
+    $_SESSION['style'] = $dataProfil['style'];
     require("./view/raceViews/racesIndexView.php");
 
   }
@@ -473,6 +475,30 @@ function changePseudo($pseudo) {
     }
   } else {
     $_SESSION['identification'] = "Il faut renseigner un nouveau pseudo et le mot de passe";
+    header('Location: ./profilRouteur.php?profil=profil');
+
+  }
+}
+
+/**
+ * Change display style
+ */
+function changeStyle($pseudo) {
+  if (isset($_POST['style'])) {
+    $newStyle = htmlspecialchars($_POST['style']);
+    $affectedLines = insertNewStyle($pseudo, $newStyle);
+
+    if ($affectedLines) {
+      $_SESSION['style'] = $newStyle;
+      header('Location: ./profilRouteur.php?profil=profil');
+  
+    } else {
+      $_SESSION['identification'] = "L'ambiance n'a pu être changée";
+      header('Location: ./profilRouteur.php?profil=profil');
+    
+    }
+  } else {
+    $_SESSION['identification'] = "Pas d'ambiance choisie";
     header('Location: ./profilRouteur.php?profil=profil');
 
   }

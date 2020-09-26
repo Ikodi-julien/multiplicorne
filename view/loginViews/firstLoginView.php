@@ -8,7 +8,7 @@ ob_start(); ?>
       <input type="password" name="newMdp1" id="mdp"><br />
       <p>Saisir à nouveau le mot de passe : </p>
       <input type="password" name="newMdp2" id="mdp"><br /><br />
-      <p>La saisie de l'email n'est pas obligatoire, mais vous ne pourrez pas récupérer un mot de passe perdu, ça aurit été sa seule utilité.</p><br />
+      <p>La saisie de l'email n'est pas obligatoire, mais vous ne pourrez pas récupérer un mot de passe perdu, ça aurait été sa seule utilité.</p><br />
       <p>Email : </p>
       <input type="email" name="email_1" id="email_1"><br />
       <p>Saisir à nouveau l'email : </p>

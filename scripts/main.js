@@ -77,7 +77,7 @@ if (page == "sprint") {
 btnChrono.addEventListener("click", (event) => {
   // OK si course au début et table choisie
   if (page == "sprint") {
-    const table = document.getElementById("tables").value;
+    table = document.getElementById("tables").value;
 
     if (table == "-") {
       comment.innerText = "Il faut choisir une table !!";
@@ -126,7 +126,7 @@ btnChrono.addEventListener("click", (event) => {
 
       // Vérification réponse et on est pas à la fin
       if (result == nb3 && i < couplesMelanges.length) {
-        comment.innerText = i;
+        comment.innerText = "Oui, c'est la bonne réponse !";
         [nb1, nb2] = couplesMelanges[i];
         chiffre1.textContent = nb1;
         chiffre2.textContent = nb2;

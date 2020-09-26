@@ -102,6 +102,21 @@ function insertNewEmail($pseudo, $email) {
   return $affectedLines;
 }
 
+function insertNewStyle($pseudo, $newStyle) {
+  $db = dbConnect();
+
+  $rqNewStyle = $db->prepare("UPDATE Profil
+  SET style=:newStyle
+  WHERE pseudo=:pseudo");
+
+  $affectedLines = $rqNewStyle->execute(array(
+      'pseudo' => $pseudo,
+      'newStyle' => $newStyle,
+  ));
+
+  return $affectedLines;
+}
+
 function insertNewBirthDate($pseudo, $newBirthDate) {
   $db = dbConnect();
 
