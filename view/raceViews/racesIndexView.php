@@ -5,7 +5,7 @@ $js = "";
 $css = "css/style.css";
 
 ob_start(); ?>
-<section class="__racesIndex">
+<section class="content__racesIndex">
   <div class="content__racesIndex__intel">
 
     <h1 id='titre_index'>Bonjour 

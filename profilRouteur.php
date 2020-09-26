@@ -22,10 +22,31 @@ if (isset($_SESSION['pseudo'])) {
     $modif = "email";
     profilView($pseudo, $modif);
     
-  } elseif (isset($_POST['new-email'])) {
-    $newEmail = htmlspecialchars($_POST['new-email']);
-    changeEmail($pseudo, $newEmail);
+  } elseif ($profil == "newEmail") {
+    changeEmail($pseudo);
     
+  } elseif ($profil == "modifyBirthDate") {
+    $modif = "birthDate";
+    profilView($pseudo, $modif);
+
+  } elseif ($profil == "newBirthDate") {
+    changeBirthDate($pseudo);
+        
+  } elseif ($profil == "modifyPseudo") {
+    $modif = "pseudo";
+    profilView($pseudo, $modif);
+
+  } elseif ($profil == "newPseudo") {
+    changePseudo($pseudo);
+        
+  } elseif ($profil == "modifyPass") {
+    $modif = "pass";
+    profilView($pseudo, $modif);
+
+  } elseif ($profil == "newPass") {
+    changePass($pseudo);
+        
+
   } else {
     $_SESSION['identification'] = "Il manque une information pour atteindre la page demandée.";
     header('Location: ./profilRouteur.php?profil=profil');

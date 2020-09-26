@@ -304,24 +304,180 @@ function setAvatar($pseudo) {
 function profilView ($pseudo, $modif) {
   $profilInfo = getProfilInfo($pseudo);
 
-  require("view/profilView/profilView.php");
+  if ($profilInfo) {
+    require("view/profilView/profilView.php");
+
+  } else {
+  stdLoginView();
+
+  }
+
 }
 
 /**
  * Change email in database
  */
-function changeEmail($pseudo, $newEmail) {
-  $affectedLines = insertNewEmail($pseudo, $newEmail);
+function changeEmail($pseudo) {
+  if (isset($_POST['new-email'])) {
+    $newEmail = htmlspecialchars($_POST['new-email']);
+    $affectedLines = insertNewEmail($pseudo, $newEmail);
 
-  if ($affectedLines) {
-    header('Location: ./profilRouteur.php?profil=profil');
-
+    if ($affectedLines) {
+      header('Location: ./profilRouteur.php?profil=profil');
+  
+    } else {
+      $_SESSION['identification'] = "L'email n'a pu être changé";
+      header('Location: ./profilRouteur.php?profil=profil');
+    
+    }
   } else {
-    $_SESSION['identification'] = "L'email n'a pu être changé";
+    $_SESSION['identification'] = "Il faut renseigner une adresse mail";
     header('Location: ./profilRouteur.php?profil=profil');
 
   }
 }
+
+/**
+ * Change user's birth date in database
+ */
+function changeBirthDate($pseudo) {
+  if (isset($_POST['newBirthDate'])) {
+    $newBirthDate = htmlspecialchars($_POST['newBirthDate']);
+    $affectedLines = insertNewBirthDate($pseudo, $newBirthDate);
+
+    if ($affectedLines) {
+      header('Location: ./profilRouteur.php?profil=profil');
+  
+    } else {
+      $_SESSION['identification'] = "La date de naissance n'a pu être changé";
+      header('Location: ./profilRouteur.php?profil=profil');
+    
+    }
+  } else {
+    $_SESSION['identification'] = "Il faut renseigner une date de naissance";
+    header('Location: ./profilRouteur.php?profil=profil');
+
+  }
+}
+
+/**
+ * Change user's password in database
+ */
+function changePass($pseudo) {
+  if (isset($_POST['newPass1']) && isset($_POST['newPass2']) && isset($_POST['pass'])) {
+    $newPass1 = htmlspecialchars($_POST['newPass1']);
+    $newPass2 = htmlspecialchars($_POST['newPass2']);
+    $pass = htmlspecialchars($_POST['pass']);
+
+    // Vérifier si mot de passe ok avec le pseudo
+    $dataProfil = rqProfil($pseudo);
+    $isPassCorrect = password_verify($pass, $dataProfil['mdp']);
+
+    if ($isPassCorrect) {
+      // Vérifier que les deux nouveaux mots de passe sont remplis et identiques
+      if (($newPass1 != $newPass2) | empty($newPass1)) {
+        $_SESSION['identification'] = "Les nouveaux mots de passe sont vides ou différents";
+        header('Location: ./profilRouteur.php?profil=profil');
+
+      } else {
+        $passHache = password_hash($newPass1, PASSWORD_DEFAULT);
+        $affectedLines = insertNewPass($passHache, $pseudo);
+  
+        if ($affectedLines) {
+          header('Location: ./profilRouteur.php?profil=profil');
+      
+        } else {
+          $_SESSION['identification'] = "Le mot de passe n'a pu être changé";
+          header('Location: ./profilRouteur.php?profil=profil');
+        
+        }
+      }
+    } else {
+      $_SESSION['identification'] = "Le mot de passe ne correspond pas";
+      header('Location: ./profilRouteur.php?profil=profil');
+  
+    }
+  } else {
+    $_SESSION['identification'] = "Il manque des informations";
+    header('Location: ./profilRouteur.php?profil=profil');
+
+  }
+}
+
+/**
+ * Change user's pseudo in database
+ */
+function changePseudo($pseudo) {
+  if (isset($_POST['newPseudo']) && isset($_POST['pass']) && !empty($_POST['pass']) && !empty($_POST['newPseudo'])) {
+    $newPseudo = htmlspecialchars($_POST['newPseudo']);
+    $pass = htmlspecialchars($_POST['pass']);
+
+    // On vérifie que le profil existe
+    $dataProfil = rqProfil($pseudo);
+
+    if (!$dataProfil) {
+      $_POST['newPseudo'] = null;
+      $_POST['pass'] = null;
+      $_SESSION['identification'] = 'Erreur de pseudo ou de mot de passe...';
+      header('Location: index.php');
+
+    } else {
+      // On vérifie que le pseudo n'est pas déjà pris !
+      $dataProfilNewPseudo = rqProfil($newPseudo);
+
+      if ($dataProfilNewPseudo) {
+        $_SESSION['identification'] = "Ce pseudo est déjà pris";
+        header('Location: ./profilRouteur.php?profil=profil');
+
+      } else {
+        // Comparaison pass envoyé et celui dans la base.
+        $is_pass_correct = password_verify($pass, $dataProfil['mdp']);
+
+        // Comparaison mdp saisi et celui en bdd
+        if ($is_pass_correct) {
+          // On change le pseudo dans profil
+          $affectedLines = insertNewPseudo($pseudo, $newPseudo);
+
+          if ($affectedLines) {
+            // On change le pseudo dans course_multiplication
+            $affectedLines = changeIdCoureur($pseudo, $newPseudo);
+
+            // On change le nom du fichier avatar
+            $avatarPath = "./avatars/mini_".$pseudo.".png";
+            $newAvatarPath = "./avatars/mini_".$newPseudo.".png";
+            $avatarIsRenamed = rename($avatarPath, $newAvatarPath);
+
+            if (!$avatarIsRenamed) {
+              // On renvoi la session avec le nouveau pseudo          
+              $_SESSION['pseudo'] = $newPseudo;
+              $_SESSION['identification'] = "L'avatar n'a pu être mis à jour";
+              header('Location: ./profilRouteur.php?profil=profil');
+
+            } else {
+              // On renvoi la session avec le nouveau pseudo          
+              $_SESSION['pseudo'] = $newPseudo;
+              header('Location: ./profilRouteur.php?profil=profil');
+
+            }
+          } else {
+            $_SESSION['identification'] = "Le pseudo n'a pu être changé";
+            header('Location: ./profilRouteur.php?profil=profil');
+          
+          }
+        } else {
+          $_SESSION['identification'] = "Le mot de passe ne correspond pas";
+          header('Location: ./profilRouteur.php?profil=profil');
+
+        }
+      }
+    }
+  } else {
+    $_SESSION['identification'] = "Il faut renseigner un nouveau pseudo et le mot de passe";
+    header('Location: ./profilRouteur.php?profil=profil');
+
+  }
+}
+
 
 /**
  * Get user's profil infos

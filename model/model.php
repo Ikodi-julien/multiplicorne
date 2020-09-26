@@ -102,6 +102,36 @@ function insertNewEmail($pseudo, $email) {
   return $affectedLines;
 }
 
+function insertNewBirthDate($pseudo, $newBirthDate) {
+  $db = dbConnect();
+
+  $rqNewBirthDate = $db->prepare("UPDATE Profil
+  SET birth_date=:birthDate
+  WHERE pseudo=:pseudo");
+
+  $affectedLines = $rqNewBirthDate->execute(array(
+      'pseudo' => $pseudo,
+      'birthDate' => $newBirthDate,
+  ));
+
+  return $affectedLines;
+}
+
+function insertNewPseudo($pseudo, $newPseudo) {
+  $db = dbConnect();
+
+  $rqNewPseudo = $db->prepare("UPDATE Profil
+  SET pseudo=:newPseudo
+  WHERE pseudo=:pseudo");
+
+  $affectedLines = $rqNewPseudo->execute(array(
+      'pseudo' => $pseudo,
+      'newPseudo' => $newPseudo,
+  ));
+
+  return $affectedLines;
+}
+
 function insertNewPass($passHache, $pseudo) {
   $db = dbConnect();
 
@@ -131,6 +161,22 @@ function insertTime($pseudo, $table, $mixed, $duration) {
       'table_multiplication' => $table,
       'melange' => $mixed,
       'temps_course' => $duration,
+  ));
+
+  return $affectedLines;
+
+}
+
+function changeIdCoureur($pseudo, $newPseudo) {
+
+  $db = dbConnect();
+  $rqChangeIdCoureur = $db->prepare("UPDATE course_multiplication
+  SET id_coureur=:newPseudo
+  WHERE id_coureur=:pseudo");
+
+  $affectedLines = $rqChangeIdCoureur->execute(array(
+      'pseudo' => $pseudo,
+      'newPseudo' => $newPseudo,
   ));
 
   return $affectedLines;

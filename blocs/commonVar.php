@@ -27,10 +27,3 @@ if (isset($_GET['profil'])) {
   $profil = htmlspecialchars($_GET['profil']);
 }
 
-if (isset($_SESSION['identification'])) {
-  $identification = htmlspecialchars($_SESSION['identification']);
-  echo '<p class="login__info">'.$_SESSION['identification'].'</p>';
-  
-  $_SESSION['identification'] = null;
-  
-} 

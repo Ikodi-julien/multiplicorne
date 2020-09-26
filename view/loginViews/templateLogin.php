@@ -19,7 +19,15 @@
         
         <div class="login__content">
 
-          <?php echo $content; ?>
+          <?php 
+            if (isset($_SESSION['identification'])) {
+              $identification = htmlspecialchars($_SESSION['identification']);
+              echo '<p class="login__info">'.$_SESSION['identification'].'</p>';
+              
+              $_SESSION['identification'] = null;
+            }
+            echo $content;
+          ?>
           
         </div>
 
