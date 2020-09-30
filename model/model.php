@@ -13,9 +13,9 @@ use PHPMailer\PHPMailer\Exception;
 function dbConnect () {
   try {
     $db = new PDO(
-        'mysql:host=localhost;dbname=test;charset=utf8',
-        'root',
-        '',
+        'mysql:host=localhost;dbname=multipli;charset=utf8',
+        'admin',
+        'B0b7139!',
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
     );
   } catch (Exception $e) {
@@ -219,6 +219,10 @@ function disconnect() {
     $_GET['deconnexion'] = null;
     header("Location: index.php?info_login=disconnected");
 }
+
+/**
+ * --- PHPMailer
+ */
 
 function sendMail($mailTo, $pseudo) {
 
