@@ -14,8 +14,8 @@ function dbConnect () {
   try {
     $db = new PDO(
         'mysql:host=localhost;dbname=multipli;charset=utf8',
-        'admin',
-        'B0b7139!',
+        'licorne',
+        'Planche7139',
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
     );
   } catch (Exception $e) {
@@ -60,11 +60,11 @@ function rqPass($lostPass) {
 function rqTimes($pseudo) {
   $db = dbConnect();
 
-  $rqTimes = $db->prepare("SELECT temps_course, table_multiplication, melange, 
+  $rqTimes = $db->prepare("SELECT id, temps_course, table_multiplication, melange, 
   DATE_FORMAT(date_course, ' le %d/%m/%Y à %Hh%i') AS date_course 
   FROM course_multiplication 
   WHERE id_coureur= :id_coureur 
-  ORDER BY date_course DESC");
+  ORDER BY id DESC");
   $rqTimes->execute(array(
       'id_coureur' => $pseudo,
   ));
