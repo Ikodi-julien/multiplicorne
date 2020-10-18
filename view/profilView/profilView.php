@@ -1,7 +1,6 @@
 <?php
 $title = "PROFIL";
-$js = "";
-
+$js = "<script src=\"./scripts/profil.js\" type=\"module\"></script>";
 ob_start(); ?>
 
 <section class="content__profil">
@@ -18,40 +17,49 @@ ob_start(); ?>
     <div class="content__profil__items__card">
       <h2 class="content__profil__items__card__item">Avatar actuel :</h2>
       
+      <div class="content__profil__items__card__item__avatar">
       <img 
       src="<?php echo './avatars/mini_'.$pseudo.'.png'; ?>" 
       alt="Pas d'image de pseudo"
       >
+      </div>
+
+      <div class="front1 extend">
+        <h3 class="toggle">Choisir un autre avatar </h3>
+      </div>
+
       <form 
       class="content__profil__items__card__item"
       action="profilRouteur.php?profil=setAvatar" 
       method="post" 
       enctype="multipart/form-data">
-      <p>Choisir un autre avatar :<br />
           <input type="file" name="avatar_fichier" id="avatar_fichier"><br />
           <input type="submit" value="Envoyer le fichier"><br />
-      </p>
       </form>
+      
     </div>
+
 
     <div class="content__profil__items__card">
       <h2 class="content__profil__items__card__item">eMail pour récupération du mot de passe :</h2>
       <?php
-        echo '<p class="content__profil__items__card__item">'.$profilInfo['email'].'</p>';
-        if (isset($modif) && $modif == 'email') { 
+        echo '<p class="content__profil__items__card__item">'. $profilInfo['email'] .'</p>';
           ?>
-        <form 
-        class="content__profil__items__card__item"
-        action="profilRouteur.php?profil=newEmail" method="post">
+
+      <div class="front2 extend">
+        <h3 class="toggle">Choisir un autre avatar </h3>
+      </div>
+
+      <form 
+      class="content__profil__items__card__item"
+      action="profilRouteur.php?profil=newEmail" method="post">
 
         <p>Saisir le nouvel email :</p>
-          <input type="email" name="new-email" id="new_email">
-          <input type="submit" value="Envoyer">
-        </form>
+        <input type="email" name="new-email" id="new_email">
+        <input type="submit" value="Envoyer">
+      </form>
         
-        <?php } else { ?>
       <a href="profilRouteur.php?profil=modifyEmail"><button>Modifier</button></a>
-        <?php }?>
     </div>
 
     <div class="content__profil__items__card">
@@ -64,28 +72,33 @@ ob_start(); ?>
         echo '<p class="content__profil__items__card__item">La date de naissance n\'est pas renseignée</p>';
 
         }
-
-        if (isset($modif) && $modif == 'birthDate') { 
           ?>
-        <form 
-        class="content__profil__items__card__item"
-        action="profilRouteur.php?profil=newBirthDate" method="post">
-          <input type="date" name="newBirthDate" id="newBirthDate">
-          <input type="submit" value="Envoyer">
-        </form>
 
-        <?php } else { ?>
+      <div class="front3 extend">
+        <h3 class="toggle">Choisir un autre avatar </h3>
+      </div>
+
+      <form 
+      class="content__profil__items__card__item"
+      action="profilRouteur.php?profil=newBirthDate" method="post">
+        <input type="date" name="newBirthDate" id="newBirthDate">
+        <input type="submit" value="Envoyer">
+      </form>
+
       <a href="profilRouteur.php?profil=modifyBirthDate"><button>Modifier</button></a>
-        <?php }?>
     </div>
 
     <div class="content__profil__items__card">
       <h2 class="content__profil__items__card__item">Pseudo actuel :</h2>
       <?php
         echo '<p class="content__profil__items__card__item">'.$pseudo.'</p>';
-        if (isset($modif) && $modif == 'pseudo') { 
           ?>
-        <form 
+
+      <div class="front4 extend">
+        <h3 class="toggle">Choisir un autre avatar </h3>
+      </div>
+
+      <form 
         class="content__profil__items__card__item"
         action="profilRouteur.php?profil=newPseudo" method="post">
           <p>Saisir le mot de passe : </p>
@@ -93,20 +106,20 @@ ob_start(); ?>
           <p>Saisir le nouveau pseudo : </p>
           <input type="text" name="newPseudo" id="newPseudo">
           <input type="submit" value="Envoyer">
-        </form>
+      </form>
 
-        <?php } else { ?>
-        <a href="profilRouteur.php?profil=modifyPseudo"><button>Modifier</button></a>
-        <?php }?>
+      <a href="profilRouteur.php?profil=modifyPseudo"><button>Modifier</button></a>
 
     </div>
 
     <div class="content__profil__items__card">
       <h2 class="content__profil__items__card__item">Changement de mot de passe :</h2>
-      <?php
-      if (isset($modif) && $modif == 'pass') { 
-        ?>
-        <form 
+
+      <div class="front5 extend">
+        <h3 class="toggle">Choisir un autre avatar </h3>
+      </div>
+
+      <form 
         class="content__profil__items__card__item"
         action="profilRouteur.php?profil=newPass" method="post">
           <p>Saisir le mot de passe actuel : </p>
@@ -117,27 +130,27 @@ ob_start(); ?>
           <input type="text" name="newPass2" id="newPass2">
           <input type="submit" value="Envoyer">
         </form>
-        <?php } else { ?>
       <a href="profilRouteur.php?profil=modifyPass"><button>Changer</button></a>
-        <?php }?>
     </div>
 
     <div class="content__profil__items__card">
       <h2 class="content__profil__items__card__item">Choix du style :</h2>
+
+      <div class="front6 extend">
+        <h3 class="toggle">Choisir un autre avatar </h3>
+      </div>
+
       <form 
       class="content__profil__items__card__item"
       action="profilRouteur.php?profil=modifyStyle" method="post">
-        <label for="style">Multiplicorne</label><input type="radio" name="style" id="style" value="style.css">
-        <label for="style_2">Style 2</label><input type="radio" name="style" id="style_2" value="style_2.css">
+        <label for="style">Plutôt rose</label><input type="radio" name="style" id="style" value="style.css">
+        <label for="style_2">Plutôt bleu</label><input type="radio" name="style" id="style_2" value="style_2.css">
         <label for="style_3">Style 3</label><input type="radio" name="style" id="style_3" value="style_3.css">
         <input type="submit" value="Modifier l'ambiance">
-
       </form>
     </div>
 
   </div>
-
-  
 </section>
 
 <?php $content = ob_get_clean();
