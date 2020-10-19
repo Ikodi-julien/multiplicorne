@@ -14,18 +14,22 @@ ob_start(); ?>
 
   <div class="content__profil__items">
 
+    <!-- AVATAR -->
     <div class="content__profil__items__card">
-      <h2 class="content__profil__items__card__item">Avatar actuel :</h2>
-      
-      <div class="content__profil__items__card__item__avatar">
-      <img 
-      src="<?php echo './avatars/mini_'.$pseudo.'.png'; ?>" 
-      alt="Pas d'image de pseudo"
-      >
+      <div class="content__profil__items__card__item">
+        <div class="avatar">
+          <h2>Avatar actuel :</h2>
+          <div class="content__profil__items__card__item__avatar">
+            <img 
+            src="<?php echo './avatars/mini_'.$pseudo.'.png'; ?>" 
+            alt="Pas d'image de pseudo"
+            >
+          </div>
+        </div>
       </div>
-
+      
       <div class="front1 extend">
-        <h3 class="toggle">Choisir un autre avatar </h3>
+          <h3 class="toggle1">Changer d'avatar </h3>
       </div>
 
       <form 
@@ -33,49 +37,48 @@ ob_start(); ?>
       action="profilRouteur.php?profil=setAvatar" 
       method="post" 
       enctype="multipart/form-data">
+
           <input type="file" name="avatar_fichier" id="avatar_fichier"><br />
           <input type="submit" value="Envoyer le fichier"><br />
       </form>
       
     </div>
 
-
+    <!-- STYLE -->
     <div class="content__profil__items__card">
-      <h2 class="content__profil__items__card__item">eMail pour récupération du mot de passe :</h2>
-      <?php
-        echo '<p class="content__profil__items__card__item">'. $profilInfo['email'] .'</p>';
-          ?>
+      <h2 class="content__profil__items__card__item">Choix du décor :</h2>
 
-      <div class="front2 extend">
-        <h3 class="toggle">Choisir un autre avatar </h3>
+      <div class="front6 extend">
+        <h3 class="toggle6">Choisir l'ambiance</h3>
       </div>
 
       <form 
       class="content__profil__items__card__item"
-      action="profilRouteur.php?profil=newEmail" method="post">
-
-        <p>Saisir le nouvel email :</p>
-        <input type="email" name="new-email" id="new_email">
-        <input type="submit" value="Envoyer">
+      action="profilRouteur.php?profil=modifyStyle" method="post">
+        <label for="style">Plutôt rose</label><input type="radio" name="style" id="style" value="style.css">
+        <label for="style_2">Plutôt bleu - jaune</label><input type="radio" name="style" id="style_2" value="style_2.css">
+        <label for="style_3">Contraste élevé</label><input type="radio" name="style" id="style_3" value="style_3.css">
+        <input type="submit" value="Modifier l'ambiance">
       </form>
-        
-      <a href="profilRouteur.php?profil=modifyEmail"><button>Modifier</button></a>
     </div>
 
+    <!-- BIRTH DATE -->
     <div class="content__profil__items__card">
-      <h2 class="content__profil__items__card__item">Date de naissance :</h2>
-      <?php
-        if ($profilInfo['birth_date'] != "") {
-        echo '<p class="content__profil__items__card__item">'.$profilInfo['birth_date'].'</p>';
+      <div class="content__profil__items__card__item">
+        <h2>Date de naissance :</h2>
+        <?php
+          if ($profilInfo['birth_date'] != "") {
+          echo '<p class="content__profil__items__card__item">'.$profilInfo['birth_date'].'</p>';
 
-        } else {
-        echo '<p class="content__profil__items__card__item">La date de naissance n\'est pas renseignée</p>';
+          } else {
+          echo '<p class="content__profil__items__card__item">La date de naissance n\'est pas renseignée</p>';
 
-        }
-          ?>
+          }
+            ?>
+      </div>
 
       <div class="front3 extend">
-        <h3 class="toggle">Choisir un autre avatar </h3>
+        <h3 class="toggle3">Saisir la date de naissance </h3>
       </div>
 
       <form 
@@ -85,17 +88,19 @@ ob_start(); ?>
         <input type="submit" value="Envoyer">
       </form>
 
-      <a href="profilRouteur.php?profil=modifyBirthDate"><button>Modifier</button></a>
     </div>
 
+    <!-- PSEUDO -->
     <div class="content__profil__items__card">
-      <h2 class="content__profil__items__card__item">Pseudo actuel :</h2>
-      <?php
-        echo '<p class="content__profil__items__card__item">'.$pseudo.'</p>';
-          ?>
+      <div class="content__profil__items__card__item">          
+        <h2>Pseudo actuel :</h2>
+        <?php
+          echo '<p class="content__profil__items__card__item">'.$pseudo.'</p>';
+            ?>
+      </div>
 
       <div class="front4 extend">
-        <h3 class="toggle">Choisir un autre avatar </h3>
+        <h3 class="toggle4">Changer de pseudo </h3>
       </div>
 
       <form 
@@ -107,16 +112,40 @@ ob_start(); ?>
           <input type="text" name="newPseudo" id="newPseudo">
           <input type="submit" value="Envoyer">
       </form>
-
-      <a href="profilRouteur.php?profil=modifyPseudo"><button>Modifier</button></a>
-
     </div>
 
+    <!-- EMAIL -->
     <div class="content__profil__items__card">
-      <h2 class="content__profil__items__card__item">Changement de mot de passe :</h2>
+      <div class="content__profil__items__card__item">
+        <h2>eMail pour récupération du mot de passe :</h2>
+        <?php
+          echo '<p class="content__profil__items__card__item">'. $profilInfo['email'] .'</p>';
+            ?>
+      </div>
+
+      <div class="front2 extend">
+        <h3 class="toggle2">Choisir un autre email de récupération </h3>
+      </div>
+
+      <form 
+      class="content__profil__items__card__item"
+      action="profilRouteur.php?profil=newEmail" method="post">
+
+        <p>Saisir le nouvel email :</p>
+        <input type="email" name="new-email" id="new_email">
+        <input type="submit" value="Envoyer">
+      </form>
+        
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="content__profil__items__card">
+      <div class="content__profil__items__card__item">          
+        <h2>Changement de mot de passe :</h2>
+      </div>
 
       <div class="front5 extend">
-        <h3 class="toggle">Choisir un autre avatar </h3>
+        <h3 class="toggle5">Changer de mot de passe</h3>
       </div>
 
       <form 
@@ -126,28 +155,10 @@ ob_start(); ?>
           <input type="password" name="pass" id="pass">
           <p>Saisir le nouveau mot de passe : </p>
           <input type="text" name="newPass1" id="newPass1">
-          <p>Saisir à nouveau le nouveau mot de passe : </p>
+          <p>2ème saisie du nouveau mot de passe : </p>
           <input type="text" name="newPass2" id="newPass2">
           <input type="submit" value="Envoyer">
         </form>
-      <a href="profilRouteur.php?profil=modifyPass"><button>Changer</button></a>
-    </div>
-
-    <div class="content__profil__items__card">
-      <h2 class="content__profil__items__card__item">Choix du style :</h2>
-
-      <div class="front6 extend">
-        <h3 class="toggle">Choisir un autre avatar </h3>
-      </div>
-
-      <form 
-      class="content__profil__items__card__item"
-      action="profilRouteur.php?profil=modifyStyle" method="post">
-        <label for="style">Plutôt rose</label><input type="radio" name="style" id="style" value="style.css">
-        <label for="style_2">Plutôt bleu</label><input type="radio" name="style" id="style_2" value="style_2.css">
-        <label for="style_3">Style 3</label><input type="radio" name="style" id="style_3" value="style_3.css">
-        <input type="submit" value="Modifier l'ambiance">
-      </form>
     </div>
 
   </div>

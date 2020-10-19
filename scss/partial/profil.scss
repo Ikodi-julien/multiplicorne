@@ -1,0 +1,136 @@
+/* --- PROFIL --- */
+.content__profil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+
+  &__title {
+    background: white;
+    border: 2px solid var(--clr-font-darker);
+    border-radius: 10px;
+    box-shadow: 0 5px 12px -1px black;
+    margin: 15px;
+    padding: 10px;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80%;
+    padding: 20px;
+
+    @media screen and(max-width: 768px) {
+      width: 100%;
+    }
+
+
+    &__card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 400px;
+      min-height: 460px;
+      background: white;
+      border: 2px solid var(--clr-font-darker);
+      border-radius: 2.5rem;
+      box-shadow: 0 5px 12px -1px black;
+      margin: 25px;
+      padding: 10px;
+
+
+      &__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 80%;
+        margin: 20px 0;
+
+        & input {
+          margin: 5px;
+        }
+
+        &__avatar {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: white;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+}
+
+/* --- TOGGLE FRONT PROFIL ---*/
+$front-top: 35%;
+$front-h-extend: 64%;
+$front-h-shrink: 50px;
+
+@for $i from 1 to 7 {
+  .front#{$i} {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: $front-top;
+    width: 390px;
+    height: $front-h-extend;
+    background-color: var(--clr-back-middle);
+    border: 2px solid var(--clr-font-darker);
+    border-radius: 2.5rem;
+}
+
+}
+.shrink {
+  animation: frontShrink 250ms 100ms both;
+}
+
+.extend {
+  animation: frontExtend 250ms 10ms both;
+}
+
+@for $i from 1 to 7 {
+  .toggle#{$i} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 5px;
+    background-color: var(--clr-font-light);
+    border: 2px solid var(--clr-font-darker);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+@keyframes frontShrink {
+  0% {
+  height: $front-h-extend; 
+  }
+
+  100% {
+    height: $front-h-shrink; 
+  }
+}
+
+@keyframes frontExtend {
+  0% {
+  height: $front-h-shrink; 
+  }
+
+  100% {
+    height: $front-h-extend; 
+  }
+}

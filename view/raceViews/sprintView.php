@@ -18,7 +18,7 @@ ob_start(); ?>
     <?php include("blocs/chrono.html"); ?>
   </div>
 
-  <div class="content__sprint__multipli">
+  <div class="multiplication">
     <?php include("blocs/multiplication.html"); ?>
   </div>
 
