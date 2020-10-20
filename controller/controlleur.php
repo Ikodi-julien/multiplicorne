@@ -91,24 +91,24 @@ function checkLoginCookie ($pseudo, $pass_hache) {
 
   if (!$dataProfil) {
     
-    $_SESSION['identification'] = 'Problème d\'identification';
+    $_SESSION['identification'] = 'Problème d\'identifiant';
     require("./view/loginViews/stdLoginView.php");
 
   } else {
 
-    // Comparaison mdp saisi et celui en bdd
-    if ($pass_hache != $dataProfil['mdp']) {
-      $_SESSION['identification'] = 'Problème d\'identification';
-      require("./view/loginViews/stdLoginView.php");
+    // // Comparaison mdp saisi et celui en bdd
+    // if ($pass_hache != $dataProfil['mdp']) {
+    //   $_SESSION['identification'] = 'Problème d\'identification';
+    //   require("./view/loginViews/stdLoginView.php");
 
-    } else {
+    // } else {
   
       $_SESSION['pseudo'] = $pseudo;
       $_SESSION['style'] = $dataProfil['style'];
       $_SESSION['avatar'] = $dataProfil['avatar'];
       require("./view/raceViews/racesIndexView.php");
 
-    }
+    // }
   }
 }
 

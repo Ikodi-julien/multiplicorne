@@ -33,7 +33,7 @@
       justify-content: space-between;
       align-items: center;
       width: 400px;
-      min-height: 460px;
+      min-height: 510px;
       background: white;
       border: 2px solid var(--clr-font-darker);
       border-radius: 2.5rem;
@@ -63,6 +63,12 @@
           height: 80px;
           border-radius: 50%;
           overflow: hidden;
+
+          & img {
+            min-width: 60px;
+            max-width: 60px;
+            min-height: 60px;
+            max-height: 60px;          }
         }
       }
     }
@@ -79,7 +85,7 @@ $front-top: 35%;
 $front-h-extend: 64%;
 $front-h-shrink: 50px;
 
-@for $i from 1 to 7 {
+@for $i from 1 to 8 {
   .front#{$i} {
     position: absolute;
     display: flex;
@@ -102,7 +108,7 @@ $front-h-shrink: 50px;
   animation: frontExtend 250ms 10ms both;
 }
 
-@for $i from 1 to 7 {
+@for $i from 1 to 8 {
   .toggle#{$i} {
     display: flex;
     justify-content: center;

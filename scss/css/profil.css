@@ -32,7 +32,7 @@
   justify-content: space-between;
   align-items: center;
   width: 400px;
-  min-height: 460px;
+  min-height: 510px;
   background: white;
   border: 2px solid var(--clr-font-darker);
   border-radius: 2.5rem;
@@ -60,6 +60,12 @@
   height: 80px;
   border-radius: 50%;
   overflow: hidden;
+}
+.content__profil__items__card__item__avatar img {
+  min-width: 60px;
+  max-width: 60px;
+  min-height: 60px;
+  max-height: 60px;
 }
 
 .avatar {
@@ -146,6 +152,19 @@
   border-radius: 2.5rem;
 }
 
+.front7 {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 35%;
+  width: 390px;
+  height: 64%;
+  background-color: var(--clr-back-middle);
+  border: 2px solid var(--clr-font-darker);
+  border-radius: 2.5rem;
+}
+
 .shrink {
   animation: frontShrink 250ms 100ms both;
 }
@@ -210,6 +229,17 @@
 }
 
 .toggle6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  background-color: var(--clr-font-light);
+  border: 2px solid var(--clr-font-darker);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.toggle7 {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -3,45 +3,65 @@
   <div class="content__header__title">
     <h1>Les multiplications, ça fait avancer les Licornes !</h1>
 
-    <div class="content__header__title__profil">
+    <div class="content__header__profil">
 
-      <div class="content__header__title__profil__avatar">
+      
+      <a href="profilRouteur.php?profil=profil">
+        <div class="content__header__profil__avatars">
 
-        <img src="./avatars/mini_<?php echo $pseudo;?>.png" alt="Image Profil">
+          <div class="photo">
+            <div class="photo__profil">
+              <img src="./avatars/mini_<?php
+              $photoProfil = "./avatars/mini_". $pseudo . ".png";
+              if (file_exists($photoProfil)) {
+                echo $pseudo;
+              } else {
+                echo "default";
+              }?>.png" alt="Image Profil">
+                
+            </div>
 
-        <div id="pseudo" class="content__header__title__profil__pseudo">
-          <?php if (isset($_SESSION['pseudo'])) {
-              $pseudo = htmlspecialchars($_SESSION['pseudo']);
-              echo $pseudo;
+            <div class="photo__avatar">
+              <img src="./images/<?php echo $_SESSION['avatar'];?>.png" alt="Image Avatar">
+            </div>
+          </div>
+
+          <div class="content__header__profil__names">
+            <div class="content__header__profil__names__name" id="pseudo">
+              <?php if (isset($_SESSION['pseudo'])) {
+                  $pseudo = htmlspecialchars($_SESSION['pseudo']);
+                  echo $pseudo;
+                } else {
+                  echo "void";
+                }
+              ?>
+            </div>
+
+            <div class="content__header__profil__names__name" id="avatarName">
+            <?php
+            if (isset($_SESSION['avatar'])) {
+              $avatar = htmlspecialchars($_SESSION['avatar']);
+              echo $avatar;
             } else {
               echo "void";
             }
-          ?>
-        </div>
-
-        <div class="avatar" id="avatarName">
-        <?php
-        if (isset($_SESSION['avatar'])) {
-          $avatar = htmlspecialchars($_SESSION['avatar']);
-          echo $avatar;
-        } else {
-          echo "void";
-        }
-        ?>
-        </div>
-      </div>
-
-      <div class="content__header__title__profil__buttons">
-        <a href="profilRouteur.php?profil=profil">
-          <div class="content__header__title__profil__button">
-            Voir mon profil
+            ?>
+            </div>
           </div>
+        </div>
+      </a>
+
+      <div class="content__header__profil__buttons">
+        <a href="profilRouteur.php?profil=profil">
+          <button>
+            Mes paramètres
+          </button>
         </a>
 
         <a href="index.php?info_login=disconnect">
-          <div class="content__header__title__profil__button">
+          <button>
             Déconnexion
-          </div>
+          </button>
         </a>
       </div>
     </div>

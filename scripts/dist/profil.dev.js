@@ -36,3 +36,9 @@ toggle6.addEventListener('click', function () {
   front6.classList.toggle('extend');
   front6.classList.toggle('shrink');
 });
+var front7 = document.querySelector('.front7');
+var toggle7 = document.querySelector('.toggle7');
+toggle7.addEventListener('click', function () {
+  front7.classList.toggle('extend');
+  front7.classList.toggle('shrink');
+});

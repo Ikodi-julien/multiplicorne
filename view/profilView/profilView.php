@@ -42,7 +42,8 @@ ob_start(); ?>
       action="profilRouteur.php?profil=modifyAvatar" method="post">
         <label for="licorne">Licorne</label><input type="radio" name="avatar" id="licorne" value="licorne">
         <label for="dinosaure">Dinosaure</label><input type="radio" name="avatar" id="dinosaure" value="dinosaure">
-        <label for="voiture">Chevalier</label><input type="radio" name="avatar" id="chevalier" value="chevalier">
+        <label for="chevalier">Chevalier</label><input type="radio" name="avatar" id="chevalier" value="chevalier">
+        <label for="McQueen">McQueen</label><input type="radio" name="avatar" id="McQueen" value="McQueen">
         <input type="submit" value="Changer l'avatar">
       </form>
       

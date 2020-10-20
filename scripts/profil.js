@@ -45,3 +45,11 @@ toggle6.addEventListener('click', () => {
     front6.classList.toggle('extend');
     front6.classList.toggle('shrink');
 });
+
+const front7 = document.querySelector('.front7');
+const toggle7= document.querySelector('.toggle7');
+
+toggle7.addEventListener('click', () => {
+    front7.classList.toggle('extend');
+    front7.classList.toggle('shrink');
+});
