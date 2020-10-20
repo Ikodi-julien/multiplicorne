@@ -37,22 +37,23 @@ var pseudo = document.getElementById("pseudo").innerText;
 var visiteur = "visiteuse ou visiteur";
 var pageUrl = document.location.href;
 var page = pageUrl.substring(pageUrl.length - 6);
-var location = ""; // La licorne
+var location = ""; // L'avatar
 
-var licorne = document.createElement("img");
-licorne.src = "./images/licorne-detouree.png";
-licorne.style.position = "relative";
-licorne.style.bottom = "20px"; // Ajustement des constante selon la page
+var avatarName = document.getElementById("avatarName").innerText;
+var avatar = document.createElement("img");
+avatar.src = "./images/" + avatarName + ".png";
+avatar.style.position = "relative";
+avatar.style.bottom = "20px"; // Ajustement des constante selon la page
 
 if (page == "sprint") {
   var _location = "./raceViews/sprintView.php";
-  document.getElementById("bloc0").appendChild(licorne);
+  document.getElementById("bloc0").appendChild(avatar);
   comment.innerText = 'Choisis une table, mélangée ou non et clique sur "GO" pour démarrer le chrono';
 } else if (page == "rathon") {
   location = "./raceViews/marathonView.php";
   table = "Toutes ";
   melange = "mélangées";
-  document.getElementById("start_finish").appendChild(licorne); // Préparer les données
+  document.getElementById("start_finish").appendChild(avatar); // Préparer les données
 
   couplesMultiplications = (0, _fonctions.couplerTous)(aMultiplier, multiplicateur);
   couplesMelanges = (0, _fonctions.melanger)(couplesMultiplications); // Charger les premières valeurs
@@ -123,34 +124,34 @@ btnChrono.addEventListener("click", function (event) {
         chiffre2.textContent = nb2;
         chiffre3.value = ""; // variable de choix des éléments de la course à modifier
 
-        var blocModifie = "bloc" + i; // On récupère l'élément à modifier, on le colore et on ajoute la licorne
+        var blocModifie = "bloc" + i; // On récupère l'élément à modifier, on le colore et on ajoute l'avatar
 
         var elmtModifie = document.getElementById(blocModifie);
         elmtModifie.style.backgroundColor = "#3f3fe1"; // Prévoir positionnement différent selon page
 
         if (page == "sprint") {
-          elmtModifie.appendChild(licorne);
+          elmtModifie.appendChild(avatar);
         } else if (page == "rathon") {
           if (i >= 74 | i < 10) {
-            licorne.src = "./images/licorne-detouree.png";
-            licorne.style.removeProperty("right");
-            licorne.style.bottom = "20px";
-            elmtModifie.appendChild(licorne);
+            avatar.src = "./images/" + avatarName + ".png";
+            avatar.style.removeProperty("right");
+            avatar.style.bottom = "20px";
+            elmtModifie.appendChild(avatar);
           } else if (i >= 10 && i < 30) {
-            licorne.src = "./images/licorne-monte.png";
-            licorne.style.removeProperty("bottom");
-            licorne.style.left = "20px";
-            elmtModifie.appendChild(licorne);
+            avatar.src = "./images/" + avatarName + "-monte.png";
+            avatar.style.removeProperty("bottom");
+            avatar.style.left = "20px";
+            elmtModifie.appendChild(avatar);
           } else if (i >= 30 && i < 54) {
-            licorne.src = "./images/licorne-en-haut.png";
-            licorne.style.removeProperty("left");
-            licorne.style.bottom = "20px";
-            elmtModifie.appendChild(licorne);
+            avatar.src = "./images/" + avatarName + "-en-haut.png";
+            avatar.style.removeProperty("left");
+            avatar.style.bottom = "20px";
+            elmtModifie.appendChild(avatar);
           } else if (i >= 54 && i < 74) {
-            licorne.src = "./images/licorne-descend.png";
-            licorne.style.removeProperty("bottom");
-            licorne.style.left = "20px";
-            elmtModifie.appendChild(licorne);
+            avatar.src = "./images/" + avatarName + "-descend.png";
+            avatar.style.removeProperty("bottom");
+            avatar.style.left = "20px";
+            elmtModifie.appendChild(avatar);
           }
         }
 
@@ -161,14 +162,14 @@ btnChrono.addEventListener("click", function (event) {
           if (page == "rathon") {
             clickCount++; // On finit les modifications de couleur
 
-            document.getElementById("bloc80").style.backgroundColor = "#3f3fe1"; // On positionne la licorne dans le bloc arrivée
+            document.getElementById("bloc80").style.backgroundColor = "#3f3fe1"; // On positionne l'avatar dans le bloc arrivée
 
-            document.getElementById("start_finish").appendChild(licorne);
+            document.getElementById("start_finish").appendChild(avatar);
           } else if (page == "sprint") {
             // On finit les modifications de couleur
-            document.getElementById("bloc_fin").style.backgroundColor = "#3f3fe1"; // On positionne la licorne dans le dernier
+            document.getElementById("bloc_fin").style.backgroundColor = "#3f3fe1"; // On positionne l'avatar dans le dernier
 
-            document.getElementById("bloc_fin").appendChild(licorne);
+            document.getElementById("bloc_fin").appendChild(avatar);
           }
 
           myChrono.stopChrono();

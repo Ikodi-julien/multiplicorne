@@ -21,25 +21,29 @@ ob_start(); ?>
           <h2>Avatar actuel :</h2>
           <div class="content__profil__items__card__item__avatar">
             <img 
-            src="<?php echo './avatars/mini_'.$pseudo.'.png'; ?>" 
-            alt="Pas d'image de pseudo"
+            src="<?php
+            if (isset($_SESSION['avatar'])) {
+              echo './images/'. $_SESSION['avatar'] .'.png'; 
+            } else {
+              echo 'problème Session';
+            }?>" 
+            alt="Pas d'image d'avatar"
             >
           </div>
         </div>
       </div>
       
-      <div class="front1 extend">
-          <h3 class="toggle1">Changer d'avatar </h3>
+      <div class="front7 extend">
+          <h3 class="toggle7">Changer d'avatar </h3>
       </div>
 
       <form 
       class="content__profil__items__card__item"
-      action="profilRouteur.php?profil=setAvatar" 
-      method="post" 
-      enctype="multipart/form-data">
-
-          <input type="file" name="avatar_fichier" id="avatar_fichier"><br />
-          <input type="submit" value="Envoyer le fichier"><br />
+      action="profilRouteur.php?profil=modifyAvatar" method="post">
+        <label for="licorne">Licorne</label><input type="radio" name="avatar" id="licorne" value="licorne">
+        <label for="dinosaure">Dinosaure</label><input type="radio" name="avatar" id="dinosaure" value="dinosaure">
+        <label for="voiture">Chevalier</label><input type="radio" name="avatar" id="chevalier" value="chevalier">
+        <input type="submit" value="Changer l'avatar">
       </form>
       
     </div>
@@ -60,6 +64,36 @@ ob_start(); ?>
         <label for="style_3">Contraste élevé</label><input type="radio" name="style" id="style_3" value="style_3.css">
         <input type="submit" value="Modifier l'ambiance">
       </form>
+    </div>
+
+    <!-- PROFIL PHOTO -->
+    <div class="content__profil__items__card">
+      <div class="content__profil__items__card__item">
+        <div class="avatar">
+          <h2>Photo actuelle :</h2>
+          <div class="content__profil__items__card__item__avatar">
+            <img 
+            src="<?php echo './avatars/mini_'.$pseudo.'.png'; ?>" 
+            alt="Pas d'image de pseudo"
+            >
+          </div>
+        </div>
+      </div>
+      
+      <div class="front1 extend">
+          <h3 class="toggle1">Changer la photo </h3>
+      </div>
+
+      <form 
+      class="content__profil__items__card__item"
+      action="profilRouteur.php?profil=setProfilPhoto" 
+      method="post" 
+      enctype="multipart/form-data">
+
+          <input type="file" name="avatar_fichier" id="avatar_fichier"><br />
+          <input type="submit" value="Envoyer le fichier"><br />
+      </form>
+      
     </div>
 
     <!-- BIRTH DATE -->

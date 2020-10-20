@@ -21,6 +21,7 @@ require("blocs/commonVar.php");
  */
 if (isset($_GET['info_login'])) {
   $infoLogin = htmlspecialchars($_GET['info_login']);
+  
   if ($infoLogin == "premiere") {
     firstLoginView();
   

@@ -22,7 +22,7 @@ ob_start();
           <?php include("blocs/chrono.html"); ?>
         </div>
 
-        <div class="content__sprint__multipli">
+        <div class="multiplication">
           <?php include("blocs/multiplication.html"); ?>
         </div>
 
@@ -45,7 +45,7 @@ ob_start();
 </section>
 
 <?php 
-include("blocs/gagnant.html");
+include("blocs/gagnant.php");
 
 $content = ob_get_clean(); 
 require('./view/template.php');

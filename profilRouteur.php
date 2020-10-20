@@ -14,7 +14,11 @@ if (isset($_SESSION['pseudo'])) {
   if ($profil == "profil") {
     profilView($pseudo, $modif);
 
-  } elseif ($profil == "setAvatar") {
+  } elseif ($profil == "setProfilPhoto") {
+
+    setProfilPhoto($pseudo);
+
+  } elseif ($profil == "modifyAvatar") {
 
     setAvatar($pseudo);
 

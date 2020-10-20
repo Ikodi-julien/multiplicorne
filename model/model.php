@@ -31,7 +31,11 @@ function rqProfil ($pseudo) {
 
   $db = dbConnect();
 
-  $rqProfil = $db->prepare('SELECT pseudo, mdp, email, birth_date, style FROM Profil WHERE pseudo= ?');
+  $rqProfil = $db->prepare('
+  SELECT pseudo, mdp, email, birth_date, style, avatar 
+  FROM Profil 
+  WHERE pseudo= ?
+  ');
   $rqProfil->execute(array($pseudo));
   $dataProfil = $rqProfil->fetch();
   $rqProfil->closeCursor();
@@ -72,6 +76,10 @@ function rqTimes($pseudo) {
   return $rqTimes;
 }
 
+/**
+ * ---PROFIL FUNCTIONS ---
+ */
+
 function insertNewProfil($newPseudo, $pass_hache, $email_1) {
   $db = dbConnect();
 
@@ -86,6 +94,23 @@ function insertNewProfil($newPseudo, $pass_hache, $email_1) {
 
   return $affectedLines;
 }
+
+
+function insertNewAvatar($pseudo, $newAvatar) {
+  $db = dbConnect();
+
+  $rqNewAvatar = $db->prepare("UPDATE Profil
+  SET avatar=:newAvatar
+  WHERE pseudo=:pseudo");
+
+  $affectedLines = $rqNewAvatar->execute(array(
+      'pseudo' => $pseudo,
+      'newAvatar' => $newAvatar,
+  ));
+
+  return $affectedLines;
+}
+
 
 function insertNewEmail($pseudo, $email) {
   $db = dbConnect();

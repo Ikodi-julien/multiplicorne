@@ -20,7 +20,7 @@
       <div class="login__box">
 
         <div class="login__logo">
-            <img src="./images/licorne-detouree.png" alt="licorne... sisi !">
+            <img src="./images/licorne.png" alt="licorne... sisi !">
         </div>
         
         <div class="login__content">

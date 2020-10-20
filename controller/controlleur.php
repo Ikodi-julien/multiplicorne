@@ -65,6 +65,7 @@ function checkLoginCtrl ($pseudo, $pass) {
     if ($is_pass_correct) {
         $_SESSION['pseudo'] = $pseudo;
         $_SESSION['style'] = $dataProfil['style'];
+        $_SESSION['avatar'] = $dataProfil['avatar'];
 
         // On met les cookies si connexion auto coché
         if (isset($_POST['auto'])) {
@@ -89,14 +90,25 @@ function checkLoginCookie ($pseudo, $pass_hache) {
   $dataProfil = rqProfil($pseudo);
 
   if (!$dataProfil) {
+    
     $_SESSION['identification'] = 'Problème d\'identification';
     require("./view/loginViews/stdLoginView.php");
 
   } else {
-    $_SESSION['pseudo'] = $pseudo;
-    $_SESSION['style'] = $dataProfil['style'];
-    require("./view/raceViews/racesIndexView.php");
 
+    // Comparaison mdp saisi et celui en bdd
+    if ($pass_hache != $dataProfil['mdp']) {
+      $_SESSION['identification'] = 'Problème d\'identification';
+      require("./view/loginViews/stdLoginView.php");
+
+    } else {
+  
+      $_SESSION['pseudo'] = $pseudo;
+      $_SESSION['style'] = $dataProfil['style'];
+      $_SESSION['avatar'] = $dataProfil['avatar'];
+      require("./view/raceViews/racesIndexView.php");
+
+    }
   }
 }
 
@@ -232,7 +244,7 @@ function recordTime($pseudo, $table, $mixed, $duration) {
  * --- PROFIL ---
  */
 
-function setAvatar($pseudo) {
+function setProfilPhoto($pseudo) {
 
   if (isset($_FILES['avatar_fichier']) && $_FILES['avatar_fichier']['error'] == 0) {
 
@@ -313,8 +325,32 @@ function profilView ($pseudo, $modif) {
   stdLoginView();
 
   }
-
 }
+
+/**
+ * Change avatar
+ */
+function setAvatar($pseudo) {
+  if (isset($_POST['avatar'])) {
+    $newAvatar = htmlspecialchars($_POST['avatar']);
+    $affectedLines = insertNewAvatar($pseudo, $newAvatar);
+
+    if ($affectedLines) {
+      $_SESSION['avatar'] = $newAvatar;
+      header('Location: ./profilRouteur.php?profil=profil');
+  
+    } else {
+      $_SESSION['identification'] = "L'avatar n'a pu être changée";
+      header('Location: ./profilRouteur.php?profil=profil');
+    
+    }
+  } else {
+    $_SESSION['identification'] = "Pas d'avatar choisi";
+    header('Location: ./profilRouteur.php?profil=profil');
+
+  }
+}
+
 
 /**
  * Change email in database

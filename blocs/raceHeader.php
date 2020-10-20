@@ -19,6 +19,16 @@
           ?>
         </div>
 
+        <div class="avatar" id="avatarName">
+        <?php
+        if (isset($_SESSION['avatar'])) {
+          $avatar = htmlspecialchars($_SESSION['avatar']);
+          echo $avatar;
+        } else {
+          echo "void";
+        }
+        ?>
+        </div>
       </div>
 
       <div class="content__header__title__profil__buttons">

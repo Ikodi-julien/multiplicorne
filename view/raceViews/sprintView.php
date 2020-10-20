@@ -39,7 +39,7 @@ ob_start(); ?>
 </section>
 
 <?php
-include("blocs/gagnant.html");
+include("blocs/gagnant.php");
 
 $content = ob_get_clean(); 
 require('./view/template.php');

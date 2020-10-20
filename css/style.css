@@ -557,7 +557,6 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0.5;
 }
 .winner__box {
   width: 600px;
@@ -569,7 +568,6 @@ footer {
   align-items: center;
   background-color: var(--clr-back-light);
   color: var(--clr-font-dark);
-  opacity: 1;
 }
 .winner__box__logo {
   display: flex;
