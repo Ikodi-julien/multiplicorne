@@ -249,7 +249,7 @@ function disconnect() {
  * --- PHPMailer
  */
 
-function sendMail($mailTo, $pseudo) {
+function sendMail($mailTo, $pseudo, $subject, $message) {
 
   require './vendor/autoload.php';
 
@@ -258,8 +258,8 @@ function sendMail($mailTo, $pseudo) {
   try {
     $mail->setFrom('multiplicorne@gmail.com', 'Multiplicorne');
     $mail->addAddress($mailTo, $pseudo);
-    $mail->Subject = 'Mot de passe Multiplicorne';
-    $mail->Body = 'Votre nouveau mot de passe est : "multiplicorne", vous pouvez le changer depuis votre espace membre :-)';
+    $mail->Subject = $subject;
+    $mail->Body = $message;
 
     /* SMTP parameters. */
 
@@ -281,7 +281,7 @@ function sendMail($mailTo, $pseudo) {
     );
 
     /* Enable SMTP debug output, dev purpose only, delete in production */
-    // $mail->SMTPDebug = 4;
+    $mail->SMTPDebug = 4;
 
     /* Finally send the mail. */
     $mail->send();

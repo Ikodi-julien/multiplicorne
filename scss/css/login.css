@@ -80,6 +80,12 @@
   position: relative;
   top: 70px;
 }
+.login__content__sepH {
+  width: 200px;
+  height: 1px;
+  border: 1px solid var(--clr-back-darker);
+  margin: 6px;
+}
 .login__content h3 {
   font-size: 20px;
   font-size: 1.7em;
@@ -121,7 +127,7 @@
 }
 .login__content a {
   text-decoration: none;
-  margin: 10px;
+  margin: 4px;
   width: 100%;
   color: var(--clr-font-darker);
   font-weight: bold;

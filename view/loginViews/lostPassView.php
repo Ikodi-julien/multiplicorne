@@ -1,4 +1,4 @@
-<?php $title = "Récupère ton mot de passe";
+<?php $title = "Multiplicorne - Récupère ton mot de passe";
 ob_start(); ?>
 
 <h3>Entre ton pseudo pour récupérer ton mot de passe</h3>

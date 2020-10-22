@@ -78,6 +78,13 @@
       align-items: center;
       position: relative;
       top: 70px;
+
+      &__sepH {
+        width: 200px;
+        height: 1px;
+        border: 1px solid var(--clr-back-darker);
+        margin: 6px;
+      }
   
       & h3 {
         font-size: 20px;
@@ -129,7 +136,7 @@
   
       & a {
         text-decoration: none;
-        margin: 10px;
+        margin: 4px;
         width: 100%;
         color: var(--clr-font-darker);
         font-weight: bold;

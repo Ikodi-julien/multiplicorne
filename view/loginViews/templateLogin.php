@@ -11,6 +11,9 @@
       echo "./css/style.css";
     } ?>">
     <title><?php echo $title; ?></title>
+    <meta name="description" content="Connexion au site Multiplicorne, 
+    révisez les tables de multiplication en faisant avancer une licorne 
+    ou un dinosaure ou un chevalier ou ...">
 </head>
 <body>
     <section class="login">

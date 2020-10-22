@@ -6,6 +6,28 @@
   --z-front: 20;
 }
 
+.bloc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-back-block);
+  margin: 0;
+  padding: 0;
+  width: 3.7vw;
+  height: 3vh;
+  overflow: visible;
+}
+@media screen and (min-width: 768px) {
+  .bloc {
+    width: 30px;
+    height: 20px;
+  }
+}
+.bloc img {
+  z-index: var(--z-middle);
+  animation: floating 2s infinite ease-in-out;
+}
+
 .content__racesIndex {
   width: 100%;
   display: flex;

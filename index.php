@@ -41,6 +41,15 @@ if (isset($_GET['info_login'])) {
   } elseif ($infoLogin == "sendPass") {
     checkAndSendPass();
 
+  } elseif ($infoLogin == "contact") {
+    contactView();
+
+  } elseif ($infoLogin == "contactEmail") {
+    sendMailContact();
+
+  } elseif ($infoLogin == "confidentialite") {
+    confidentialiteView();
+
   } else {
     disconnect();
   }

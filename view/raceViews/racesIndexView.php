@@ -1,6 +1,6 @@
 <?php
 
-$title = "ACCUEIL";
+$title = "Multiplicorne - Accueil";
 $js = "";
 
 ob_start(); ?>

@@ -13,6 +13,9 @@
         } ?> />
         <title><?php echo $title; ?></title>
         <?php echo $js; ?>
+        <meta name="description" content="Multiplicorne, 
+    révisez les tables de multiplication en faisant avancer une licorne 
+    ou un dinosaure ou un chevalier ou ...">
 
     </head>
 

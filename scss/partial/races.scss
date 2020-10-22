@@ -1,5 +1,28 @@
 @import "./const.scss";
 
+.bloc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-back-block);
+  margin: 0;
+  padding: 0;
+  width: $w_bloc;
+  height: $h_bloc;
+  overflow: visible;
+
+  @media screen and(min-width: 768px) {
+    width: 30px;
+    height: 20px;
+
+  }
+
+  & img {
+    z-index: var(--z-middle);
+    animation: floating 2s infinite ease-in-out;
+  }
+}
+
 .content {
   &__racesIndex {
     width: 100%;

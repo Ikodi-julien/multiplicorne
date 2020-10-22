@@ -1,5 +1,5 @@
 <?php
-$title = "Marathon";
+$title = "Multiplicorne - Marathon";
 $js = '<script src="./scripts/main.js" type="module" defer ></script>';
 
 ob_start();

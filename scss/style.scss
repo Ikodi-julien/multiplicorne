@@ -2,6 +2,7 @@
 @import "./partial/races.scss";
 @import "./partial/profil.scss";
 @import "./partial/login.scss";
+@import "./partial/footer.scss";
 
 /* --- FONTS --- */
 @font-face {
@@ -21,6 +22,7 @@
   --clr-back-light: #ffe8fe;
   --clr-back-middle: rgb(238, 167, 234);
   --clr-back-dark: rgb(209, 133, 206);
+  --clr-back-darker: rgb(114, 60, 112);
   --clr-back-logo: rgb(218, 232, 255);
   --clr-back-block: rgb(151, 151, 255);
 }

@@ -1,5 +1,5 @@
 <?php
-$title = "PROFIL";
+$title = "Multiplicorne - Profil";
 $js = "<script src=\"./scripts/profil.js\" type=\"module\"></script>";
 ob_start(); ?>
 

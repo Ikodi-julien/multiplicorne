@@ -1,4 +1,4 @@
-<?php $title = "Choisi un pseudo";
+<?php $title = "Multiplicorne - Créer un profil";
 ob_start(); ?>
   <h3>Choisi un pseudo et un mot de passe.</h3>
   <form action="./index.php" method="post">

@@ -113,8 +113,7 @@ function checkLoginCookie ($pseudo, $pass_hache) {
 }
 
 /**
- * Get a password from pseudo and 
- * displays lost password in index page.
+ * Send back a password by email if requested
  */
 
 function checkAndSendPass () {
@@ -131,7 +130,9 @@ function checkAndSendPass () {
       header('Location: index.php?info_login=perdu_mdp');
   
     } else {
-      $isSend = sendMail($mailTo, $pseudo);
+      $subject = "Mot de passe Multiplicorne";
+      $message = 'Votre nouveau mot de passe est : "multiplicorne", vous pouvez le changer depuis votre espace membre :-)';
+      $isSend = sendMail($mailTo, $pseudo, $subject, $message);
       $_POST['pseudo'] = null;
       $_POST['email'] = null;
 
@@ -159,6 +160,34 @@ function checkAndSendPass () {
     $_POST['email'] = null;
     $_SESSION['identification'] = 'Les informations sont incomplètes';
     header('Location: index.php?info_login=perdu_mdp');
+
+  }
+}
+
+/**
+ * Send an email from contact page
+ */
+
+function sendMailContact() {
+
+  if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message'])) {
+
+    $name = htmlspecialchars($_POST['name']);
+    $mailTo = htmlspecialchars($_POST['email']);
+    $message = htmlspecialchars($_POST['message']);
+    $subject = "Multiplicorne - Message depuis le formulaire de contact";
+
+    $isSend = sendMail($mailTo, $name, $subject, $message);
+
+    if ($isSend) {
+      $_SESSION['identification'] = 'Merci ! Le message a bien été envoyé.';
+      header('Location: index.php?info_login=contact');
+  
+    }
+
+  } else {
+    $_SESSION['identification'] = "Désolé, il faut remplir le nom, l'email et le message :-)";
+    header('Location: index.php?info_login=contact');
 
   }
 }
@@ -517,7 +546,7 @@ function changePseudo($pseudo) {
 }
 
 /**
- * Change display style
+ * Change scenery
  */
 function changeStyle($pseudo) {
   if (isset($_POST['style'])) {
@@ -552,4 +581,23 @@ function getProfilInfo($pseudo) {
   }
 
   return $dataProfil;
+}
+
+
+/**
+ * Displays privacy policy view
+ */
+function confidentialiteView () {
+
+  $pseudo = htmlspecialchars($_SESSION['pseudo']);
+  require("view/confidentialite/confidentialite.php");
+}
+
+/**
+ * Displays contact view
+ */
+function contactView () {
+
+  $pseudo = htmlspecialchars($_SESSION['pseudo']);
+  require("view/contact/contact.php");
 }

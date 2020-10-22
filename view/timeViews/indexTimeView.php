@@ -1,5 +1,5 @@
 <?php 
-$title = 'Temps';
+$title = 'Multiplicorne - Temps';
 $js = '';
 
 ob_start();

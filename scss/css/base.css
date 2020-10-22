@@ -61,29 +61,7 @@ img {
   max-width: 100px;
 }
 
-.bloc {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--clr-back-block);
-  margin: 0;
-  padding: 0;
-  width: 3.7vw;
-  height: 3vh;
-  overflow: visible;
-}
-@media screen and (min-width: 768px) {
-  .bloc {
-    width: 30px;
-    height: 20px;
-  }
-}
-.bloc img {
-  z-index: var(--z-middle);
-  animation: floating 2s infinite ease-in-out;
-}
-
-/* --- CONTENT --- */
+/* --- HEADER --- */
 .content {
   display: flex;
   flex-direction: column;
@@ -193,11 +171,40 @@ img {
   background-color: white;
 }
 
-footer {
-  width: 100%;
-  background-color: var(--clr-back-middle);
-  align-self: flex-end;
-  font-family: var(--font-footer);
+/* --- CONTACT --- */
+.contact {
+  margin: 15px;
+  border: 3px solid var(--clr-back-middle);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+}
+.contact input, .contact textarea, .contact label {
+  padding: 3px;
+  margin: 5px;
+}
+.contact p {
+  text-align: center;
+  max-width: 500px;
+}
+
+/* --- PRIVACY POLICY --- */
+.confidentialite {
+  margin: 15px;
+  padding: 20px;
+  border: 3px solid var(--clr-back-middle);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  background-color: white;
+}
+.confidentialite h1, .confidentialite h2, .confidentialite h3 {
+  align-self: center;
+  padding: 15px;
 }
 
 /* --- ANIMATION --- */

@@ -1,6 +1,6 @@
 <?php 
 $js = '<script src="./scripts/main.js" type="module" defer></script>';
-$title = 'Sprint';
+$title = 'Multiplicorne - Sprint';
 
 ob_start(); ?>
 
