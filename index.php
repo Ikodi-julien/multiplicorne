@@ -71,7 +71,7 @@ if (isset($_GET['info_login'])) {
 // If you log in for the first time
 } elseif (isset($_POST['newPseudo']) | isset($_POST['newMdp1']) | isset($_POST['newMdp2'])) {
     
-  if (isset($_POST['newPseudo']) && isset($_POST['newMdp1']) && isset($_POST['newMdp2'])) {
+  if (!empty($_POST['newPseudo']) && !empty($_POST['newMdp1']) && !empty($_POST['newMdp2'])) {
 
     $newPass1 = htmlspecialchars($_POST['newMdp1']);
     $newPass2 = htmlspecialchars($_POST['newMdp2']);

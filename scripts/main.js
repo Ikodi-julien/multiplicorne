@@ -34,7 +34,7 @@ const comment = document.getElementById("comment");
 
 // Variable de session
 const pseudo = document.getElementById("pseudo").innerText;
-const visiteur = "visiteuse ou visiteur";
+const visiteur = "visiteur.euse";
 const pageUrl = document.location.href;
 const page = pageUrl.substring(pageUrl.length - 6);
 let location = "";
@@ -244,7 +244,7 @@ btnChrono.addEventListener("click", (event) => {
             });
 
             document.getElementById("winnerMsg").innerHTML =
-              "<p style='font-size: 18px'>Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.</p>";
+              "Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.";
           }
         } else {
           comment.innerText = "Oups ! ce n'est pas la bonne réponse...";

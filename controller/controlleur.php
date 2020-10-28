@@ -35,7 +35,8 @@ function lostPassView () {
  */
 function visitorView () {
 
-  $_SESSION['pseudo'] = 'visiteuse ou visiteur';
+  $_SESSION['pseudo'] = 'visiteur.euse';
+  $_SESSION['avatar'] = 'licorne';
   require("view/raceViews/racesIndexView.php");
 }
 
@@ -173,8 +174,10 @@ function sendMailContact() {
   if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message'])) {
 
     $name = htmlspecialchars($_POST['name']);
-    $mailTo = htmlspecialchars($_POST['email']);
-    $message = htmlspecialchars($_POST['message']);
+    $mailTo = "jupellin39@gmail.com";
+    $userMail = htmlspecialchars($_POST['email']);
+    $rowMessage = htmlspecialchars($_POST['message']);
+    $message = "De : ".$userMail."\n".$rowMessage;
     $subject = "Multiplicorne - Message depuis le formulaire de contact";
 
     $isSend = sendMail($mailTo, $name, $subject, $message);
@@ -203,13 +206,13 @@ function registerNewProfil($newPseudo, $newPass1, $newPass2, $email_1, $email_2)
     $_POST['newMdp1'] = null;
     $_POST['newMdp2'] = null;
     $_SESSION['identification'] = 'Les mots de passe ne sont pas identiques';
-    header('Location: index.php');
+    header('Location: index.php?info_login=premiere');
 
   } elseif ($email_1 != $email_2) {
     $_POST['email_1'] = null;
     $_POST['email_2'] = null;
     $_SESSION['identification'] = 'Les mots de passe ne sont pas identiques';
-    header('Location: index.php');
+    header('Location: index.php?info_login=premiere');
   } else {
 
     // Check if pseudo already exist

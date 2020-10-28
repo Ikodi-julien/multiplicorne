@@ -3,37 +3,46 @@ footer {
   background-color: var(--clr-back-darker);
   align-self: flex-end;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-footer);
-  color: var(--clr-font-light);
+  justify-content: center;
 }
-footer .usefullLinks {
+footer .content {
+  width: 80%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-}
-footer .usefullLinks a {
+  flex-direction: row;
+  justify-content: space-between;
   font-family: var(--font-footer);
   color: var(--clr-font-light);
-  font-weight: 500;
+}
+@media screen and (max-width: 768px) {
+  footer .content {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+footer .content .usefullLinks {
+  display: flex;
+  align-items: center;
+}
+footer .content .usefullLinks a {
+  font-family: var(--font-footer);
+  color: var(--clr-font-light);
+  font-weight: 600;
   padding: 0 10px;
 }
-footer .usefullLinks .sep {
+footer .content .usefullLinks .sep {
   width: 1px;
   height: 15px;
   border: 1px solid white;
 }
-footer .logo {
+footer .content .logo {
   padding: 2px;
   display: flex;
   align-items: center;
-  font-weight: 500;
+  font-weight: 600;
 }
-footer .logo img {
+footer .content .logo img {
   width: 100px;
   padding: 2px 10px;
 }

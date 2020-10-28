@@ -1,44 +1,44 @@
 "use strict";
 
-var front1 = document.querySelector('.front1');
-var toggle1 = document.querySelector('.toggle1');
-toggle1.addEventListener('click', function () {
-  front1.classList.toggle('extend');
-  front1.classList.toggle('shrink');
+var avatar = document.querySelector('.avatarProfil');
+var avatarToggle = document.getElementById('avatarProfilToggle');
+avatarToggle.addEventListener('click', function () {
+  avatar.classList.toggle('extend');
+  avatar.classList.toggle('shrink');
 });
-var front2 = document.querySelector('.front2');
-var toggle2 = document.querySelector('.toggle2');
-toggle2.addEventListener('click', function () {
-  front2.classList.toggle('extend');
-  front2.classList.toggle('shrink');
+var decor = document.querySelector('.decorProfil');
+var decorToggle = document.getElementById('decorProfilToggle');
+decorToggle.addEventListener('click', function () {
+  decor.classList.toggle('extend');
+  decor.classList.toggle('shrink');
 });
-var front3 = document.querySelector('.front3');
-var toggle3 = document.querySelector('.toggle3');
-toggle3.addEventListener('click', function () {
-  front3.classList.toggle('extend');
-  front3.classList.toggle('shrink');
+var photoProfil = document.querySelector('.photoProfil');
+var photoProfilToggle = document.getElementById('photoProfilToggle');
+photoProfilToggle.addEventListener('click', function () {
+  photoProfil.classList.toggle('extend');
+  photoProfil.classList.toggle('shrink');
 });
-var front4 = document.querySelector('.front4');
-var toggle4 = document.querySelector('.toggle4');
-toggle4.addEventListener('click', function () {
-  front4.classList.toggle('extend');
-  front4.classList.toggle('shrink');
+var birthDate = document.querySelector('.birthDateProfil');
+var birthDateToggle = document.getElementById('birthDateProfilToggle');
+birthDateToggle.addEventListener('click', function () {
+  birthDate.classList.toggle('extend');
+  birthDate.classList.toggle('shrink');
 });
-var front5 = document.querySelector('.front5');
-var toggle5 = document.querySelector('.toggle5');
-toggle5.addEventListener('click', function () {
-  front5.classList.toggle('extend');
-  front5.classList.toggle('shrink');
+var pseudoProfil = document.querySelector('.pseudoProfil');
+var pseudoProfilToggle = document.getElementById('pseudoProfilToggle');
+pseudoProfilToggle.addEventListener('click', function () {
+  pseudoProfil.classList.toggle('extend');
+  pseudoProfil.classList.toggle('shrink');
 });
-var front6 = document.querySelector('.front6');
-var toggle6 = document.querySelector('.toggle6');
-toggle6.addEventListener('click', function () {
-  front6.classList.toggle('extend');
-  front6.classList.toggle('shrink');
+var emailProfil = document.querySelector('.emailProfil');
+var emailProfilToggle = document.getElementById('emailProfilToggle');
+emailProfilToggle.addEventListener('click', function () {
+  emailProfil.classList.toggle('extend');
+  emailProfil.classList.toggle('shrink');
 });
-var front7 = document.querySelector('.front7');
-var toggle7 = document.querySelector('.toggle7');
-toggle7.addEventListener('click', function () {
-  front7.classList.toggle('extend');
-  front7.classList.toggle('shrink');
+var passProfil = document.querySelector('.passProfil');
+var passProfilToggle = document.getElementById('passProfilToggle');
+passProfilToggle.addEventListener('click', function () {
+  passProfil.classList.toggle('extend');
+  passProfil.classList.toggle('shrink');
 });

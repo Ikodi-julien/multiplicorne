@@ -15,14 +15,15 @@ ob_start(); ?>
         $_SESSION['pseudo'] = "visiteur ou visiteuse ";
         echo htmlspecialchars($_SESSION['pseudo']);
       }
-    ?>, prêt(e) pour faire la course ?</h1>
+    ?>, prêt.e pour faire la course ?</h1>
 
     <h3>Quelques informations pour commencer :</h3>
 
     <ul>
         <li>En choisissant "Sprint" la course dure le temps d'une table de multiplication, tu peux choisir de la mélanger ou non.</li>
         <li>Avec "Marathon" ce sont toutes les tables du 2 au 9, dans le désordre, qu'il faudra résoudre pour arriver à la fin.</li>
-        <li>Si tu as choisi un pseudo et un mot de passe, tu peux enregistrer tes temps et voir tes progrès !</li>
+        <li>Si tu as créé un compte, tu peux enregistrer tes temps et voir tes progrès !</li>
+        <li>Tu peux aussi changer de personnage et de décor depuis les paramètres de ton compte (en haut à droite).</li>
     </ul>
     
   </div>

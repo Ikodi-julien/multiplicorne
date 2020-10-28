@@ -18,13 +18,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 80%;
-    padding: 20px;
-
-    @media screen and(max-width: 768px) {
-      width: 100%;
-    }
-
+    width: 400px;
 
     &__card {
       position: relative;
@@ -33,110 +27,102 @@
       justify-content: space-between;
       align-items: center;
       width: 400px;
-      min-height: 510px;
-      background: white;
+      background-color: var(--clr-back-light);
       border: 2px solid var(--clr-font-darker);
       border-radius: 2.5rem;
       box-shadow: 0 5px 12px -1px black;
       margin: 25px;
-      padding: 10px;
-
+      overflow: hidden;
 
       &__item {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
-        width: 80%;
-        margin: 20px 0;
+
+        & img {
+          min-width: 60px;
+          max-width: 60px;
+          min-height: 60px;
+          max-height: 60px;
+        }
+
+        & h2 {
+          display: flex;
+          align-items: center;
+          padding: 5px;
+          width: 100%;
+        }  
+      }
+
+      &__toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background-color: var(--clr-back-light);
+        padding: 5px;
+        position: relative;
+        bottom: 0;
+        overflow: hidden;
+
+        & h3 {
+          background-color: var(--clr-back-logo);
+          border: 2px solid var(--clr-font-darker);
+          border-radius: 10px;
+          padding: 3px 10px;
+          margin: 10px;
+          cursor: pointer;
+        }
+
+        & p {
+          width: 80%;
+          margin: 10px;
+        }
+
+        & form {
+          display: flex;
+          flex-direction: column;
+          margin: 0 0 10px 0;
+        }
 
         & input {
+          padding: 8px;
           margin: 5px;
-        }
-
-        &__avatar {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: white;
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          overflow: hidden;
-
-          & img {
-            min-width: 60px;
-            max-width: 60px;
-            min-height: 60px;
-            max-height: 60px;          }
-        }
+        }      
+        & label {
+          margin: 5px;
+        }      
       }
     }
   }
 }
 
-.avatar {
-  display: flex;
-  align-items: center;
-}
-
-/* --- TOGGLE FRONT PROFIL ---*/
-$front-top: 35%;
-$front-h-extend: 64%;
-$front-h-shrink: 50px;
-
-@for $i from 1 to 8 {
-  .front#{$i} {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: $front-top;
-    width: 390px;
-    height: $front-h-extend;
-    background-color: var(--clr-back-middle);
-    border: 2px solid var(--clr-font-darker);
-    border-radius: 2.5rem;
-}
-
-}
 .shrink {
   animation: frontShrink 250ms 100ms both;
 }
 
 .extend {
-  animation: frontExtend 250ms 10ms both;
-}
-
-@for $i from 1 to 8 {
-  .toggle#{$i} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px 5px;
-    background-color: var(--clr-font-light);
-    border: 2px solid var(--clr-font-darker);
-    border-radius: 10px;
-    cursor: pointer;
-  }
+  animation: frontExtend 250ms 100ms both;
 }
 
 @keyframes frontShrink {
   0% {
-  height: $front-h-extend; 
+  height: 350px; 
   }
 
   100% {
-    height: $front-h-shrink; 
+    height: 60px; 
   }
 }
 
 @keyframes frontExtend {
   0% {
-  height: $front-h-shrink; 
+  height: 60px; 
   }
 
   100% {
-    height: $front-h-extend; 
+    height: 350px; 
   }
 }

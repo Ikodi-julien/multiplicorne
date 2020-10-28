@@ -9,7 +9,7 @@
         if (isset($_SESSION['style'])) {
           echo "./css/".$_SESSION['style'];
         } else {
-          echo "./css/style.css";
+          echo "./css/neutre.css";
         } ?> />
         <title><?php echo $title; ?></title>
         <?php echo $js; ?>

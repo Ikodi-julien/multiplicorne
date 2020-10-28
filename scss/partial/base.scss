@@ -28,18 +28,19 @@ section {
 button {
   outline: none;
   text-decoration: none;
-  background-color: var(--clr-font-dark);
-  color: white;
-  height: 36px;
+  background-color: var(--clr-back-dark);
+  color: var(--clr-font-light);
+  min-height: 36px;
   border-radius: 18px;
   font-size: 16px;
   font-weight: bold;
   padding: 7px;
+  opacity: 1;
+  transition: opacity 250ms 50ms;
 }
 
 button:hover {
-  background-color: var(--clr-font-hover);
-  color: var(--color-font-lighter);
+  opacity: .7;
   cursor: pointer;
 }
 
@@ -86,6 +87,10 @@ img {
     &__profil {
         display: flex;
         align-items: center;
+
+        @media screen and(max-width: 768px){
+          flex-direction: column;
+        }
 
         &__avatars {
           display: flex;
@@ -179,8 +184,9 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 25px 0;
   padding: 10px;
-  background-color: white;
+  background-color: var(--clr-back-light);
 }
 
 /* --- CONTACT --- */ 
@@ -192,11 +198,12 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 10px;
-  background-color: white;
+  background-color: var(--clr-back-light);
 
-  & input, textarea, label {
-    padding: 3px;
-    margin: 5px;
+
+  & input, textarea, label, h2 {
+    padding: 5px;
+    margin: 10px;
   }
 
   & p {

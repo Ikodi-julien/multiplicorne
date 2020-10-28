@@ -65,7 +65,7 @@ function rqTimes($pseudo) {
   $db = dbConnect();
 
   $rqTimes = $db->prepare("SELECT id, temps_course, table_multiplication, melange, 
-  DATE_FORMAT(date_course, ' le %d/%m/%Y à %Hh%i') AS date_course 
+  DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course 
   FROM course_multiplication 
   WHERE id_coureur= :id_coureur 
   ORDER BY id DESC");
@@ -281,7 +281,7 @@ function sendMail($mailTo, $pseudo, $subject, $message) {
     );
 
     /* Enable SMTP debug output, dev purpose only, delete in production */
-    $mail->SMTPDebug = 4;
+    // $mail->SMTPDebug = 4;
 
     /* Finally send the mail. */
     $mail->send();

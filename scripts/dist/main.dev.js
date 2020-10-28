@@ -34,7 +34,7 @@ var chiffre3 = document.getElementById("chiffre3");
 var comment = document.getElementById("comment"); // Variable de session
 
 var pseudo = document.getElementById("pseudo").innerText;
-var visiteur = "visiteuse ou visiteur";
+var visiteur = "visiteur.euse";
 var pageUrl = document.location.href;
 var page = pageUrl.substring(pageUrl.length - 6);
 var location = ""; // L'avatar
@@ -209,7 +209,7 @@ btnChrono.addEventListener("click", function (event) {
             btnIndex.addEventListener("click", function (event) {
               document.location.href = "./index.php";
             });
-            document.getElementById("winnerMsg").innerHTML = "<p style='font-size: 18px'>Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.</p>";
+            document.getElementById("winnerMsg").innerHTML = "Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.";
           }
         } else {
           comment.innerText = "Oups ! ce n'est pas la bonne réponse...";

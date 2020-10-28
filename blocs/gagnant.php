@@ -10,7 +10,7 @@
       ?> alt="licorne... sisi !" />
     </div>
     <h1 id="winnerMsg" class="winner__box__msg">Félicitation, C'est Gagné !</h1>
-    <h2 class="winner__box__time">Ton temps : <span id="winnerTime"></span></h2>
+    <h3 class="winner__box__time">Ton temps : <span id="winnerTime"></span></h3>
     <div id="winnerBtn" class="winner__box__button"></div>
   </div>
 </div>

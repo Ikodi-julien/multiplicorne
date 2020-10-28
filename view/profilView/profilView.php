@@ -17,84 +17,73 @@ ob_start(); ?>
     <!-- AVATAR -->
     <div class="content__profil__items__card">
       <div class="content__profil__items__card__item">
-        <div class="avatar">
-          <h2>Avatar actuel :</h2>
-          <div class="content__profil__items__card__item__avatar">
-            <img 
-            src="<?php
-            if (isset($_SESSION['avatar'])) {
-              echo './images/'. $_SESSION['avatar'] .'.png'; 
-            } else {
-              echo 'problème Session';
-            }?>" 
-            alt="Pas d'image d'avatar"
-            >
-          </div>
-        </div>
-      </div>
-      
-      <div class="front7 extend">
-          <h3 class="toggle7">Changer d'avatar </h3>
+        <h2>Avatar actuel :
+          <img 
+          src="<?php
+          if (isset($_SESSION['avatar'])) {
+            echo './images/'. $_SESSION['avatar'] .'.png'; 
+          } else {
+            echo 'problème Session';
+          }?>" 
+          alt="Pas d'image d'avatar"
+          >
+        </h2>
       </div>
 
-      <form 
-      class="content__profil__items__card__item"
-      action="profilRouteur.php?profil=modifyAvatar" method="post">
-        <label for="licorne">Licorne</label><input type="radio" name="avatar" id="licorne" value="licorne">
-        <label for="dinosaure">Dinosaure</label><input type="radio" name="avatar" id="dinosaure" value="dinosaure">
-        <label for="chevalier">Chevalier</label><input type="radio" name="avatar" id="chevalier" value="chevalier">
-        <label for="McQueen">McQueen</label><input type="radio" name="avatar" id="McQueen" value="McQueen">
-        <input type="submit" value="Changer l'avatar">
-      </form>
-      
-    </div>
+      <div class="content__profil__items__card__toggle avatarProfil shrink">
+        <h3 id="avatarProfilToggle">Changer d'avatar </h3>
+        <form 
+        action="profilRouteur.php?profil=modifyAvatar" method="post">
+          <label for="licorne">Licorne<input type="radio" name="avatar" id="licorne" value="licorne"></label>
+          <label for="dinosaure">Dinosaure<input type="radio" name="avatar" id="dinosaure" value="dinosaure"></label>
+          <label for="chevalier">Chevalier<input type="radio" name="avatar" id="chevalier" value="chevalier"></label>
+          <label for="McQueen">McQueen<input type="radio" name="avatar" id="McQueen" value="McQueen"></label>
+          <input type="submit" value="Changer l'avatar">
+        </form>
+      </div>
+    </div>    
 
     <!-- STYLE -->
     <div class="content__profil__items__card">
-      <h2 class="content__profil__items__card__item">Choix du décor :</h2>
-
-      <div class="front6 extend">
-        <h3 class="toggle6">Choisir l'ambiance</h3>
+      <div class="content__profil__items__card__item">
+        <h2>Choix du décor :</h2>
       </div>
 
-      <form 
-      class="content__profil__items__card__item"
-      action="profilRouteur.php?profil=modifyStyle" method="post">
-        <label for="style">Plutôt rose</label><input type="radio" name="style" id="style" value="style.css">
-        <label for="style_2">Plutôt bleu - jaune</label><input type="radio" name="style" id="style_2" value="style_2.css">
-        <label for="style_3">Contraste élevé</label><input type="radio" name="style" id="style_3" value="style_3.css">
-        <input type="submit" value="Modifier l'ambiance">
-      </form>
+      <div class="content__profil__items__card__toggle decorProfil shrink">
+
+        <h3 id="decorProfilToggle">Choisir l'ambiance</h3>
+
+        <form action="profilRouteur.php?profil=modifyStyle" method="post">
+          <label for="rose">Plutôt rose<input type="radio" name="style" id="rose" value="licorne.css"></label>
+          <label for="neutre">Plutôt bleu - jaune<input type="radio" name="style" id="neutre" value="neutre.css"></label>
+          <label for="high_contrast">Moins lumineux<input type="radio" name="style" id="high_contrast" value="high_contrast.css"></label>
+          <input type="submit" value="Modifier l'ambiance">
+        </form>
+      </div>
     </div>
 
     <!-- PROFIL PHOTO -->
     <div class="content__profil__items__card">
       <div class="content__profil__items__card__item">
-        <div class="avatar">
-          <h2>Photo actuelle :</h2>
-          <div class="content__profil__items__card__item__avatar">
+        <h2>Photo actuelle :
             <img 
             src="<?php echo './avatars/mini_'.$pseudo.'.png'; ?>" 
             alt="Pas d'image de pseudo"
             >
-          </div>
-        </div>
+        </h2>
       </div>
       
-      <div class="front1 extend">
-          <h3 class="toggle1">Changer la photo </h3>
-      </div>
-
-      <form 
-      class="content__profil__items__card__item"
-      action="profilRouteur.php?profil=setProfilPhoto" 
-      method="post" 
-      enctype="multipart/form-data">
-
+      <div class="content__profil__items__card__toggle photoProfil shrink">
+        <h3 id="photoProfilToggle">Changer la photo </h3>
+        <p>Choisissez une image ou photo, de préférence carrée ;-)</p>
+        <form 
+        action="profilRouteur.php?profil=setProfilPhoto" 
+        method="post" 
+        enctype="multipart/form-data">
           <input type="file" name="avatar_fichier" id="avatar_fichier"><br />
           <input type="submit" value="Envoyer le fichier"><br />
-      </form>
-      
+        </form>
+      </div>
     </div>
 
     <!-- BIRTH DATE -->
@@ -112,17 +101,16 @@ ob_start(); ?>
             ?>
       </div>
 
-      <div class="front3 extend">
-        <h3 class="toggle3">Saisir la date de naissance </h3>
+      <div class="content__profil__items__card__toggle birthDateProfil shrink">
+        <h3 id="birthDateProfilToggle">Saisir la date de naissance </h3>
+        <form 
+        class="content__profil__items__card__item"
+        action="profilRouteur.php?profil=newBirthDate" method="post">
+          <input type="date" name="newBirthDate" id="newBirthDate">
+          <input type="submit" value="Envoyer">
+        </form>
+
       </div>
-
-      <form 
-      class="content__profil__items__card__item"
-      action="profilRouteur.php?profil=newBirthDate" method="post">
-        <input type="date" name="newBirthDate" id="newBirthDate">
-        <input type="submit" value="Envoyer">
-      </form>
-
     </div>
 
     <!-- PSEUDO -->
@@ -134,43 +122,42 @@ ob_start(); ?>
             ?>
       </div>
 
-      <div class="front4 extend">
-        <h3 class="toggle4">Changer de pseudo </h3>
+      <div class="content__profil__items__card__toggle pseudoProfil shrink">
+        <h3 id="pseudoProfilToggle">Changer de pseudo </h3>
+        <form 
+          action="profilRouteur.php?profil=newPseudo" method="post">
+            <p>Attention, tous les temps enregistrés avec l'ancien pseudo seront perdus !<br/>
+            Mot de passe : </p>
+            <input type="password" name="pass" id="pass">
+            <p>Nouveau pseudo : </p>
+            <input type="text" name="newPseudo" id="newPseudo">
+            <input type="submit" value="Envoyer">
+        </form>
       </div>
-
-      <form 
-        class="content__profil__items__card__item"
-        action="profilRouteur.php?profil=newPseudo" method="post">
-          <p>Saisir le mot de passe : </p>
-          <input type="password" name="pass" id="pass">
-          <p>Saisir le nouveau pseudo : </p>
-          <input type="text" name="newPseudo" id="newPseudo">
-          <input type="submit" value="Envoyer">
-      </form>
     </div>
 
     <!-- EMAIL -->
     <div class="content__profil__items__card">
       <div class="content__profil__items__card__item">
-        <h2>eMail pour récupération du mot de passe :</h2>
+        <h2>eMail (récup mot de passe) :</h2>
         <?php
           echo '<p class="content__profil__items__card__item">'. $profilInfo['email'] .'</p>';
             ?>
       </div>
 
-      <div class="front2 extend">
-        <h3 class="toggle2">Choisir un autre email de récupération </h3>
+      <div class="content__profil__items__card__toggle emailProfil shrink">
+
+        <h3 id="emailProfilToggle">Changer l'email</h3>
+
+        <form 
+        class="content__profil__items__card__item"
+        action="profilRouteur.php?profil=newEmail" method="post">
+
+          <p>Saisir le nouvel email :</p>
+          <input type="email" name="new-email" id="new_email">
+          <input type="submit" value="Envoyer">
+        </form> 
       </div>
-
-      <form 
-      class="content__profil__items__card__item"
-      action="profilRouteur.php?profil=newEmail" method="post">
-
-        <p>Saisir le nouvel email :</p>
-        <input type="email" name="new-email" id="new_email">
-        <input type="submit" value="Envoyer">
-      </form>
-        
     </div>
 
     <!-- PASSWORD -->
@@ -179,21 +166,19 @@ ob_start(); ?>
         <h2>Changement de mot de passe :</h2>
       </div>
 
-      <div class="front5 extend">
-        <h3 class="toggle5">Changer de mot de passe</h3>
-      </div>
-
-      <form 
-        class="content__profil__items__card__item"
-        action="profilRouteur.php?profil=newPass" method="post">
-          <p>Saisir le mot de passe actuel : </p>
-          <input type="password" name="pass" id="pass">
-          <p>Saisir le nouveau mot de passe : </p>
-          <input type="text" name="newPass1" id="newPass1">
-          <p>2ème saisie du nouveau mot de passe : </p>
-          <input type="text" name="newPass2" id="newPass2">
+      <div class="content__profil__items__card__toggle passProfil shrink">
+        <h3 id="passProfilToggle">Changer de mot de passe</h3>
+        <form 
+          action="profilRouteur.php?profil=newPass" method="post">
+          <label for=pass>Mot de passe actuel : 
+          <input type="password" name="pass" id="pass"></label>
+          <label for="newPass1">Nouveau mot de passe : 
+          <input type="text" name="newPass1" id="newPass1"></label>
+          <label for="newPass2">2ème fois nouveau mot de passe : 
+          <input type="text" name="newPass2" id="newPass2"></label>
           <input type="submit" value="Envoyer">
         </form>
+      </div>
     </div>
 
   </div>
