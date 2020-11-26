@@ -58,8 +58,14 @@ li {
 }
 
 img {
-  min-width: 100px;
-  max-width: 100px;
+  min-width: 80px;
+  max-width: 80px;
+}
+@media screen and (max-width: 750px) {
+  img {
+    min-width: 60px;
+    max-width: 60px;
+  }
 }
 
 /* --- HEADER --- */
@@ -160,6 +166,10 @@ img {
 .content__header__nav ul li {
   padding: 0 15px;
 }
+.content__header__nav ul li a {
+  color: var(--clr-font-dark);
+  font-weight: 700;
+}
 .content__header__nav__separation {
   width: 3px;
   height: 14px;
@@ -189,7 +199,10 @@ img {
   padding: 10px;
   background-color: var(--clr-back-light);
 }
-.contact input, .contact textarea, .contact label, .contact h2 {
+.contact input,
+.contact textarea,
+.contact label,
+.contact h2 {
   padding: 5px;
   margin: 10px;
 }
@@ -209,7 +222,9 @@ img {
   align-items: left;
   background-color: white;
 }
-.confidentialite h1, .confidentialite h2, .confidentialite h3 {
+.confidentialite h1,
+.confidentialite h2,
+.confidentialite h3 {
   align-self: center;
   padding: 15px;
 }

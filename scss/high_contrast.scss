@@ -1,15 +1,23 @@
-@import "./partial/base.scss";
-@import "./partial/races.scss";
-@import "./partial/profil.scss";
-@import "./partial/login.scss";
-@import "./partial/footer.scss";
+@import './partial/base.scss';
+@import './partial/races.scss';
+@import './partial/profil.scss';
+@import './partial/login.scss';
+@import './partial/footer.scss';
 
 /* --- FONTS --- */
 
 @font-face {
   font-family: 'beth_ellen_2regular';
   src: url(../fonts/Beth-Ellen/beth-ellen-2.0-webfont.woff2) format('woff2'),
-       url(../fonts/Beth-Ellen/beth-ellen-2.0-webfont.woff) format('woff');
+    url(../fonts/Beth-Ellen/beth-ellen-2.0-webfont.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'open_sansregular';
+  src: url('../fonts/opensans-regular-webfont.woff2') format('woff2'),
+    url('../fonts/opensans-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,20 +32,22 @@
   --clr-back-light: #946c92;
   --clr-back-middle: rgb(183, 181, 221);
   --clr-back-dark: rgb(44, 49, 122);
-  --clr-back-darker: rgb(59, 67, 179);;
+  --clr-back-darker: rgb(59, 67, 179);
   --clr-back-logo: rgb(255, 254, 218);
   --clr-back-block: rgb(255, 212, 132);
 }
 
 /* --- FONT CONST --- */
 :root {
-  --font: cursive, arial;
-  --font-footer: "Open Sans", cursive;
+  --font: 'open_sansregular', cursive, arial;
+  --font-footer: 'open_sansregular', cursive;
   --font-title: 'beth_ellen_2regular', cursive;
   --font-size-h1-small: 13px;
   --font-size-h1-regular: 16px;
-  --font-size-h3-small: 18px;
-  --font-size-h3-regular: 20px;
+  --font-size-h3-small: 20px;
+  --font-size-h3-regular: 25px;
+  --font-size-p-regular: 20px;
+  --font-size-p-small: 16px;
 }
 
 /* --- BACKGROUND ---*/

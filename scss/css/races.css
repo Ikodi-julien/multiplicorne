@@ -86,21 +86,32 @@
   width: 90%;
   height: 75px;
   border-radius: 10px;
-  margin: 10px;
-  font-size: var(--font-size-p-regular);
+  margin: 8px;
+  font-size: var(--font-size-p-small);
+  background-color: whitesmoke;
+  border: 2px solid var(--clr-back-middle);
+  border-radius: 10px;
 }
 .content__sprint__comments__item, .content__sprint__options__item, .content__sprint__chrono__item, .content__sprint__time__item {
   display: flex;
-  margin: 10px;
+  margin: 5px;
 }
 .content__sprint__comments__item > select, .content__sprint__options__item > select, .content__sprint__chrono__item > select, .content__sprint__time__item > select {
-  font-size: var(--font-size-p-regular);
+  font-size: var(--font-size-p-small);
 }
 .content__sprint__comments__item p, .content__sprint__options__item p, .content__sprint__chrono__item p, .content__sprint__time__item p {
-  margin-right: 10px;
+  margin: 5px;
+}
+.content__sprint__comments p, .content__sprint__options p, .content__sprint__chrono p, .content__sprint__time p {
+  margin: 5px;
+}
+.content__sprint__comments__melange, .content__sprint__options__melange, .content__sprint__chrono__melange, .content__sprint__time__melange {
+  display: flex;
+  flex-direction: column;
 }
 @media screen and (min-width: 768px) {
   .content__sprint__comments, .content__sprint__options, .content__sprint__chrono, .content__sprint__time {
+    font-size: var(--font-size-p-regular);
     width: 75%;
   }
 }
@@ -124,8 +135,6 @@
   background-repeat: repeat;
 }
 .content__sprint__little__blocks__start img {
-  min-width: 100px;
-  max-width: 100px;
   z-index: var(--z-middle);
   animation: floating 2s infinite ease-in-out;
 }
@@ -136,8 +145,6 @@
   background-repeat: repeat;
 }
 .content__sprint__little__blocks__finish img {
-  min-width: 100px;
-  max-width: 100px;
   z-index: var(--z-middle);
   animation: floating 2s infinite ease-in-out;
 }
@@ -226,8 +233,6 @@
   }
 }
 #start_finish img {
-  min-width: 100px;
-  max-width: 100px;
   z-index: var(--z-middle);
   animation: floating 2s infinite ease-in-out;
 }
@@ -269,6 +274,8 @@
 }
 .winner__box__logo img {
   padding-top: 10px;
+  min-width: 100px;
+  max-width: 100px;
   animation: floating 2s infinite ease-in-out;
 }
 .winner__box__msg {

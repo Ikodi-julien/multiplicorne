@@ -201,15 +201,23 @@ btnChrono.addEventListener("click", function (event) {
               document.location.href = "./raceRouteur.php?time=record&duration=" + document.getElementById("time").innerText + "&table=" + table + "&mixed=" + melange + "&location=" + location;
             });
           } else {
-            document.getElementById("winnerBtn").removeChild(btnEnregistrer);
+            // document.getElementById("winnerBtn").removeChild(btnEnregistrer);
             var btnIndex = document.createElement("button");
             btnIndex.setAttribute("id", "index");
-            btnIndex.innerText = "Choisir un pseudo";
+            btnIndex.innerText = "Créer un compte";
             document.getElementById("winnerBtn").appendChild(btnIndex);
             btnIndex.addEventListener("click", function (event) {
               document.location.href = "./index.php";
+            }); // document.getElementById("winnerMsg").innerHTML =
+            //   "Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.";
+
+            var _enregistrer = document.getElementById("enregistrer");
+
+            _enregistrer.addEventListener("click", function (event) {
+              document.location.href = "./raceRouteur.php?time=record&duration=" + document.getElementById("time").innerText + "&table=" + table + "&mixed=" + melange + "&location=" + location;
             });
-            document.getElementById("winnerMsg").innerHTML = "Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.";
+
+            document.getElementById("winnerMsg").innerHTML = "Félicitation, c'est gagné !<br>Crée un compte et choisis un pseudo pour pouvoir retrouver tes temps.";
           }
         } else {
           comment.innerText = "Oups ! ce n'est pas la bonne réponse...";

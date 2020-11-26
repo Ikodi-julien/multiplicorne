@@ -56,6 +56,8 @@
 }
 .login__logo img {
   padding-top: 10px;
+  min-width: 80px;
+  max-width: 80px;
   animation: floating 2s infinite ease-in-out;
 }
 .login__info {

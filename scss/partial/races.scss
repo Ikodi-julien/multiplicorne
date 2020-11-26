@@ -1,4 +1,4 @@
-@import "./const.scss";
+@import './const.scss';
 
 .bloc {
   display: flex;
@@ -14,12 +14,16 @@
   @media screen and(min-width: 768px) {
     width: 30px;
     height: 20px;
-
   }
 
   & img {
     z-index: var(--z-middle);
     animation: floating 2s infinite ease-in-out;
+
+    // @media screen and(max-width: 700px) {
+    //   min-width: 60px;
+    //   max-width: 60px;
+    // }
   }
 }
 
@@ -88,27 +92,38 @@
       width: 90%;
       height: 75px;
       border-radius: 10px;
-      margin: 10px;
-      font-size: var(--font-size-p-regular);
+      margin: 8px;
+      font-size: var(--font-size-p-small);
+      background-color: whitesmoke;
+      border: 2px solid var(--clr-back-middle);
+      border-radius: 10px;
 
       &__item {
         display: flex;
-        margin: 10px;
+        margin: 5px;
 
-        &>select {
-          font-size: var(--font-size-p-regular);
+        & > select {
+          font-size: var(--font-size-p-small);
         }
         & p {
-          margin-right: 10px;
+          margin: 5px;
         }
+      }
+
+      & p {
+        margin: 5px;
+      }
+
+      &__melange {
+        display: flex;
+        flex-direction: column;
       }
 
       @media screen and(min-width: 768px) {
+        font-size: var(--font-size-p-regular);
         width: 75%;
       }
-
     }
-
 
     &__little {
       display: flex;
@@ -130,12 +145,9 @@
           background-repeat: repeat;
 
           & img {
-            min-width: 100px;
-            max-width: 100px;
             z-index: var(--z-middle);
             animation: floating 2s infinite ease-in-out;
           }
-
         }
 
         &__finish {
@@ -145,12 +157,9 @@
           background-repeat: repeat;
 
           & img {
-            min-width: 100px;
-            max-width: 100px;
             z-index: var(--z-middle);
             animation: floating 2s infinite ease-in-out;
           }
-
         }
       }
     }
@@ -164,7 +173,6 @@
     margin: 20px;
     border: 3px solid var(--clr-back-middle);
     border-radius: 20px;
-
 
     &__2 {
       display: flex;
@@ -220,10 +228,10 @@
     display: flex;
     margin: 10px;
 
-    &>select {
+    & > select {
       font-size: 20px;
     }
-  
+
     &__result {
       width: 100px;
       border: 1px solid black;
@@ -232,12 +240,11 @@
   }
 }
 
-
 #start_finish {
   width: $w_bloc * 8;
   height: $h_bloc;
   overflow: visible;
-  background-image: url("../images/damier.png");
+  background-image: url('../images/damier.png');
   background-position: center;
   background-repeat: repeat;
   display: flex;
@@ -251,12 +258,9 @@
   }
 
   & img {
-    min-width: 100px;
-    max-width: 100px;
     z-index: var(--z-middle);
     animation: floating 2s infinite ease-in-out;
   }
-
 }
 
 /* --- WINNER VIEW --- */
@@ -296,6 +300,8 @@
 
       & img {
         padding-top: 10px;
+        min-width: 100px;
+        max-width: 100px;
         animation: floating 2s infinite ease-in-out;
       }
     }
@@ -319,7 +325,7 @@
   }
 }
 
-/* ANIMATION */ 
+/* ANIMATION */
 
 .anim_gagnant {
   animation: gagnant 0.5s ease-in-out forwards;
@@ -334,4 +340,3 @@
     top: 0px;
   }
 }
-

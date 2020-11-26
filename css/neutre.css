@@ -58,8 +58,14 @@ li {
 }
 
 img {
-  min-width: 100px;
-  max-width: 100px;
+  min-width: 80px;
+  max-width: 80px;
+}
+@media screen and (max-width: 750px) {
+  img {
+    min-width: 60px;
+    max-width: 60px;
+  }
 }
 
 /* --- HEADER --- */
@@ -160,6 +166,10 @@ img {
 .content__header__nav ul li {
   padding: 0 15px;
 }
+.content__header__nav ul li a {
+  color: var(--clr-font-dark);
+  font-weight: 700;
+}
 .content__header__nav__separation {
   width: 3px;
   height: 14px;
@@ -189,7 +199,10 @@ img {
   padding: 10px;
   background-color: var(--clr-back-light);
 }
-.contact input, .contact textarea, .contact label, .contact h2 {
+.contact input,
+.contact textarea,
+.contact label,
+.contact h2 {
   padding: 5px;
   margin: 10px;
 }
@@ -209,7 +222,9 @@ img {
   align-items: left;
   background-color: white;
 }
-.confidentialite h1, .confidentialite h2, .confidentialite h3 {
+.confidentialite h1,
+.confidentialite h2,
+.confidentialite h3 {
   align-self: center;
   padding: 15px;
 }
@@ -308,21 +323,32 @@ img {
   width: 90%;
   height: 75px;
   border-radius: 10px;
-  margin: 10px;
-  font-size: var(--font-size-p-regular);
+  margin: 8px;
+  font-size: var(--font-size-p-small);
+  background-color: whitesmoke;
+  border: 2px solid var(--clr-back-middle);
+  border-radius: 10px;
 }
 .content__sprint__comments__item, .content__sprint__options__item, .content__sprint__chrono__item, .content__sprint__time__item {
   display: flex;
-  margin: 10px;
+  margin: 5px;
 }
 .content__sprint__comments__item > select, .content__sprint__options__item > select, .content__sprint__chrono__item > select, .content__sprint__time__item > select {
-  font-size: var(--font-size-p-regular);
+  font-size: var(--font-size-p-small);
 }
 .content__sprint__comments__item p, .content__sprint__options__item p, .content__sprint__chrono__item p, .content__sprint__time__item p {
-  margin-right: 10px;
+  margin: 5px;
+}
+.content__sprint__comments p, .content__sprint__options p, .content__sprint__chrono p, .content__sprint__time p {
+  margin: 5px;
+}
+.content__sprint__comments__melange, .content__sprint__options__melange, .content__sprint__chrono__melange, .content__sprint__time__melange {
+  display: flex;
+  flex-direction: column;
 }
 @media screen and (min-width: 768px) {
   .content__sprint__comments, .content__sprint__options, .content__sprint__chrono, .content__sprint__time {
+    font-size: var(--font-size-p-regular);
     width: 75%;
   }
 }
@@ -346,8 +372,6 @@ img {
   background-repeat: repeat;
 }
 .content__sprint__little__blocks__start img {
-  min-width: 100px;
-  max-width: 100px;
   z-index: var(--z-middle);
   animation: floating 2s infinite ease-in-out;
 }
@@ -358,8 +382,6 @@ img {
   background-repeat: repeat;
 }
 .content__sprint__little__blocks__finish img {
-  min-width: 100px;
-  max-width: 100px;
   z-index: var(--z-middle);
   animation: floating 2s infinite ease-in-out;
 }
@@ -448,8 +470,6 @@ img {
   }
 }
 #start_finish img {
-  min-width: 100px;
-  max-width: 100px;
   z-index: var(--z-middle);
   animation: floating 2s infinite ease-in-out;
 }
@@ -491,6 +511,8 @@ img {
 }
 .winner__box__logo img {
   padding-top: 10px;
+  min-width: 100px;
+  max-width: 100px;
   animation: floating 2s infinite ease-in-out;
 }
 .winner__box__msg {
@@ -693,6 +715,8 @@ img {
 }
 .login__logo img {
   padding-top: 10px;
+  min-width: 80px;
+  max-width: 80px;
   animation: floating 2s infinite ease-in-out;
 }
 .login__info {
@@ -813,6 +837,7 @@ footer .content {
 footer .content .usefullLinks {
   display: flex;
   align-items: center;
+  padding: 10px;
 }
 footer .content .usefullLinks a {
   font-family: var(--font-footer);
@@ -835,11 +860,20 @@ footer .content .logo img {
   width: 100px;
   padding: 2px 10px;
 }
+footer .content .logo p {
+  padding: 20px 50px 20px 5px;
+}
 
 /* --- FONTS --- */
 @font-face {
   font-family: "mountains_of_christmasregular";
   src: url(../fonts/mountainsofchristmas-webfont.woff2) format("woff2"), url(../fonts/MountainsOfChristmas/mountainsofchristmas-webfont.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "open_sansregular";
+  src: url("../fonts/opensans-regular-webfont.woff2") format("woff2"), url("../fonts/opensans-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -860,14 +894,15 @@ footer .content .logo img {
 
 /* --- FONT CONST --- */
 :root {
-  --font: cursive, arial;
-  --font-footer: "Open Sans", cursive;
+  --font: "open_sansregular", cursive, arial;
+  --font-footer: "open_sansregular", cursive;
   --font-title: "mountains_of_christmasregular", cursive;
   --font-size-h1-small: 25px;
   --font-size-h1-regular: 35px;
   --font-size-h3-small: 20px;
   --font-size-h3-regular: 25px;
-  --font-size-p-regular: 18px;
+  --font-size-p-regular: 20px;
+  --font-size-p-small: 16px;
 }
 
 /* --- BACKGROUND ---*/
