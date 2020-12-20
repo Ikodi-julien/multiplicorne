@@ -13,9 +13,9 @@ use PHPMailer\PHPMailer\Exception;
 function dbConnect () {
   try {
     $db = new PDO(
-        'mysql:host=localhost;dbname=***;charset=utf8',
-        '***',
-        '***',
+        'mysql:host=localhost;dbname=multipli;charset=utf8',
+        'licorne',
+        'Planche7139',
         array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
     );
   } catch (Exception $e) {
@@ -256,7 +256,7 @@ function sendMail($mailTo, $pseudo, $subject, $message) {
   $mail = new PHPMailer(TRUE);
   /* ... */
   try {
-    $mail->setFrom('***', '***');
+    $mail->setFrom('multiplicorne@gmail.com', 'Multiplicorne');
     $mail->addAddress($mailTo, $pseudo);
     $mail->Subject = $subject;
     $mail->Body = $message;
@@ -267,8 +267,8 @@ function sendMail($mailTo, $pseudo, $subject, $message) {
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = TRUE;
     $mail->SMTPSecure = 'tls';
-    $mail->Username = '***';
-    $mail->Password = '***';
+    $mail->Username = 'multiplicorne@gmail.com';
+    $mail->Password = 'multiplicornePlanche7139!';
     $mail->Port = 587;
 
     /* Disable some SSL checks. */
