@@ -1,0 +1,7 @@
+/* --- z-index --- */
+:root {
+  --z-back: -1;
+  --z-normal: 1;
+  --z-middle: 10;
+  --z-front: 20;
+}

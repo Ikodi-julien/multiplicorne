@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-require("./model/model.php");
+require("model/model.php");
 require("controller/controlleur.php");
 require("blocs/commonVar.php");
 
@@ -34,7 +34,6 @@ if (isset($_GET['race'])) {
   $time = htmlspecialchars($_GET['time']);
 
   if ($time == 'index') {
-    $rqTimes = displayUserTimes($pseudo);
 
     require("./view/timeViews/indexTimeView.php");
 

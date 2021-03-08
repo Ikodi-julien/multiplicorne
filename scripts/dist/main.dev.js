@@ -193,30 +193,20 @@ btnChrono.addEventListener("click", function (event) {
           (0, _fonctions.play)(winner, "anim_gagnant"); // on affiche le temps dans le message au gagnant
 
           var winnerTime = document.getElementById("winnerTime");
-          winnerTime.innerText = myChrono.tempsAffiche; // On différençie si visiteur ou non
+          winnerTime.innerText = myChrono.tempsAffiche;
+          var enregistrer = document.getElementById("enregistrer");
+          enregistrer.addEventListener("click", function (event) {
+            document.location.href = "./raceRouteur.php?time=record&duration=" + myChrono.totalDuration + "&table=" + table + "&mixed=" + melange + "&location=" + location;
+          }); // On différençie si visiteur ou non
 
-          if (pseudo != visiteur) {
-            var enregistrer = document.getElementById("enregistrer");
-            enregistrer.addEventListener("click", function (event) {
-              document.location.href = "./raceRouteur.php?time=record&duration=" + document.getElementById("time").innerText + "&table=" + table + "&mixed=" + melange + "&location=" + location;
-            });
-          } else {
-            // document.getElementById("winnerBtn").removeChild(btnEnregistrer);
+          if (pseudo === visiteur) {
             var btnIndex = document.createElement("button");
             btnIndex.setAttribute("id", "index");
             btnIndex.innerText = "Créer un compte";
             document.getElementById("winnerBtn").appendChild(btnIndex);
             btnIndex.addEventListener("click", function (event) {
               document.location.href = "./index.php";
-            }); // document.getElementById("winnerMsg").innerHTML =
-            //   "Félicitation, c'est gagné !<br>Choisis un pseudo pour pouvoir enregistrer ton temps.";
-
-            var _enregistrer = document.getElementById("enregistrer");
-
-            _enregistrer.addEventListener("click", function (event) {
-              document.location.href = "./raceRouteur.php?time=record&duration=" + document.getElementById("time").innerText + "&table=" + table + "&mixed=" + melange + "&location=" + location;
             });
-
             document.getElementById("winnerMsg").innerHTML = "Félicitation, c'est gagné !<br>Crée un compte et choisis un pseudo pour pouvoir retrouver tes temps.";
           }
         } else {

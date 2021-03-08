@@ -196,6 +196,23 @@ img {
   margin: 25px 0;
   padding: 10px;
   background-color: var(--clr-back-light);
+
+  & h1 {
+    margin: 20px;
+  }
+
+  & h2 {
+    font-size: 1.3em;
+    margin: 10px 0;
+    align-self: baseline;
+    text-decoration: underline;
+  }
+
+  & h3 {
+    font-size: 1em;
+    margin: 5px 0;
+    align-self: baseline;
+  }
 }
 
 /* --- CONTACT --- */

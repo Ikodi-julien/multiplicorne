@@ -77,6 +77,53 @@ function rqTimes($pseudo) {
 }
 
 /**
+ * Return 10 last user' times for given race.
+ */
+
+function rqTenLastTimes($pseudo, $race) {
+  $db = dbConnect();
+
+  $rqTenLastTimes = $db->prepare("SELECT id, temps_course, table_multiplication, melange, 
+  DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course 
+  FROM course_multiplication 
+  WHERE id_coureur= :id_coureur 
+  AND table_multiplication= :table_multiplication
+  ORDER BY id DESC
+  LIMIT 10");
+  $rqTenLastTimes->execute(array(
+      'id_coureur' => $pseudo,
+      'table_multiplication' => $race
+  ));
+
+  return $rqTenLastTimes;
+}
+
+
+/**
+ * Return best time for a race.
+ */
+
+function rqBestTime($pseudo, $race) {
+  $db = dbConnect();
+
+  $rqBestTime = $db->prepare("SELECT table_multiplication, melange, 
+  DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course, temps_course
+  FROM course_multiplication 
+  WHERE id_coureur= :id_coureur 
+  AND table_multiplication= :table_multiplication
+  ORDER BY temps_course
+  LIMIT 1;
+  ");
+  
+  $rqBestTime->execute(array(
+      'id_coureur' => $pseudo,
+      'table_multiplication' => $race
+  ));
+
+  return $rqBestTime->fetch();
+}
+
+/**
  * ---PROFIL FUNCTIONS ---
  */
 

@@ -249,9 +249,9 @@ function registerNewProfil($newPseudo, $newPass1, $newPass2, $email_1, $email_2)
  * get all user' times
  */
 
-function displayUserTimes($pseudo) {
+function displayUserTimes($pseudo, $race) {
 
-  $rqTimes = rqTimes($pseudo);
+  $rqTimes = rqTenLastTimes($pseudo, $race);
 
   return $rqTimes;
 }

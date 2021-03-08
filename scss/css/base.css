@@ -187,6 +187,20 @@ img {
   padding: 10px;
   background-color: var(--clr-back-light);
 }
+.userTimes h1 {
+  margin: 20px;
+}
+.userTimes h2 {
+  font-size: 1.3em;
+  margin: 10px 0;
+  align-self: baseline;
+  text-decoration: underline;
+}
+.userTimes h3 {
+  font-size: 1em;
+  margin: 5px 0;
+  align-self: baseline;
+}
 
 /* --- CONTACT --- */
 .contact {
