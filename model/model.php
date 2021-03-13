@@ -1,10 +1,7 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-/** --- SQL FUNCTIONS --- //
- * 
+/** 
+ * --- SQL FUNCTIONS ---
  */
 
 /**
@@ -24,6 +21,11 @@ function dbConnect () {
   return $db;
 }
 
+/*----------------------------------------------*/
+/*----------------------------------------------*/
+/*------------- LOGIN --------------------------*/
+/*----------------------------------------------*/
+/*----------------------------------------------*/
 /**
  * Renvoi pseudo et mot de passe d'un profil
  */
@@ -57,14 +59,43 @@ function rqPass($lostPass) {
   return $data;
 }
 
+/*----------------------------------------------*/
+/*----------------------------------------------*/
+/*----------- RACE TIME ------------------------*/
+/*----------------------------------------------*/
+/*----------------------------------------------*/
+
+/**
+ * Insert a race time in database
+ */
+function insertTime($pseudo, $raceType, $operationType, $table, $mixed, $duration) {
+
+  $db = dbConnect();
+  $rqRecord = $db->prepare(
+    "INSERT INTO course_multiplication(id_coureur, race_type, operation_type, table_multiplication, melange, temps_course) 
+  VALUES (:id_coureur, :race_type, :operation_type, :table_multiplication, :melange, :temps_course)");
+
+  $affectedLines = $rqRecord->execute(array(
+      'id_coureur' => $pseudo,
+      'race_type' => $raceType,
+      'operation_type' => $operationType,
+      'table_multiplication' => $table,
+      'melange' => $mixed,
+      'temps_course' => $duration
+  ));
+
+  return $affectedLines;
+
+}
+
 /**
  * Return all user' times for all races.
  */
 
-function rqTimes($pseudo) {
+function getAllTimes($pseudo) {
   $db = dbConnect();
 
-  $rqTimes = $db->prepare("SELECT id, temps_course, table_multiplication, melange, 
+  $rqTimes = $db->prepare("SELECT id, race_type, operation_type, temps_course, table_multiplication, melange, 
   DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course 
   FROM course_multiplication 
   WHERE id_coureur= :id_coureur 
@@ -76,23 +107,69 @@ function rqTimes($pseudo) {
   return $rqTimes;
 }
 
+function getAllRaceTimes($pseudo, $raceType, $operationType) {
+  $db = dbConnect();
+
+  $rqTimes = $db->prepare("SELECT id, race_type, operation_type, temps_course, table_multiplication, melange, 
+  DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course 
+  FROM course_multiplication 
+  WHERE id_coureur= :id_coureur
+  AND race_type= :race_type
+  AND operation_type= :operation_type
+  ORDER BY id DESC");
+  
+  $rqTimes->execute(array(
+      'id_coureur' => $pseudo,
+      'race_type' => $raceType,
+      'operation_type' => $operationType
+  ));
+
+  return $rqTimes;
+}
+
+/**
+ * Returns the count for marathon races done by pseudo
+ */
+function getRaceCount($pseudo, $race, $operationType) {
+  
+  $db = dbConnect();
+  
+  $rqCount = $db->prepare(
+    "SELECT COUNT(`id`) as race_count
+    FROM course_multiplication
+    WHERE id_coureur= :pseudo
+    AND race_type= :race_type
+    AND operation_type= :operation_type"
+    );
+    
+  $rqCount->execute(array(
+    'pseudo' => $pseudo,
+    'race_type' => $race,
+    'operation_type' => $operationType
+  ));
+    
+  return $rqCount->fetchColumn();
+  
+}
 /**
  * Return 10 last user' times for given race.
  */
 
-function rqTenLastTimes($pseudo, $race) {
+function getTenLastTimes($pseudo, $raceType, $operationType) {
   $db = dbConnect();
 
-  $rqTenLastTimes = $db->prepare("SELECT id, temps_course, table_multiplication, melange, 
+  $rqTenLastTimes = $db->prepare("SELECT id, race_type, operation_type, temps_course, table_multiplication, melange,
   DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course 
   FROM course_multiplication 
   WHERE id_coureur= :id_coureur 
-  AND table_multiplication= :table_multiplication
+  AND race_type= :race_type
+  AND operation_type= :operation_type
   ORDER BY id DESC
   LIMIT 10");
   $rqTenLastTimes->execute(array(
       'id_coureur' => $pseudo,
-      'table_multiplication' => $race
+      'race_type' => $raceType,
+      'operation_type' => $operationType,
   ));
 
   return $rqTenLastTimes;
@@ -102,30 +179,84 @@ function rqTenLastTimes($pseudo, $race) {
 /**
  * Return best time for a race.
  */
-
-function rqBestTime($pseudo, $race) {
+function getBestTime($pseudo, $raceType, $operationType) {
   $db = dbConnect();
 
-  $rqBestTime = $db->prepare("SELECT table_multiplication, melange, 
-  DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course, temps_course
+  $rqBestTime = $db->prepare("SELECT id, race_type, operation_type, temps_course, table_multiplication, melange,
+  DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course 
   FROM course_multiplication 
   WHERE id_coureur= :id_coureur 
-  AND table_multiplication= :table_multiplication
+  AND race_type= :race_type
+  AND operation_type= :operation_type
   ORDER BY temps_course
   LIMIT 1;
   ");
   
   $rqBestTime->execute(array(
       'id_coureur' => $pseudo,
-      'table_multiplication' => $race
+      'race_type' => $raceType,
+      'operation_type' => $operationType,
   ));
 
   return $rqBestTime->fetch();
 }
 
 /**
- * ---PROFIL FUNCTIONS ---
+ * Returns the best time for a given table of multiplication
  */
+function getBestTimeForOneTable($pseudo, $table) {
+  $db = dbConnect();
+
+  $rqBestTime = $db->prepare("SELECT id, race_type, operation_type, temps_course, table_multiplication, melange,
+  DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course 
+  FROM course_multiplication 
+  WHERE id_coureur= :id_coureur 
+  AND race_type= 'sprint'
+  AND `table_multiplication`= :tableMulti
+  ORDER BY temps_course
+  LIMIT 1;
+  ");
+  
+  $rqBestTime->execute(array(
+      'id_coureur' => $pseudo,
+      'tableMulti' => strval($table)
+  ));
+
+  return $rqBestTime->fetch();
+}
+
+/**
+ * Returns 10 last sprint from given table
+ */
+function getLastMultipliSprint($pseudo, $table) {
+  
+  $db = dbConnect();
+  $rq = $db->prepare(
+    "SELECT id, race_type, operation_type, temps_course, table_multiplication, melange, 
+    DATE_FORMAT(date_course, ' le %d/%m/%Y') AS date_course 
+    FROM course_multiplication 
+    WHERE id_coureur=:id_coureur 
+    AND race_type='sprint'
+    AND operation_type='multipli'
+    AND `table_multiplication`=:tableMultipli
+    LIMIT 10"
+  );
+  
+  $rq->execute(array(
+    'id_coureur' => $pseudo,
+    'tableMultipli' => strval($table)
+  ));
+  
+  return $rq;
+    
+}
+
+
+/*----------------------------------------------*/
+/*----------------------------------------------*/
+/*--------------- PROFIL FUNCTIONS -------------*/
+/*----------------------------------------------*/
+/*----------------------------------------------*/
 
 function insertNewProfil($newPseudo, $pass_hache, $email_1) {
   $db = dbConnect();
@@ -233,26 +364,6 @@ function insertNewPass($passHache, $pseudo) {
 
   return $affectedLines;
 }
-/**
- * Insert a race time in database
- */
-
-function insertTime($pseudo, $table, $mixed, $duration) {
-
-  $db = dbConnect();
-  $rqRecord = $db->prepare("INSERT INTO course_multiplication(id_coureur, table_multiplication, melange, temps_course) 
-  VALUES (:id_coureur, :table_multiplication, :melange, :temps_course)");
-
-  $affectedLines = $rqRecord->execute(array(
-      'id_coureur' => $pseudo,
-      'table_multiplication' => $table,
-      'melange' => $mixed,
-      'temps_course' => $duration,
-  ));
-
-  return $affectedLines;
-
-}
 
 function changeIdCoureur($pseudo, $newPseudo) {
 
@@ -267,82 +378,4 @@ function changeIdCoureur($pseudo, $newPseudo) {
   ));
 
   return $affectedLines;
-
-}
-
-/**
- * --- DISPLAY FUNCTIONS ---
- */
-
-function displayTimes($rqTimes) {
-  while ($data = $rqTimes->fetch()) {
-    echo '<p>Table : '.$data['table_multiplication'].' '.$data['melange'].' en '.$data['temps_course'].$data['date_course'].'</p><br />';
-  };
-}
-
-
-function disconnect() {
-  
-    $_SESSION = array();
-    session_destroy();
-    setcookie('pseudo', '');
-    setcookie('pass_hache', '');
-
-    $_GET['deconnexion'] = null;
-    header("Location: index.php?info_login=disconnected");
-}
-
-/**
- * --- PHPMailer
- */
-
-function sendMail($mailTo, $pseudo, $subject, $message) {
-
-  require './vendor/autoload.php';
-
-  $mail = new PHPMailer(TRUE);
-  /* ... */
-  try {
-    $mail->setFrom('multiplicorne@gmail.com', 'Multiplicorne');
-    $mail->addAddress($mailTo, $pseudo);
-    $mail->Subject = $subject;
-    $mail->Body = $message;
-
-    /* SMTP parameters. */
-
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->SMTPAuth = TRUE;
-    $mail->SMTPSecure = 'tls';
-    $mail->Username = 'multiplicorne@gmail.com';
-    $mail->Password = 'multiplicornePlanche7139!';
-    $mail->Port = 587;
-
-    /* Disable some SSL checks. */
-    $mail->SMTPOptions = array(
-      'ssl' => array(
-      'verify_peer' => false,
-      'verify_peer_name' => false,
-      'allow_self_signed' => true
-      )
-    );
-
-    /* Enable SMTP debug output, dev purpose only, delete in production */
-    // $mail->SMTPDebug = 4;
-
-    /* Finally send the mail. */
-    $mail->send();
-
-    return true;
-  }
-  catch (Exception $e)
-  {
-    /* PHPMailer exception. */
-    echo $e->errorMessage();
-  }
-  catch (\Exception $e)
-  {
-    /* PHP exception (note the backslash to select the global namespace Exception class). */
-    echo $e->getMessage();
-  }
 }

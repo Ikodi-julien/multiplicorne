@@ -6,7 +6,15 @@
     <div class="content__header__profil">
 
       
-      <a href="profilRouteur.php?profil=profil">
+      <a href="
+      <?php
+      if ($_SESSION['pseudo'] !== 'visiteur.euse') {
+        echo 'profilRouteur.php?profil=profil';
+      } else {
+        echo '#';
+      }
+      ?>
+      ">
         <div class="content__header__profil__avatars">
 
           <div class="photo">
@@ -38,19 +46,34 @@
             </div>
 
             <div class="content__header__profil__names__name" id="avatarName">
-            <?php
-            if (isset($_SESSION['avatar'])) {
-              $avatar = htmlspecialchars($_SESSION['avatar']);
-              echo $avatar;
-            } else {
-              echo "void";
-            }
-            ?>
+              <?php if (isset($_SESSION['avatar'])) {
+                  $avatar = htmlspecialchars($_SESSION['avatar']);
+                  echo $avatar;
+                } else {
+                  echo "licorne";
+                }
+              ?>
             </div>
           </div>
         </div>
       </a>
 
+      <?php
+      if ($_SESSION['pseudo'] === 'visiteur.euse') {
+      ?>
+      
+      <div class="content__header__profil__buttons">
+        <a href="index.php?info_login=connect">
+          <button>
+            Connexion
+          </button>
+        </a>
+      </div>
+      
+      <?php 
+      } else {
+        ?>
+      
       <div class="content__header__profil__buttons">
         <a href="profilRouteur.php?profil=profil">
           <button>
@@ -64,6 +87,10 @@
           </button>
         </a>
       </div>
+      
+      <?php
+      }
+      ?>
     </div>
 
   </div>
@@ -72,9 +99,20 @@
     <ul>
       <li><a href="raceRouteur.php?race=index">Accueil</a></li>
       <div class="content__header__nav__separation"></div>
-      <li><a href="raceRouteur.php?race=sprint">Sprint</a></li>
-      <div class="content__header__nav__separation"></div>
-      <li><a href="raceRouteur.php?race=marathon">Le Marathon</a></li>
+      <li>
+        
+        <select name="selectRaces" class="content__header__nav__select" id="selectRaces">
+          <option value="">Courses</option>
+          <option value="addition">Additions</option>
+          <option value="soustraction">Soustractions</option>
+          <option value="multiplication">Multiplications</option>
+          <option value="marathonAddSub">Marathon additions - soustractions</option>
+          <option value="marathonMulti">Marathon multiplications</option>
+        </select>
+      
+      
+      </li>
+
       <div class="content__header__nav__separation"></div>
       <li><a href="raceRouteur.php?time=index">Temps</a></li>
     </ul>

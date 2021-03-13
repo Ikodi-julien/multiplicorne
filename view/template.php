@@ -11,6 +11,7 @@
         } else {
           echo "./css/neutre.css";
         } ?> />
+        <script src="./scripts/racesMenu.js"></script>
         <title><?php echo $title; ?></title>
         <?php echo $js; ?>
         <meta name="description" content="Multiplicorne, 

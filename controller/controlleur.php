@@ -1,4 +1,5 @@
 <?php
+require('./model/model.php');
 
 /**
  * --- LOGIN FORMS ---
@@ -246,26 +247,15 @@ function registerNewProfil($newPseudo, $newPass1, $newPass2, $email_1, $email_2)
  */
 
 /**
- * get all user' times
- */
-
-function displayUserTimes($pseudo, $race) {
-
-  $rqTimes = rqTenLastTimes($pseudo, $race);
-
-  return $rqTimes;
-}
-
-/**
  * Register a race time
  */
 
-function recordTime($pseudo, $table, $mixed, $duration) {
-  $affectedLines = insertTime($pseudo, $table, $mixed, $duration);
+function recordTime($pseudo, $raceType, $operationType, $table, $mixed, $duration) {
+  $affectedLines = insertTime($pseudo, $raceType, $operationType, $table, $mixed, $duration);
 
   if (!$affectedLines) {
     $_SESSION['enregistrement'] = "Problème d'enregistrement";
-    header("Location: ./view/raceViews/".$location.".php");
+    header("Location: raceRouteur.php?race=" + $raceType + "&op=" + $operationType);
 
   } else {
     header("Location: raceRouteur.php?time=index");

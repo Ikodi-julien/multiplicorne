@@ -3,14 +3,14 @@
 @import './partial/profil.scss';
 @import './partial/login.scss';
 @import './partial/footer.scss';
+@import './partial/times.scss';
 
 /* --- FONTS --- */
 
 @font-face {
   font-family: 'mountains_of_christmasregular';
-  src: url(../fonts/mountainsofchristmas-webfont.woff2) format('woff2'),
-    url(../fonts/MountainsOfChristmas/mountainsofchristmas-webfont.woff)
-      format('woff');
+  src: url(../fonts/MountainsOfChristmas/mountainsofchristmas-webfont.woff2) format('woff2'),
+    url(../fonts/MountainsOfChristmas/mountainsofchristmas-webfont.woff) format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -27,7 +27,7 @@
 :root {
   --clr-font-light: rgb(242, 242, 242);
   --clr-font: rgb(56, 56, 56);
-  --clr-font-dark: rgb(39, 39, 39);
+  --clr-font-dark: rgb(46, 78, 46);
   --clr-font-darker: rgb(22, 22, 22);
   --clr-font-hover: rgba(226, 208, 43, 0.8);
   --clr-back-light: #ebffe8;

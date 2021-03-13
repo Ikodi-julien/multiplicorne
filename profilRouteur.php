@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-require("./model/model.php");
+require("./utils/utils.php");
 require("controller/controlleur.php");
 require("blocs/commonVar.php");
 

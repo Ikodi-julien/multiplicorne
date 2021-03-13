@@ -1,0 +1,57 @@
+/* --- TIMES VIEW --- */
+.userTimes {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px 0;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.userTimes__bigTitle {
+  text-align: center;
+  width: 97%;
+  background-color: var(--clr-back-middle);
+  color: var(--clr-font-dark);
+  border-radius: 5px;
+  border: 1px solid var(--clr-font-dark);
+  padding: 10px;
+  margin: 20px;
+}
+.userTimes__container {
+  display: flex;
+}
+.userTimes__container__raceType {
+  min-width: 320px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+}
+.userTimes__container__section {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.userTimes__raceTypeTitle {
+  width: 100%;
+  font-size: 1.2em;
+  background-color: var(--clr-back-light);
+  color: var(--clr-font-dark);
+  border-radius: 5px;
+  border: 1px solid var(--clr-font-dark);
+  padding: 8px;
+  margin-bottom: 10px;
+}
+.userTimes__bestTime {
+  font-size: 1em;
+  margin: 10px 0;
+  align-self: baseline;
+}
+.userTimes__time {
+  align-self: baseline;
+}
+.userTimes__table {
+  align-self: baseline;
+  margin: 8px 0;
+  padding: 0 5px;
+  border: 1px solid var(--clr-font-dark);
+}

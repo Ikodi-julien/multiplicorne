@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-require("./model/model.php");
+require("./utils/utils.php");
 require("controller/controlleur.php");
 require("blocs/commonVar.php");
 
@@ -25,6 +25,9 @@ if (isset($_GET['info_login'])) {
   if ($infoLogin == "premiere") {
     firstLoginView();
   
+  } elseif ($infoLogin == "connect") {
+    stdLoginView();
+    
   } elseif ($infoLogin == "perdu_mdp") {
     lostPassView();
   
@@ -36,7 +39,7 @@ if (isset($_GET['info_login'])) {
 
   } elseif ($infoLogin == "disconnected") {
     echo '<p class="login__info">Vous êtes déconnecté</p>';
-    stdLoginView();
+    visitorView();
 
   } elseif ($infoLogin == "sendPass") {
     checkAndSendPass();
@@ -94,5 +97,5 @@ if (isset($_GET['info_login'])) {
 
 
 } else {
-  stdLoginView();
+  visitorView();
 }

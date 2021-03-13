@@ -1,6 +1,6 @@
 <?php 
 $js = '<script src="./scripts/main.js" type="module" defer></script>';
-$title = 'Multiplicorne - Sprint';
+$title = 'Addition - Soustraction';
 
 ob_start(); ?>
 
@@ -10,10 +10,7 @@ ob_start(); ?>
     <?php include("./blocs/commentaires.php"); ?>
   </div>
 
-  <div class="content__sprint__options">
-    <?php include("blocs/options.html"); ?>
-  </div>
-  
+
   <div class="content__sprint__chrono">
     <?php include("blocs/chrono.html"); ?>
   </div>

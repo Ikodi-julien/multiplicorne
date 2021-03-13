@@ -1,8 +1,8 @@
 "use strict";
 
-var _fonctions = require("./fonctions.js");
+var _utils = require("./utils.js");
 
-var _chrono = require("./chrono.js");
+var _Chrono = require("./Chrono.js");
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -14,78 +14,83 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 //Variables chrono
 var clickCount = 0;
-var myChrono = new _chrono.Chrono("time");
+var myChrono = new _Chrono.Chrono("time");
 var btnChrono = document.getElementById("btnGo");
-var reload = document.getElementById("btnReload"); // Variables multiplication
+var reload = document.getElementById("btnReload"); // Variables opérations
 
-var aMultiplier = [2, 3, 4, 5, 6, 7, 8, 9];
-var multiplicateur = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var couplesMultiplications = [];
-var couplesMelanges = [];
 var i = 0;
-var nb1 = null;
-var nb2 = null;
-var table = "";
-var melange = ""; // Récupérer les éléments à modifier
+var sign, nb1, nb2, result, mixCheck; // Récupérer les éléments à modifier
 
 var chiffre1 = document.getElementById("chiffre1");
 var chiffre2 = document.getElementById("chiffre2");
+var opSignElt = document.getElementById("opSign");
 var chiffre3 = document.getElementById("chiffre3");
 var comment = document.getElementById("comment"); // Variable de session
 
 var pseudo = document.getElementById("pseudo").innerText;
 var visiteur = "visiteur.euse";
-var pageUrl = document.location.href;
-var page = pageUrl.substring(pageUrl.length - 6);
-var location = ""; // L'avatar
+var urlParams = new URLSearchParams(window.location.search);
+var raceType = urlParams.get('race');
+var operationType = urlParams.get('op'); // console.log('raceType : ' + raceType)
+// console.log('operationType : ' + operationType)
+// L'avatar
 
 var avatarName = document.getElementById("avatarName").innerText;
 var avatar = document.createElement("img");
 avatar.src = "./images/" + avatarName + ".png";
 avatar.style.position = "relative";
-avatar.style.bottom = "20px"; // Ajustement des constante selon la page
+avatar.style.bottom = "20px"; // Ajustement de l'affichage selon la page
 
-if (page == "sprint") {
-  var _location = "./raceViews/sprintView.php";
-  document.getElementById("bloc0").appendChild(avatar);
-  comment.innerText = 'Choisis une table, mélangée ou non et clique sur "GO" pour démarrer le chrono';
-} else if (page == "rathon") {
-  location = "./raceViews/marathonView.php";
-  table = "Toutes ";
-  melange = "mélangées";
-  document.getElementById("start_finish").appendChild(avatar); // Préparer les données
+var pageDetails = _utils.utils.prepareView(raceType, operationType);
 
-  couplesMultiplications = (0, _fonctions.couplerTous)(aMultiplier, multiplicateur);
-  couplesMelanges = (0, _fonctions.melanger)(couplesMultiplications); // Charger les premières valeurs
-
-  chiffre1.textContent = "-";
-  chiffre2.textContent = "-";
-} else {
-  comment.innerText = "Page pas reconnue";
-} //################ Boucle principale ####################
-
+document.getElementById(pageDetails.startElt).appendChild(avatar);
+opSignElt.textContent = pageDetails.sign;
+comment.innerText = pageDetails.comment; //################ Boucle principale ####################
 
 btnChrono.addEventListener("click", function (event) {
-  // OK si course au début et table choisie
-  if (page == "sprint") {
-    table = document.getElementById("tables").value;
+  /* --- Préparation de l'affichage selon la course --- */
+  // Objet de paramétrage commun aux différentes courses
+  var raceDetails = {
+    table: '',
+    operations: '',
+    mix: ''
+  };
 
-    if (table == "-") {
-      comment.innerText = "Il faut choisir une table !!";
-      return;
-    } else {
-      // Préparer les données
-      var sontCouples = (0, _fonctions.coupler)(table, multiplicateur); // Mélanger si demandé
+  if (raceType === "sprint") {
+    if (operationType == "multipli") {
+      raceDetails.table = document.getElementById("tables").value; // OK si course au début et table choisie
 
-      melange = document.querySelector('input[name="melange"]:checked').value;
-
-      if (melange == "mélangée") {
-        couplesMelanges = (0, _fonctions.melanger)(sontCouples);
+      if (raceDetails.table == "-") {
+        comment.innerText = "Il faut choisir une table !!";
+        return;
       } else {
-        couplesMelanges = sontCouples;
+        // Préparer les multiplications d'une table
+        raceDetails.operations = _utils.utils.makeCouples(raceDetails.table); // Mélanger si demandé
+
+        mixCheck = document.querySelector('input[name="melange"]:checked').value;
+
+        if (mixCheck == "mélangée") {
+          raceDetails.operations = _utils.utils.mix(raceDetails.operations);
+          raceDetails.mix = 'mélangée';
+        } else {
+          raceDetails.mix = 'dans l\'ordre';
+        }
       }
+    } else if (operationType == "add") {
+      raceDetails.operations = _utils.utils.createOperations(10, '+');
+    } else if (operationType == "sub") {
+      raceDetails.operations = _utils.utils.createOperations(10, '-');
     }
-  } // Démarrage du chrono si pas de multiplication déjà faites
+  } else if (raceType === "marathon") {
+    if (operationType === "multipli") {
+      raceDetails.operations = _utils.utils.mix(_utils.utils.coupleAll());
+    } else if (operationType === "add_sub") {
+      raceDetails.operations = _utils.utils.mix(_utils.utils.createOperations(40, "+").concat(_utils.utils.createOperations(40, "-")));
+    }
+  } else {
+    return;
+  }
+  /* --- Démarrage du chrono si pas de multiplication déjà faites --- */
 
 
   if (i == 0 && clickCount == 0) {
@@ -93,34 +98,57 @@ btnChrono.addEventListener("click", function (event) {
 
     myChrono.stopChrono();
     myChrono.debut = +new Date();
-    myChrono.startChrono();
+    myChrono.startChrono(); // Placer la première opération
 
-    var _couplesMelanges$ = _slicedToArray(couplesMelanges[0], 2);
+    var _raceDetails$operatio = _slicedToArray(raceDetails.operations[0], 3);
 
-    nb1 = _couplesMelanges$[0];
-    nb2 = _couplesMelanges$[1];
+    sign = _raceDetails$operatio[0];
+    nb1 = _raceDetails$operatio[1];
+    nb2 = _raceDetails$operatio[2];
     i++;
     chiffre1.textContent = nb1;
     chiffre2.textContent = nb2;
-    comment.textContent = "C'EST PARTI !!!"; // Modifier les éléments si réponse modifiée
+    opSignElt.textContent = sign;
+    comment.textContent = "C'EST PARTI !!!";
+    /* --- LISTENER DE L'INPUT ---*/
 
     chiffre3.addEventListener("change", function (event) {
-      if (page == "sprint") {
-        document.getElementById("bloc0").style.backgroundColor = "#3f3fe1";
+      if (raceType === "sprint") {
+        document.getElementById(pageDetails.startElt).style.backgroundColor = "#3f3fe1";
       } // Récupérer les valeurs
 
 
-      var nb3 = document.getElementById("chiffre3").value;
-      var result = nb1 * nb2; // Vérification réponse et on est pas à la fin
+      var nb3 = document.getElementById("chiffre3").value; // Gérer le résultat attendu en fonction du type d'opération
 
-      if (result == nb3 && i < couplesMelanges.length) {
+      switch (sign) {
+        case "+":
+          result = nb1 + nb2;
+          break;
+
+        case "-":
+          result = nb1 - nb2;
+          break;
+
+        case "x":
+          result = nb1 * nb2;
+          break;
+
+        default:
+          break;
+      } // Vérification réponse et on est pas à la fin
+
+
+      if (result == nb3 && i < raceDetails.operations.length) {
+        // if (result == nb3 && i < 2) {
         comment.innerText = "Oui, c'est la bonne réponse !";
 
-        var _couplesMelanges$i = _slicedToArray(couplesMelanges[i], 2);
+        var _raceDetails$operatio2 = _slicedToArray(raceDetails.operations[i], 3);
 
-        nb1 = _couplesMelanges$i[0];
-        nb2 = _couplesMelanges$i[1];
+        sign = _raceDetails$operatio2[0];
+        nb1 = _raceDetails$operatio2[1];
+        nb2 = _raceDetails$operatio2[2];
         chiffre1.textContent = nb1;
+        opSignElt.textContent = sign;
         chiffre2.textContent = nb2;
         chiffre3.value = ""; // variable de choix des éléments de la course à modifier
 
@@ -129,9 +157,9 @@ btnChrono.addEventListener("click", function (event) {
         var elmtModifie = document.getElementById(blocModifie);
         elmtModifie.style.backgroundColor = "#3f3fe1"; // Prévoir positionnement différent selon page
 
-        if (page == "sprint") {
+        if (raceType === "sprint") {
           elmtModifie.appendChild(avatar);
-        } else if (page == "rathon") {
+        } else if (raceType === "marathon") {
           if (i >= 74 | i < 10) {
             avatar.src = "./images/" + avatarName + ".png";
             avatar.style.removeProperty("right");
@@ -158,14 +186,15 @@ btnChrono.addEventListener("click", function (event) {
         i++;
       } else {
         // soit c'est la fin soit c'est pas la bonne réponse
-        if (result == nb3 && i == couplesMelanges.length) {
-          if (page == "rathon") {
+        if (result == nb3 && i == raceDetails.operations.length) {
+          // if (result == nb3 && i == 2) {
+          if (raceType === "marathon") {
             clickCount++; // On finit les modifications de couleur
 
             document.getElementById("bloc80").style.backgroundColor = "#3f3fe1"; // On positionne l'avatar dans le bloc arrivée
 
             document.getElementById("start_finish").appendChild(avatar);
-          } else if (page == "sprint") {
+          } else if (raceType === "marathon") {
             // On finit les modifications de couleur
             document.getElementById("bloc_fin").style.backgroundColor = "#3f3fe1"; // On positionne l'avatar dans le dernier
 
@@ -190,14 +219,18 @@ btnChrono.addEventListener("click", function (event) {
           }); // On envoi le message pour le gagnant
 
           var winner = document.getElementById("winner");
-          (0, _fonctions.play)(winner, "anim_gagnant"); // on affiche le temps dans le message au gagnant
+
+          _utils.utils.play(winner, "anim_gagnant"); // on affiche le temps dans le message au gagnant
+
 
           var winnerTime = document.getElementById("winnerTime");
-          winnerTime.innerText = myChrono.tempsAffiche;
+          winnerTime.innerText = myChrono.tempsAffiche; // Listener pour enregistrer le temps
+
           var enregistrer = document.getElementById("enregistrer");
           enregistrer.addEventListener("click", function (event) {
-            document.location.href = "./raceRouteur.php?time=record&duration=" + myChrono.totalDuration + "&table=" + table + "&mixed=" + melange + "&location=" + location;
-          }); // On différençie si visiteur ou non
+            document.location.href = "./raceRouteur.php?time=record" + "&duration=" + myChrono.totalDuration + "&race_type=" + raceType + "&operation_type=" + operationType + "&table=" + raceDetails.table + "&mixed=" + raceDetails.mix;
+          });
+          console.log(document.location.href); // On différençie si visiteur ou non
 
           if (pseudo === visiteur) {
             var btnIndex = document.createElement("button");

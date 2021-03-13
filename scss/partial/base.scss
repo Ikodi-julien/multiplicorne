@@ -93,6 +93,10 @@ img {
       display: flex;
       align-items: center;
 
+      a {
+        color: inherit;
+      }
+
       @media screen and(max-width: 768px) {
         flex-direction: column;
       }
@@ -100,15 +104,15 @@ img {
       &__avatars {
         display: flex;
         flex-direction: column;
+        background-color: transparent;
+        border-radius: 5px;
+        padding: 4px;
         margin: 2px 5px;
+        overflow: hidden;
 
         & .photo {
           display: flex;
           flex-direction: row;
-          border: 2px solid white;
-          border-radius: 10px;
-          overflow: hidden;
-          background-color: white;
 
           &__profil,
           &__avatar {
@@ -131,9 +135,6 @@ img {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
-        background-color: white;
-        border: 2px solid var(--clr-font-dark);
-        border-radius: 5px;
 
         &__name {
           font-size: 11px;
@@ -177,41 +178,22 @@ img {
         }
       }
 
+      &__select {
+        width: 100px;
+        border: none;
+        background-color: transparent;
+        font-size: var(--font-size-p-small);
+        color: var(--clr-font-dark);
+        font-weight: bold;
+        font-family: inherit;
+      }
+
       &__separation {
         width: 3px;
         height: 14px;
         background-color: var(--clr-font-dark);
       }
     }
-  }
-}
-
-/* --- TIMES VIEW --- */
-.userTimes {
-  border: 3px solid var(--clr-back-middle);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 25px 0;
-  padding: 10px;
-  background-color: var(--clr-back-light);
-
-  & h1 {
-    margin: 20px;
-  }
-
-  & h2 {
-    font-size: 1.3em;
-    margin: 10px 0;
-    align-self: baseline;
-    text-decoration: underline;
-  }
-
-  & h3 {
-    font-size: 1em;
-    margin: 5px 0;
-    align-self: baseline;
   }
 }
 

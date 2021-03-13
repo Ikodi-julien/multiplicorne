@@ -3,6 +3,7 @@
 @import './partial/profil.scss';
 @import './partial/login.scss';
 @import './partial/footer.scss';
+@import './partial/times.scss';
 
 /* --- FONTS --- */
 
@@ -29,7 +30,7 @@
   --clr-font-dark: rgb(38, 38, 38);
   --clr-font-darker: rgb(28, 28, 28);
   --clr-font-hover: rgba(255, 239, 92, 0.938);
-  --clr-back-light: #946c92;
+  --clr-back-light: rgba(148, 108, 146, .9);
   --clr-back-middle: rgb(183, 181, 221);
   --clr-back-dark: rgb(44, 49, 122);
   --clr-back-darker: rgb(59, 67, 179);

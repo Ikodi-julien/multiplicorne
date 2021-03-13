@@ -97,6 +97,9 @@ img {
   display: flex;
   align-items: center;
 }
+.content__header__profil a {
+  color: inherit;
+}
 @media screen and (max-width: 768px) {
   .content__header__profil {
     flex-direction: column;
@@ -105,15 +108,15 @@ img {
 .content__header__profil__avatars {
   display: flex;
   flex-direction: column;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 4px;
   margin: 2px 5px;
+  overflow: hidden;
 }
 .content__header__profil__avatars .photo {
   display: flex;
   flex-direction: row;
-  border: 2px solid white;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: white;
 }
 .content__header__profil__avatars .photo__profil, .content__header__profil__avatars .photo__avatar {
   display: flex;
@@ -131,9 +134,6 @@ img {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: white;
-  border: 2px solid var(--clr-font-dark);
-  border-radius: 5px;
 }
 .content__header__profil__names__name {
   font-size: 11px;
@@ -170,36 +170,19 @@ img {
   color: var(--clr-font-dark);
   font-weight: 700;
 }
+.content__header__nav__select {
+  width: 100px;
+  border: none;
+  background-color: transparent;
+  font-size: var(--font-size-p-small);
+  color: var(--clr-font-dark);
+  font-weight: bold;
+  font-family: inherit;
+}
 .content__header__nav__separation {
   width: 3px;
   height: 14px;
   background-color: var(--clr-font-dark);
-}
-
-/* --- TIMES VIEW --- */
-.userTimes {
-  border: 3px solid var(--clr-back-middle);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 25px 0;
-  padding: 10px;
-  background-color: var(--clr-back-light);
-}
-.userTimes h1 {
-  margin: 20px;
-}
-.userTimes h2 {
-  font-size: 1.3em;
-  margin: 10px 0;
-  align-self: baseline;
-  text-decoration: underline;
-}
-.userTimes h3 {
-  font-size: 1em;
-  margin: 5px 0;
-  align-self: baseline;
 }
 
 /* --- CONTACT --- */
