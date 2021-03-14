@@ -1,0 +1,343 @@
+@use './const.scss'as const;
+
+.bloc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-back-block);
+  margin: 0;
+  padding: 0;
+  width: const.$w_bloc;
+  height: const.$h_bloc;
+  overflow: visible;
+
+  @media screen and(min-width: 768px) {
+    width: 30px;
+    height: 20px;
+  }
+
+  & img {
+    z-index: const.$z-middle;
+    animation: floating 2s infinite ease-in-out;
+
+    // @media screen and(max-width: 700px) {
+    //   min-width: 60px;
+    //   max-width: 60px;
+    // }
+  }
+}
+
+.content {
+  &__racesIndex {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    margin-top: 10px;
+
+    &__intel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 95%;
+      padding: 10px;
+      margin-top: 50px;
+      background-color: var(--clr-back-light);
+      border: 1px solid var(--clr-font-dark);
+      border-radius: 10px;
+
+      @media screen and(min-width: 768px) {
+        max-width: 800px;
+      }
+
+      & h3 {
+        margin: 10px 0 10px 0;
+        font-size: var(--font-size-h3-small);
+      }
+
+      & ul {
+        width: 90%;
+
+        & li {
+          list-style-type: disc;
+          padding: 5px;
+        }
+      }
+    }
+  }
+
+  &__sprint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 99%;
+    margin-top: 10px;
+    padding: 10px 0;
+    background-color: var(--clr-font-light);
+    border: 3px solid var(--clr-back-middle);
+    border-radius: 10px;
+
+    @media screen and(min-width: 600px) {
+      max-width: 600px;
+    }
+
+    &__comments,
+    &__options,
+    &__chrono,
+    &__time {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 90%;
+      height: 75px;
+      border-radius: 10px;
+      margin: 8px;
+      font-size: var(--font-size-p-small);
+      background-color: whitesmoke;
+      border: 2px solid var(--clr-back-middle);
+      border-radius: 10px;
+
+      &__item {
+        display: flex;
+        margin: 5px;
+
+        &>select {
+          font-size: var(--font-size-p-small);
+        }
+
+        & p {
+          margin: 5px;
+        }
+      }
+
+      & p {
+        margin: 5px;
+      }
+
+      &__melange {
+        display: flex;
+        flex-direction: column;
+      }
+
+      @media screen and(min-width: 768px) {
+        font-size: var(--font-size-p-regular);
+        width: 75%;
+      }
+    }
+
+    &__little {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 80%;
+      background-color: var(--clr-font-light);
+      border-radius: 10px;
+      margin: 5px;
+      padding: 10px;
+
+      &__blocks {
+        display: flex;
+
+        &__start {
+          width: 50px;
+          background-image: url(../images/damier.png);
+          background-position: center;
+          background-repeat: repeat;
+
+          & img {
+            z-index: const.$z-middle;
+            animation: floating 2s infinite ease-in-out;
+          }
+        }
+
+        &__finish {
+          width: 50px;
+          background-image: url(../images/damier.png);
+          background-position: center;
+          background-repeat: repeat;
+
+          & img {
+            z-index: const.$z-middle;
+            animation: floating 2s infinite ease-in-out;
+          }
+        }
+      }
+    }
+  }
+
+  &__marathon {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--clr-font-light);
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid var(--clr-back-middle);
+    border-radius: 20px;
+
+    &__2 {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    &__3 {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    &__4 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__5 {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &__middle {
+      display: flex;
+      justify-content: space-between;
+      width: const.$w_bloc * 24;
+
+      @media screen and(min-width: 768px) {
+        width: 720px;
+      }
+
+      &__inside {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.multiplication {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 75px;
+  border-radius: 10px;
+  margin: 10px;
+  font-size: var(--font-size-h3-regular);
+
+  &__item {
+    display: flex;
+    margin: 10px;
+
+    &>select {
+      font-size: 20px;
+    }
+
+    &__result {
+      width: 100px;
+      border: 1px solid black;
+      font-size: 20px;
+    }
+  }
+}
+
+#start_finish {
+  width: const.$w_bloc * 8;
+  height: const.$h_bloc;
+  overflow: visible;
+  background-image: url('../images/damier.png');
+  background-position: center;
+  background-repeat: repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  @media screen and(min-width: 768px) {
+    width: 240px;
+    height: 20px;
+  }
+
+  & img {
+    z-index: const.$z-middle;
+    animation: floating 2s infinite ease-in-out;
+  }
+}
+
+/* --- WINNER VIEW --- */
+.winner {
+  position: fixed;
+  top: 1500px;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--clr-back-dark);
+  z-index: const.$z-front;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__box {
+    width: 600px;
+    height: 500px;
+    border: 3px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--clr-back-light);
+    color: var(--clr-font-dark);
+
+    &__logo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 120px;
+      height: 120px;
+      border: 3px solid white;
+      border-radius: 50%;
+      background-color: var(--clr-back-logo);
+      position: relative;
+      top: -60px;
+
+      & img {
+        padding-top: 10px;
+        min-width: 100px;
+        max-width: 100px;
+        animation: floating 2s infinite ease-in-out;
+      }
+    }
+
+    &__msg {
+      text-align: center;
+      font-family: var(--font-title);
+      font-size: var(--font-size-h1-small);
+    }
+
+    &__time {
+      margin-top: 30px;
+    }
+
+    &__button {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+    }
+  }
+}
+
+/* ANIMATION */
+
+.anim_gagnant {
+  animation: gagnant 0.5s ease-in-out forwards;
+}
+
+@keyframes gagnant {
+  0% {
+    top: 1500px;
+  }
+
+  100% {
+    top: 0px;
+  }
+}

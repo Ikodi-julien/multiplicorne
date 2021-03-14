@@ -292,6 +292,14 @@ function setProfilPhoto($pseudo) {
             
             $destination = imagecreatetruecolor(50, 50);
         
+            // Je veux que l'image ait un fond transparent
+            // make sure that the alpha save-state is on
+            imagesavealpha($destination, true);
+            // then fill the image with a colour that has had its alpha level set 
+            // to fully transparent (127).
+            $trans_colour = imagecolorallocatealpha($destination, 0, 0, 0, 127);
+            imagefill($destination, 0, 0, $trans_colour);
+            
             // Les fonctions imagex et imagey renvoient les largeurs et hauteur d'une image
             $largeur_source = imagesx($source);
             $hauteur_source = imagesy($source);
@@ -302,10 +310,10 @@ function setProfilPhoto($pseudo) {
             imagecopyresampled($destination, $source, 0, 0, 0, 0, $largeur_destination, $hauteur_destination, $largeur_source, $hauteur_source);
         
             // On enregistre l'image de destination 
-            imagepng($destination, "avatars/mini_".$pseudo.'.png');
+            imagepng($destination, "./public/avatars/mini_".$pseudo.'.png');
         
             // envoi du fichier initial au stockage final
-            $moveUploadedFile = move_uploaded_file($_FILES['avatar_fichier']['tmp_name'], 'avatars/'.$pseudo);
+            $moveUploadedFile = move_uploaded_file($_FILES['avatar_fichier']['tmp_name'], './public/avatars/'.$pseudo);
 
             if ($moveUploadedFile) {
               $_SESSION['identification'] = "L'envoi a bien été effectué'";

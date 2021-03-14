@@ -7,13 +7,12 @@
         <link rel="stylesheet" 
         href=<?php
         if (isset($_SESSION['style'])) {
-          echo "./css/".$_SESSION['style'];
+          echo "./public/css/".$_SESSION['style'];
         } else {
-          echo "./css/neutre.css";
+          echo "./public/css/neutre.css";
         } ?> />
-        <script src="./scripts/racesMenu.js"></script>
+        <script src="./public/dist/bundle.js"></script>
         <title><?php echo $title; ?></title>
-        <?php echo $js; ?>
         <meta name="description" content="Multiplicorne, 
     révisez les tables de multiplication en faisant avancer une licorne 
     ou un dinosaure ou un chevalier ou ...">
@@ -24,7 +23,7 @@
     <div class="content">
 
     <?php
-    require("./blocs/raceHeader.php");
+    require("./view/partials/raceHeader.php");
 
     if (isset($_SESSION['identification'])) {
       $identification = htmlspecialchars($_SESSION['identification']);
@@ -38,7 +37,7 @@
     </div>
 
     <?php
-      include("./blocs/footer.html");
+      include("./view/partials/footer.html");
       ?>
 
   </body>

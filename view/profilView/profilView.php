@@ -1,6 +1,5 @@
 <?php
 $title = "Multiplicorne - Profil";
-$js = "<script src=\"./scripts/profil.js\" type=\"module\"></script>";
 ob_start(); ?>
 
 <section class="content__profil">
@@ -21,7 +20,7 @@ ob_start(); ?>
           <img 
           src="<?php
           if (isset($_SESSION['avatar'])) {
-            echo './images/'. $_SESSION['avatar'] .'.png'; 
+            echo './public/images/'. $_SESSION['avatar'] .'.png'; 
           } else {
             echo 'problème Session';
           }?>" 
@@ -67,7 +66,7 @@ ob_start(); ?>
       <div class="content__profil__items__card__item">
         <h2>Photo actuelle :
             <img 
-            src="<?php echo './avatars/mini_'.$pseudo.'.png'; ?>" 
+            src="<?php echo './public/avatars/mini_'.$pseudo.'.png'; ?>" 
             alt="Pas d'image de pseudo"
             >
         </h2>

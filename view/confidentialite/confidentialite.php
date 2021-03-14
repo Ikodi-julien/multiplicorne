@@ -1,6 +1,5 @@
 <?php
 $title = "Multiplicorne - Politique de confidentialite";
-$js = null;
 ob_start(); ?>
 
 <section class="confidentialite">

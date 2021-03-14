@@ -6,9 +6,9 @@
     <link rel="stylesheet" 
     href="<?php
     if (isset($_SESSION['style'])) {
-      echo "./css/".$_SESSION['style'];
+      echo "./public/css/".$_SESSION['style'];
     } else {
-      echo "./css/neutre.css";
+      echo "./public/css/neutre.css";
     } ?>">
     <title><?php echo $title; ?></title>
     <meta name="description" content="Connexion au site Multiplicorne, 
@@ -23,7 +23,7 @@
       <div class="login__box">
 
         <div class="login__logo">
-            <img src="./images/licorne.png" alt="licorne... sisi !">
+            <img src="./public/images/licorne.png" alt="licorne... sisi !">
         </div>
         
         <div class="login__content">

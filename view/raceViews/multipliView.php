@@ -1,5 +1,5 @@
 <?php 
-$js = '<script src="./scripts/main.js" type="module" defer></script>';
+$js = '<script src="./public/js/main.js" type="module" defer></script>';
 $title = 'Multiplications';
 
 ob_start(); ?>
@@ -7,23 +7,23 @@ ob_start(); ?>
 <section class="content__sprint">
 
   <div class="content__sprint__comments">
-    <?php include("./blocs/commentaires.php"); ?>
+    <?php include("./view/partials/commentaires.php"); ?>
   </div>
 
   <div class="content__sprint__options">
-    <?php include("blocs/options.html"); ?>
+    <?php include("view/partials/options.html"); ?>
   </div>
   
   <div class="content__sprint__chrono">
-    <?php include("blocs/chrono.html"); ?>
+    <?php include("view/partials/chrono.html"); ?>
   </div>
 
   <div class="multiplication">
-    <?php include("blocs/multiplication.html"); ?>
+    <?php include("view/partials/multiplication.html"); ?>
   </div>
 
   <div class="content__sprint__little">
-    <?php include("blocs/petite_course.html"); ?>
+    <?php include("view/partials/petite_course.html"); ?>
   </div>
 
   <div class="content__sprint__intel">
@@ -39,7 +39,7 @@ ob_start(); ?>
 </section>
 
 <?php
-include("blocs/gagnant.php");
+include("view/partials/gagnant.php");
 
 $content = ob_get_clean(); 
 require('./view/template.php');

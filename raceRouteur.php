@@ -1,9 +1,9 @@
 <?php
 session_start(); 
-require("blocs/commonVar.php");
 require("./utils/utils.php");
-require("controller/controlleur.php");
-require("controller/timesControlleur.php");
+require("./controller/controlleur.php");
+require("./view/partials/commonVar.php");
+require("./controller/timesControlleur.php");
 
 /**
  *  Routeur for races views

@@ -1,8 +1,8 @@
 <?php
 session_start(); 
 require("./utils/utils.php");
-require("controller/controlleur.php");
-require("blocs/commonVar.php");
+require("./controller/controlleur.php");
+require("./view/partials/commonVar.php");
 
 /**
  * Index opens with standard login view, 

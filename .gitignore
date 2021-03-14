@@ -1,2 +1,4 @@
-model.php
-
+dbConnect.php
+node_modules
+phpMailer.php
+dist/

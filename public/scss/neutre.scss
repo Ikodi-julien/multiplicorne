@@ -1,0 +1,53 @@
+@use './partials/indexPartials.scss';
+
+/* --- FONTS --- */
+
+@font-face {
+  font-family: 'mountains_of_christmasregular';
+  src: url(../fonts/MountainsOfChristmas/mountainsofchristmas-webfont.woff2) format('woff2'),
+    url(../fonts/MountainsOfChristmas/mountainsofchristmas-webfont.woff) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'open_sansregular';
+  src: url('../fonts/opensans-regular-webfont.woff2') format('woff2'),
+    url('../fonts/opensans-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* --- COULEURS --- */
+:root {
+  --clr-font-light: rgb(242, 242, 242);
+  --clr-font: rgb(56, 56, 56);
+  --clr-font-dark: rgb(46, 78, 46);
+  --clr-font-darker: rgb(22, 22, 22);
+  --clr-font-hover: rgba(226, 208, 43, 0.8);
+  --clr-back-light: #ebffe8;
+  --clr-back-middle: rgb(140, 226, 140);
+  --clr-back-dark: rgb(4, 150, 23);
+  --clr-back-darker: rgb(54, 156, 68);
+  --clr-back-logo: rgb(255, 248, 121);
+  --clr-back-block: rgb(0, 190, 25);
+}
+
+/* --- FONT CONST --- */
+:root {
+  --font: 'open_sansregular', cursive, arial;
+  --font-footer: 'open_sansregular', cursive;
+  --font-title: 'mountains_of_christmasregular', cursive;
+  --font-size-h1-small: 25px;
+  --font-size-h1-regular: 35px;
+  --font-size-h3-small: 20px;
+  --font-size-h3-regular: 25px;
+  --font-size-p-regular: 20px;
+  --font-size-p-small: 16px;
+}
+
+/* --- BACKGROUND ---*/
+
+:root {
+  --background: url(../images/paysage-cartoon.png);
+}

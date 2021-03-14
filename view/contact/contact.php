@@ -1,6 +1,5 @@
 <?php
 $title = "Multiplicorne - Contact";
-$js = null;
 ob_start(); ?>
 
 <section class="contact">

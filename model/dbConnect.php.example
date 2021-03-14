@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Se connecte à la base de données
+ */
+function dbConnect () {
+  try {
+    $db = new PDO(
+        'mysql:host=localhost;dbname=dbname;charset=utf8',
+        'username',
+        'password',
+        array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
+    );
+  } catch (Exception $e) {
+      die('Erreur : '.$e->getMessage());
+  }
+  return $db;
+}

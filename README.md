@@ -1,12 +1,12 @@
 # Suivi de version Multiplicorne
 
-## V8 Multiplicorne	
-- Affichage 10 derniers temps par table	07/03/21
-- Modification JS, PHP, SQL, BDD pour enregistrer des secondes et non le temps en string.	07/03/21 ;-/
-- Modification de l'architecture de la BDD	12/03/21
-- Ajout de courses add et soustraction sprint et marathon	12/03/21
-- Affichage des temps plus détaillé et complet	12/03/21
-- Landing sur l'index des courses, connexion si on veut.	12/03/21
+## V8 Multiplicorne	14/03/2021
+- Ajout de courses additions et soustraction sprint et marathon,
+- Bundle JS avec webpack, CSS avec SCSS,
+- Modification JS, PHP, SQL, BDD pour enregistrer des secondes et non le temps en string.
+- Modification de l'architecture de la BDD
+- Affichage des temps plus détaillé et complet
+- Landing sur l'index des courses, connexion si on veut.
 
 
 ## V7 Multiplicorne	22/10/20
