@@ -25,13 +25,13 @@ section {
 button {
   outline: none;
   text-decoration: none;
-  background-color: var(--clr-back-dark);
+  background-color: var(--clr-back-button);
   color: var(--clr-font-light);
-  min-height: 36px;
+  border: none;
   border-radius: 18px;
   font-size: 16px;
   font-weight: bold;
-  padding: 7px;
+  padding: 5px 10px;
   opacity: 1;
   transition: opacity 250ms 50ms;
 }
@@ -52,6 +52,7 @@ li {
 img {
   min-width: 80px;
   max-width: 80px;
+  background-color: transparent;
 }
 @media screen and (max-width: 750px) {
   img {
@@ -170,6 +171,7 @@ img {
   color: var(--clr-font-dark);
   font-weight: bold;
   font-family: inherit;
+  cursor: pointer;
 }
 .content__header__nav__separation {
   width: 3px;
@@ -859,6 +861,7 @@ footer .content .logo p {
 }
 .userTimes__container {
   display: flex;
+  flex-wrap: wrap;
 }
 .userTimes__container__raceType {
   min-width: 320px;
@@ -922,6 +925,7 @@ footer .content .logo p {
   --clr-back-darker: rgb(59, 67, 179);
   --clr-back-logo: rgb(255, 254, 218);
   --clr-back-block: rgb(255, 212, 132);
+  --clr-back-button: rgb(44, 49, 122);
 }
 
 /* --- FONT CONST --- */

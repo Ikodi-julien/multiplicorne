@@ -31,6 +31,7 @@
   --clr-back-darker: rgb(54, 156, 68);
   --clr-back-logo: rgb(255, 248, 121);
   --clr-back-block: rgb(0, 190, 25);
+  --clr-back-button: rgb(4, 150, 23);
 }
 
 /* --- FONT CONST --- */
@@ -50,4 +51,10 @@
 
 :root {
   --background: url(../images/paysage-cartoon.png);
+}
+
+.content__header__title h1 {
+  @media screen and (max-width: 768px) {
+    font-size: 25px;
+  }
 }

@@ -9,57 +9,6 @@ ob_start();
 
     <div class="userTimes__container">
     
-        <div class="userTimes__container__section">
-    
-    <?php
-    //Ensuite afficher les résultats des sprints s'il y en a
-    if ($multipliSprintCount > 0) { ?>
-    
-        <div class="userTimes__container__raceType">
-    
-        <!-- Afficher le titre -->
-        <h2 class="userTimes__raceTypeTitle">Sprint Multiplications</h2>
-        
-        <?php
-        
-        foreach($allMultipliSprint as $index => $tableSprints) { 
-            
-            // On affiche si il y a quelque chose
-            if (isset($tableSprints[0]['table_multiplication'])) {
-            ?>
-                
-                <h3 class="userTimes__table">Table du <?= $tableSprints[0]['table_multiplication']; ?></h3>
-                
-                <!-- Affichage du meilleur temps -->
-                <h3 class="userTimes__bestTime">
-                    Meilleur temps: <?= floor($tableSprints['best_time']['temps_course'] / 60); ?>mn 
-                    <?= $tableSprints['best_time']['temps_course'] % 60; ?>s 
-                    <?= $tableSprints['best_time']['date_course']; ?>
-                </h3>
-                
-                <!-- Afficher les 10 derniers temps -->
-            <?php
-                for ($index = 0; $index < 10; $index++) { 
-                    
-                    if (isset($tableSprints[$index])) {
-                    ?>
-
-                    <p class="userTimes__time">
-                        <?= floor($tableSprints[$index]['temps_course'] / 60); ?>mn 
-                        <?= $tableSprints[$index]['temps_course'] % 60; ?>s 
-                        <?= $tableSprints[$index]['date_course']; ?>
-                    </p>
-                    
-                <?php 
-                    }
-                }
-            }
-        } ?>
-        </div>
-        <?php } ?>
-    </div>
-    <!-- fin de section sprint multipli -->
-    
     
     
     <div class="userTimes__container__section">
@@ -181,6 +130,61 @@ ob_start();
 
             </div>
             <!-- fin de section sprint add et sub -->
+            
+                    <div class="userTimes__container__section">
+    
+    <?php
+    //Ensuite afficher les résultats des sprints s'il y en a
+    if ($multipliSprintCount > 0) { ?>
+    
+        <div class="userTimes__container__raceType">
+    
+        <!-- Afficher le titre -->
+        <h2 class="userTimes__raceTypeTitle">Sprint Multiplications</h2>
+        
+        <?php
+        
+        foreach($allMultipliSprint as $index => $tableSprints) { 
+            
+            // On affiche si il y a quelque chose
+            if (isset($tableSprints[0]['table_multiplication'])) {
+            ?>
+                
+                <h3 class="userTimes__table">Table du <?= $tableSprints[0]['table_multiplication']; ?></h3>
+                
+                <!-- Affichage du meilleur temps -->
+                <h3 class="userTimes__bestTime">
+                    Meilleur temps: <?= floor($tableSprints['best_time']['temps_course'] / 60); ?>mn 
+                    <?= $tableSprints['best_time']['temps_course'] % 60; ?>s 
+                    <?= $tableSprints['best_time']['date_course']; ?>
+                </h3>
+                
+                <!-- Afficher les 10 derniers temps -->
+            <?php
+                for ($index = 0; $index < 10; $index++) { 
+                    
+                    if (isset($tableSprints[$index])) {
+                    ?>
+
+                    <p class="userTimes__time">
+                        <?= floor($tableSprints[$index]['temps_course'] / 60); ?>mn 
+                        <?= $tableSprints[$index]['temps_course'] % 60; ?>s 
+                        <?= $tableSprints[$index]['date_course']; ?>
+                    </p>
+                    
+                <?php 
+                    }
+                }
+            }
+        } ?>
+        </div>
+        <?php } ?>
+    </div>
+    <!-- fin de section sprint multipli -->
+    
+
+            
+            
             </div>
         </div>
     </section>
